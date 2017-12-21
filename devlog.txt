@@ -1,0 +1,3 @@
+xuJ —- 17-12-21 16:40
+	added pdf version of design doc
+	edited README.md to contain general description of game

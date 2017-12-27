@@ -1,3 +1,9 @@
 xuJ —- 17-12-21 16:40
 	added pdf version of design doc
 	edited README.md to contain general description of game
+
+xuJ -- 17-12-27 01:23
+	started play.html and play.js
+	set up the repo with the correct folders
+	started with background for the templates
+	NOTE: not sure how to center, and not sure how to transfer style to .css file yet

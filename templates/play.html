@@ -1,0 +1,26 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Play</title>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/main.css') }}">
+    <style>
+    .full {
+      position: fixed;
+      width: 80%;
+      padding-top: 50%;
+      margin: auto;
+      background-image: url("../static/images/background.jpg");
+      background-size: 100% 100%;
+    }
+    .box {
+      border: 1px solid black;
+    }
+    </style>
+  </head>
+
+  <body>
+    <div class="full box" id="box"></div>
+    <script src="../static/style/play.js"></script>
+  </body>
+</html>

@@ -16,3 +16,7 @@ xuJ -- 17-12-28 17:28
 
 WongE -- 17-12-28 17:50
 	moved javascript to a separate folder, tweaked css path in base.html
+
+WongE -- 2017-12-28 19:11:06
+added main.py and a script to edit the devlog
+

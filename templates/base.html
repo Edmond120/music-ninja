@@ -3,7 +3,7 @@
 
   <head>
     <title>Play</title>
-    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='../static/styles/main.css') }}">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='static/styles/main.css') }}">
   </head>
 
   <body>
@@ -12,7 +12,7 @@
       
       {% endblock %}
     </div>
-    <script src="../static/style/play.js"></script>
+    <script src="{{ url_for('static', filename='javascript/play.js')}}"></script>
   </body>
 
 </html>

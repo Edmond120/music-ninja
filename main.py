@@ -16,7 +16,7 @@ def home():
 	else:
 		return redirect( url_for('root') )
 
-@my_app.route('/login')
+@app.route('/login')
 def login():
 	if in_session():
 		return redirect( url_for('home') )
@@ -31,7 +31,7 @@ def register():
 		return render_template("register.html")
 
 
-@my_app.route('/store')
+@app.route('/store')
 def store():
 	if in_session():
 		return render_template("store.html")
@@ -45,7 +45,7 @@ def profile():
 	else:
 		return redirect( url_for('login') )
 
-@my_app.route('/play')
+@app.route('/play')
 def play():
 	if in_session():
 		return render_template("play.html")

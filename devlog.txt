@@ -18,14 +18,13 @@ WongE -- 17-12-28 17:50
 	moved javascript to a separate folder, tweaked css path in base.html
 
 WongE -- 2017-12-28 19:11:06
-added main.py and a script to edit the devlog
+	added main.py and a script to edit the devlog
 
 chenK -- 2017-12-29 19:15:48
-added db
+	added db
 
 WongE -- 2017-12-29 23:32:09
-fixed typo
+	fixed typo
 
 WongE -- 2017-12-30 00:30:07
-added auth functions in db.py
-
+	added auth functions in db.py

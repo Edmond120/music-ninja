@@ -1,4 +1,7 @@
 import sqlite3
+import os
+import hashlib
+from flask import session
 
 f = "app.db"
 db = sqlite3.connect(f)
@@ -38,9 +41,10 @@ def getuserhighscore(user):
 #add the user to the databaseh
 def adduser(username,password):
     f = "app.db"
-    db = sqlite3.connect(f)
+    db = sqlite3.connect()
     c = db.cursor()
     if get_pass(username) is None:
+		password = hashlib.sha224(password).hexdigest()
         c.execute('INSERT INTO users VALUES("%s", "%s");' %(result,username, password))
         db.commit()
         db.close()
@@ -61,4 +65,38 @@ def get_pass(username):
     else:
         db.close()
         return result[0][0]
-   
+
+#checks if the password matches the account referenced by the username
+def match(username,password):
+	p = get_pass(username)
+	if(p == None):
+		return False
+	else:
+		return (p == hashlib.sha224(password).hexdigest())
+
+#checks if the password is correct, then creates a cookie
+def login(username,password):
+	if(match(username,password)):
+		session['username'] = username
+		session['password'] = hashlib.sha224(password).hexdigest()
+		return True
+	else:
+		return False
+
+#checks if there is a login session and if the credentials are correct
+def in_session():
+	if(not('username' in session and 'password' in session)):
+		return False
+	p = get_pass(session.get('username'))
+	if(p == None):
+		return False
+	else:
+		return (p == session.get('password'))
+
+#removes the login session
+def logout():
+	if('username' in session):
+		session.pop('username')
+	if('password' in session):
+		session.pop('password')
+

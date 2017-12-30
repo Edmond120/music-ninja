@@ -26,3 +26,6 @@ added db
 WongE -- 2017-12-29 23:32:09
 fixed typo
 
+WongE -- 2017-12-30 00:30:07
+added auth functions in db.py
+

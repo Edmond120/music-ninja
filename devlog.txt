@@ -23,3 +23,6 @@ added main.py and a script to edit the devlog
 chenK -- 2017-12-29 19:15:48
 added db
 
+WongE -- 2017-12-29 23:32:09
+fixed typo
+

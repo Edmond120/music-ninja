@@ -25,7 +25,7 @@ def gethighscore():
     db.close
     return results
 
-#return the 5 hishest scores for a user
+#return the 5 highest scores for a user
 def getuserhighscore(user):
     f = "app.db"
     db = sqlite3.connect()

@@ -28,3 +28,6 @@ WongE -- 2017-12-29 23:32:09
 
 WongE -- 2017-12-30 00:30:07
 	added auth functions in db.py
+
+xuJ -- 2017-12-30 17:38
+	started with rendering templates and redirecting

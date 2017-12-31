@@ -6,15 +6,26 @@ from flask import session
 f = "app.db"
 db = sqlite3.connect(f)
 c = db.cursor()
+c.execute('CREATE TABLE IF NOT EXISTS items(user TEXT, item TEXT);')
 c.execute('CREATE TABLE IF NOT EXISTS users (username TEXT, password TEXT);')
 c.execute('CREATE TABLE IF NOT EXISTS highscore (username TEXT, score INTEGER);')
 db.close()
-#add a score to the list
-def addscore(username,score):
+
+#add item to list
+def additem(user,item):
     f = "app.db"
     db = sqlite3.connect(f)
     c = db.cursor()
-    c.execute('INSERT INTO highscore VALUES("%s", "%d");' %(result,username, password))
+    c.execute('INSERT INTO items VALUES("%s%", "%s%");' %(user,item) )
+    db.commit()
+    db.close()
+
+#add score to score table
+def addscore(user,score):
+    f = "app.db"
+    db = sqlite3.connect(f)
+    c = db.cursor()
+    c.execute('INSERT INTO highscore VALUES("%s", "%d");' %(result,user, password))
     db.commt()
     db.close()
     
@@ -39,13 +50,13 @@ def getuserhighscore(user):
     return results
     
 #add the user to the databaseh
-def adduser(username,password):
+def adduser(user,password):
 	f = "app.db"
 	db = sqlite3.connect()
 	c = db.cursor()
-	if get_pass(username) is None:
+	if get_pass(user) is None:
 		password = hashlib.sha224(password).hexdigest()
-		c.execute('INSERT INTO users VALUES("%s", "%s");' %(result,username, password))
+		c.execute('INSERT INTO users VALUES("%s", "%s");' %(result,user, password))
 		db.commit()
 		db.close()
 		return True
@@ -53,11 +64,11 @@ def adduser(username,password):
 	return False
 
 #returns the password of the user    
-def get_pass(username):
+def get_pass(user):
     f = "app.db"
     db = sqlite3.connect(f)
     c = db.cursor()
-    c.execute('SELECT password FROM users WHERE username= "%s";' %(username))
+    c.execute('SELECT password FROM users WHERE username= "%s";' %(user))
     result = c.fetchall()
     if result == []:
         db.close()

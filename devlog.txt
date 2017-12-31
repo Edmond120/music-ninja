@@ -34,3 +34,6 @@ xuJ -- 2017-12-30 17:38
 WongE -- 2017-12-31 01:57:12
 fixed tab error in db.py, imported stuff in main
 
+chenK -- 2017-12-31 15:21:55
+Added item table and adding method
+

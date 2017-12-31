@@ -40,17 +40,17 @@ def getuserhighscore(user):
     
 #add the user to the databaseh
 def adduser(username,password):
-    f = "app.db"
-    db = sqlite3.connect()
-    c = db.cursor()
-    if get_pass(username) is None:
+	f = "app.db"
+	db = sqlite3.connect()
+	c = db.cursor()
+	if get_pass(username) is None:
 		password = hashlib.sha224(password).hexdigest()
-        c.execute('INSERT INTO users VALUES("%s", "%s");' %(result,username, password))
-        db.commit()
-        db.close()
-        return True
-    db.close()
-    return False
+		c.execute('INSERT INTO users VALUES("%s", "%s");' %(result,username, password))
+		db.commit()
+		db.close()
+		return True
+	db.close()
+	return False
 
 #returns the password of the user    
 def get_pass(username):

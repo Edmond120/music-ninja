@@ -31,3 +31,6 @@ WongE -- 2017-12-30 00:30:07
 
 xuJ -- 2017-12-30 17:38
 	started with rendering templates and redirecting
+WongE -- 2017-12-31 01:57:12
+fixed tab error in db.py, imported stuff in main
+

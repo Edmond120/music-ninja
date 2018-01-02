@@ -8,6 +8,9 @@ def root():
 		return redirect( url_for('home') )
 	else:
 		return render_template("welcome.html")
+#home
+
+
 
 @app.route('/home') #goes to home.html
 def home():
@@ -15,7 +18,7 @@ def home():
 		return render_template("home.html")
 	else:
 		return redirect( url_for('root') )
-
+#
 @app.route('/login')
 def login():
 	if in_session():
@@ -52,6 +55,8 @@ def play():
 	else:
 		return redirect( url_for('login') )
 
+
+    
 if __name__ == '__main__':
 	app.debug = True
 	app.run()

@@ -8,10 +8,31 @@ db = sqlite3.connect(f)
 c = db.cursor()
 #if a item has 0 the user is not using the item. If it is 1 they user is using 
 c.execute('CREATE TABLE IF NOT EXISTS items(user TEXT, item TEXT, playing INTEGER);')
-c.execute('CREATE TABLE IF NOT EXISTS users (username TEXT, password TEXT);')
+c.execute('CREATE TABLE IF NOT EXISTS users (username TEXT, password TEXT, cash INTEGER);')
 c.execute('CREATE TABLE IF NOT EXISTS highscore (username TEXT, score INTEGER);')
 db.close()
 
+#changes cash amount 
+def changevalue(change,user):
+    if canpurchase(change,user):
+        f = "app.db"
+        db = sqlite3.connect(f)
+        c = db.cursor()
+        c.execute('UPDATE users SET.cash = (SELECT cash FROM users WHERE username = "%s") + "%d" WHERE username = "%s";' %(user,change,user))
+        db.commit()
+        db.close()
+
+#checks if program can purchase
+def canpurchase(change,value):
+    f = "app.db"
+    db = sqlite3.connect(f)
+    c = db.cursor()
+    c.execute('SELECT cash FROM users WHERE username = "%s";' %(user) )
+    results = c.fetchall()
+    db.close()
+    return results[0][0] + change  >= 0
+        
+    
 #add item to list
 def additem(user,item):
     if isunique(user,item) == False:
@@ -21,6 +42,30 @@ def additem(user,item):
         c.execute('INSERT INTO items VALUES("%s%", "%s%, 0");' %(user,item) )
         db.commit()
         db.close()
+
+#returns a list of items the user is using
+def itemlist(user):
+    f = "app.db"
+    db = sqlite3.connect(f)
+    c = db.cursor()
+    c.execute('SELECT * FROM items WHERE username = "%s";' %(user) )
+    results = c.fetchall()
+    d.close()
+    return results
+        
+#returns a list of items the user is using
+def itemusinglist(user):
+    f = "app.db"
+    db = sqlite3.connect(f)
+    c = db.cursor()
+    c.execute('SELECT * FROM items WHERE username = "%s" AND playing = 1 LIMIT 8;' %(user) )
+    results = c.fetchall()
+    d.close()
+    return results
+
+#helper function for adding that prevents adding if there is 8 items selected
+def isnotmax(list):
+    return list.len() != 8
 
 #checks if the item being added is a duplicate
 def isunique(user,item):
@@ -35,12 +80,13 @@ def isunique(user,item):
 
 #allows player to use item
 def use(user,item):
-    f = "app.db"
-    db = sqlite3.connect(f)
-    c = db.cursor()
-    c.execute('UPDATE users SET.playing=1 WHERE username = "%s" AND item = "%s" ;' %(user,item) )
-    db.commit()
-    db.close()
+    if isnotmax(itemusinglist(user)):
+        f = "app.db"
+        db = sqlite3.connect(f)
+        c = db.cursor()
+        c.execute('UPDATE users SET.playing=1 WHERE username = "%s" AND item = "%s";' %(user,item) )
+        db.commit()
+        db.close()
 
     #turns off item
 def notuse(user,item):
@@ -71,7 +117,7 @@ def gethighscore():
     return results
 
 #return the 5 highest scores for a user
-def getuserhighscore(user):
+def gethighscore(user):
     f = "app.db"
     db = sqlite3.connect()
     c = db.cursor()
@@ -87,7 +133,7 @@ def adduser(user,password):
 	c = db.cursor()
 	if get_pass(user) is None:
 		password = hashlib.sha224(password).hexdigest()
-		c.execute('INSERT INTO users VALUES("%s", "%s");' %(user, password))
+		c.execute('INSERT INTO users VALUES("%s", "%s", 10000);' %(user, password))
 		db.commit()
 		db.close()
 		return True
@@ -141,4 +187,7 @@ def logout():
 		session.pop('username')
 	if('password' in session):
 		session.pop('password')
+
+
+        
 

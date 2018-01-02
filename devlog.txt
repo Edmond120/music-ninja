@@ -41,5 +41,8 @@ chenK -- 2017-12-31 15:21:55
 chenK -- 2018-01-01 19:07:55
 	added helper functions to db
 
+chenK -- 2018-01-02 14:38:33
+	more functions in db
+	
 xuJ -- 2018-01-02 14:44
 	filled out most of the templates except the stuff that displays data

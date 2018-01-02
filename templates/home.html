@@ -1,5 +1,11 @@
 {% extends "base.html" %}
 
 {% block body %}
+<form action="/home" method="POST">
+  <input type="submit" name="logout" value="Logout">
+  <input type="submit" name="store" value="Store">
+  <input type="submit" name="profile" value="Profile">
+  <input type="submit" name="play" value="Play">
+</form>
 
 {% endblock %}

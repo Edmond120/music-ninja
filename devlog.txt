@@ -31,12 +31,15 @@ WongE -- 2017-12-30 00:30:07
 
 xuJ -- 2017-12-30 17:38
 	started with rendering templates and redirecting
+
 WongE -- 2017-12-31 01:57:12
-fixed tab error in db.py, imported stuff in main
+	fixed tab error in db.py, imported stuff in main
 
 chenK -- 2017-12-31 15:21:55
-Added item table and adding method
+	Added item table and adding method
 
 chenK -- 2018-01-01 19:07:55
-added helper functions to db
+	added helper functions to db
 
+xuJ -- 2018-01-02 14:44
+	filled out most of the templates except the stuff that displays data

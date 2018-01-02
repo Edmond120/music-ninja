@@ -1,5 +1,9 @@
 {% extends "base.html" %}
 
 {% block body %}
-
+$$: {{cash}}
+<form method="POST" action="/store">
+	Search: <input type="text" name="query"><br>
+	<input type="submit" value="Submit">
+</form>
 {% endblock %}

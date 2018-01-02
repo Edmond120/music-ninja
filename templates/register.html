@@ -1,13 +1,16 @@
 {% extends "base.html" %}
 
 {% block body %}
-<form action="/login" method="POST">
+<form action="/register" method="POST">
   <label>USERNAME:
     <input name="usr" type="text">
   </label>
   <label>PASSWORD:
     <input name="pwd" type="password">
+  </label>
+  <label>CONFIRM PASSWORD:
+    <input name="cfm" type="password">
   </label> <br>
-  <input type="submit" name="login" value="Login">
+  <input type="submit" name="register" value="Register">
 </form>
 {% endblock %}

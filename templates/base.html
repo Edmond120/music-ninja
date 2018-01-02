@@ -2,17 +2,16 @@
 <html>
 
   <head>
-    <title>Play</title>
-    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='static/styles/main.css') }}">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/main.css') }}">
   </head>
 
   <body>
     <div class="full box" id="box">
       {% block body %}
-      
+
       {% endblock %}
     </div>
-    <script src="{{ url_for('static', filename='javascript/play.js')}}"></script>
+    <script src="../static/style/play.js"></script>
   </body>
 
 </html>

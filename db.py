@@ -6,17 +6,48 @@ from flask import session
 f = "app.db"
 db = sqlite3.connect(f)
 c = db.cursor()
-c.execute('CREATE TABLE IF NOT EXISTS items(user TEXT, item TEXT);')
+#if a item has 0 the user is not using the item. If it is 1 they user is using 
+c.execute('CREATE TABLE IF NOT EXISTS items(user TEXT, item TEXT, playing INTEGER);')
 c.execute('CREATE TABLE IF NOT EXISTS users (username TEXT, password TEXT);')
 c.execute('CREATE TABLE IF NOT EXISTS highscore (username TEXT, score INTEGER);')
 db.close()
 
 #add item to list
 def additem(user,item):
+    if isunique(user,item) == False:
+        f = "app.db"
+        db = sqlite3.connect(f)
+        c = db.cursor()
+        c.execute('INSERT INTO items VALUES("%s%", "%s%, 0");' %(user,item) )
+        db.commit()
+        db.close()
+
+#checks if the item being added is a duplicate
+def isunique(user,item):
     f = "app.db"
     db = sqlite3.connect(f)
     c = db.cursor()
-    c.execute('INSERT INTO items VALUES("%s%", "%s%");' %(user,item) )
+    c.execute('SELECT * FROM  items WHERE username = "%s" AND ITEM = "%s";' %(user,item) )
+    results = c.fetchall()
+    if results == []:
+        return False
+    return True
+
+#allows player to use item
+def use(user,item):
+    f = "app.db"
+    db = sqlite3.connect(f)
+    c = db.cursor()
+    c.execute('UPDATE users SET.playing=1 WHERE username = "%s" AND item = "%s" ;' %(user,item) )
+    db.commit()
+    db.close()
+
+    #turns off item
+def notuse(user,item):
+    f = "app.db"
+    db = sqlite3.connect(f)
+    c = db.cursor()
+    c.execute('UPDATE users SET.playing= 0 WHERE username = "%s" AND item = "%s" ;' %(user,item) )
     db.commit()
     db.close()
 
@@ -25,7 +56,7 @@ def addscore(user,score):
     f = "app.db"
     db = sqlite3.connect(f)
     c = db.cursor()
-    c.execute('INSERT INTO highscore VALUES("%s", "%d");' %(result,user, password))
+    c.execute('INSERT INTO highscore VALUES("%s", "%d");' %(user, score))
     db.commt()
     db.close()
     
@@ -44,7 +75,7 @@ def getuserhighscore(user):
     f = "app.db"
     db = sqlite3.connect()
     c = db.cursor()
-    e.execute('SELECT * FROM highscores WHERE user = username ORDER BY score DESC LIMIT 5;')
+    e.execute('SELECT * FROM highscores WHERE username= "%s" ORDER BY score DESC LIMIT 5;' %(user) )
     results = c.fetchall()
     db.close
     return results
@@ -56,7 +87,7 @@ def adduser(user,password):
 	c = db.cursor()
 	if get_pass(user) is None:
 		password = hashlib.sha224(password).hexdigest()
-		c.execute('INSERT INTO users VALUES("%s", "%s");' %(result,user, password))
+		c.execute('INSERT INTO users VALUES("%s", "%s");' %(user, password))
 		db.commit()
 		db.close()
 		return True

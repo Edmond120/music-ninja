@@ -3,7 +3,7 @@
 # Credits to James Smith
 
 DATE=`date '+%Y-%m-%d %H:%M:%S'`
-ENTRY="$1 -- $DATE\n$2\n"
+ENTRY="$1 -- $DATE\n\t$2\n"
 
 if [ $# -eq 2 ]; then
     if [ ! -e devlog.txt ]; then

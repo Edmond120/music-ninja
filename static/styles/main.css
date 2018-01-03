@@ -2,10 +2,7 @@
   position: fixed;
   width: 80%;
   padding-top: 50%;
-  margin: auto;
+  margin: 0 auto;
   background-image: url("../images/background.jpg");
   background-size: 100% 100%;
-}
-.box {
-  border: 1px solid black;
 }

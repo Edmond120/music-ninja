@@ -15,6 +15,7 @@ def root():
 @app.route('/home') #goes to home.html
 def home():
 	if in_session():
+		# INFO to be passed: list of top 10 highcores
 		return render_template("home.html")
 	else:
 		return redirect( url_for('root') )
@@ -37,13 +38,17 @@ def register():
 @app.route('/store')
 def store():
 	if in_session():
+		# INFO to be passed: search results from the query
 		return render_template("store.html")
 	else:
 		return redirect( url_for('login') )
 
+
 @app.route('/profile')
 def profile():
 	if in_session():
+		# INFO to be passed: items already bought by user and whether or not
+		# user has chosen to use it in gameplay
 		return render_template("profile.html")
 	else:
 		return redirect( url_for('login') )

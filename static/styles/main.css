@@ -1,8 +1,31 @@
-.full {
-  position: fixed;
-  width: 80%;
-  padding-top: 50%;
-  margin: 0 auto;
-  background-image: url("../images/background.jpg");
-  background-size: 100% 100%;
+.container {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+.frext {
+  font-size: 300%;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  text-align: center;
+  top: 40%;
+  font-family: Verdana;
+}
+
+.left-half {
+  position: absolute;
+  width: 15%;
+  height: 30%;
+  top: 40%;
+  left: 25%;
+}
+
+.right-half {
+  position: absolute;
+  width: 15%;
+  height: 30%;
+  top: 40%;
+  right: 25%;
 }

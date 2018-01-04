@@ -46,3 +46,6 @@ chenK -- 2018-01-02 14:38:33
 
 xuJ -- 2018-01-02 14:44
 	filled out most of the templates except the stuff that displays data
+
+xuJ -- 2018-01-03 22:19:25
+	started formatting welcome.html, only problem is the inner div is not resizing properly

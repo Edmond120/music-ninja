@@ -49,3 +49,6 @@ xuJ -- 2018-01-02 14:44
 
 xuJ -- 2018-01-03 22:19:25
 	started formatting welcome.html, only problem is the inner div is not resizing properly
+chenK -- 2018-01-03 22:58:14
+	working on pause btn
+

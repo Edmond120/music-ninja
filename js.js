@@ -64,7 +64,7 @@ class entitiy{
 	display(){}
 }
 
-"
+/*
 var randomObject = function(){
     num = Math.floor( Math.random() * objects.leng );
     return objects[num];
@@ -86,8 +86,7 @@ var action = function(time){
 	throwTemp();
     };
 };
-
-"
+*/
 var distance = function(x0, y0, x1, y1) {
   return Math.sqrt(Math.pow(y0 - y1,2) + Math.pow(x0 - x1,2));
 };
@@ -104,13 +103,13 @@ var click = function(e){
     if(distance(targetX,targetY,e.clientX,e.clientY) < 100){
 	win = 1;
     };
-    "
+    /*
     for (i=0; i < objects.length; i++){
 	if ( distance( temp[i], temp[i], e.clientX, e.clientY) < 100 ){
 	    temp.splice(i,i+1);
 	    point += 1;
 	};
-    };"
+    };*/
 };
 
 screen.addEventListener("onmousedown", cut)

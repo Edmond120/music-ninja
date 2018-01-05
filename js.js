@@ -12,6 +12,12 @@ var temp = [box]
 var targetX = screenHeight / 2;
 var targetY = screenHeight / 2;
 
+class entitiy{
+	constructor(){}
+	update(){}
+	display(){}
+}
+
 "
 var randomObject = function(){
     num = Math.floor( Math.random() * objects.leng );

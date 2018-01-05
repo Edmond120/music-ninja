@@ -52,3 +52,6 @@ xuJ -- 2018-01-03 22:19:25
 chenK -- 2018-01-03 22:58:14
 	working on pause btn
 
+wongE -- 2018-01-04 21:31:50
+	added the class "entity"
+

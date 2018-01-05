@@ -22,39 +22,39 @@ class linkedListNode{
 class linkedList{
 	constructor(){
 		this.start = new linkedListNode(null);
-		this.end = start;
+		this.end = this.start;
 		this.length = 0;
-		this.current = start;
+		this.current = this.start;
 		this.currentBack = null;
 	}
 	get(index){//this function is not really needed but is included just in case
 		var i;
 		var node = this.start;
 		for(i = -1; i < index; i++){
-			node = node.next;
+			this.node = this.node.next;
 		}
 	}
 	add(data){
-		end.next = new linkedListNode(data);
-		end = end.next;
-		length++;
+		this.end.next = new linkedListNode(data);
+		this.end = this.end.next;
+		this.length++;
 	}
 	//built in iterator
 	startIterator(){//sets current to start, used at the beginning of every frame
-		current = start;
-		currentBack = null;
+		this.current = this.start;
+		this.currentBack = null;
 	}
 	hasNext(){
-		return !(current.next == null);
+		return !(this.current.next == null);
 	}
 	next(){
-		currentBack = current;
-		current = current.next;
-		return current;
+		this.currentBack = this.current;
+		this.current = this.current.next;
+		return this.current;
 	}
 	remove(){//removes current
-		currentBack = current.next;
-		length--;
+		this.currentBack = this.current.next;
+		this.length--;
 	}
 }
 

@@ -12,6 +12,52 @@ var temp = [box]
 var targetX = screenHeight / 2;
 var targetY = screenHeight / 2;
 
+class linkedListNode{
+	constructor(data){
+		this.data = data;
+		this.next = null;
+	}
+}
+
+class linkedList{
+	constructor(){
+		this.start = new linkedListNode(null);
+		this.end = start;
+		this.length = 0;
+		this.current = start;
+		this.currentBack = null;
+	}
+	get(index){//this function is not really needed but is included just in case
+		var i;
+		var node = this.start;
+		for(i = -1; i < index; i++){
+			node = node.next;
+		}
+	}
+	add(data){
+		end.next = new linkedListNode(data);
+		end = end.next;
+		length++;
+	}
+	//built in iterator
+	startIterator(){//sets current to start, used at the beginning of every frame
+		current = start;
+		currentBack = null;
+	}
+	hasNext(){
+		return !(current.next == null);
+	}
+	next(){
+		currentBack = current;
+		current = current.next;
+		return current;
+	}
+	remove(){//removes current
+		currentBack = current.next;
+		length--;
+	}
+}
+
 class entitiy{
 	constructor(){}
 	update(){}

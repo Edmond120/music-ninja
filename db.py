@@ -129,7 +129,7 @@ def gethighscore(user):
 #add the user to the databaseh
 def adduser(user,password):
 	f = "app.db"
-	db = sqlite3.connect()
+	db = sqlite3.connect(f)
 	c = db.cursor()
 	if get_pass(user) is None:
 		password = hashlib.sha224(password).hexdigest()

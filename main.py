@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 from db import *
 app = Flask(__name__)
+app.secret_key = os.urandom(32)
 
 @app.route('/')
 def root():
@@ -26,6 +27,27 @@ def login():
 	else:
 		return render_template("login.html")
 
+@app.route('/auth', methods=["POST"])
+def auth():
+        usr = request.form['usr']
+        pwd = request.form['pwd']
+        if get_pass(usr) is None:
+                cfm = request.form['cfm']
+                if pwd == cfm:
+                        adduser(usr,pwd)
+                        login(usr,pwd)
+                        return redirect( url_for('home') )
+                else:
+                        flash("Sorry, the password is not the same")
+                        return render_template("register.html")
+
+        else:
+                flash("Sorry, the username already exist")
+                return render_template("register.html")
+        
+                
+        
+
 
 @app.route('/register')
 def register():
@@ -39,7 +61,7 @@ def register():
 def store():
 	if in_session():
 		# INFO to be passed: search results from the query
-		return render_template("store.html")
+		return render_template("store.html", items = ['apple', 'banana', 'cherry'])
 	else:
 		return redirect( url_for('login') )
 

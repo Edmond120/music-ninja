@@ -14,6 +14,11 @@
   font-family: Verdana;
 }
 
+.register{
+	padding: 200px 0;
+	border: 3px;
+}
+
 .left-half {
   position: absolute;
   width: 15%;

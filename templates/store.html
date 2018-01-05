@@ -2,6 +2,12 @@
 
 {% block body %}
 $$: {{cash}}
+<p>There is only apple, banana, and cherry in the store</p>
+<ul>
+{% for item in items}
+<li>item</li>
+<% endfor %}
+ </ul>
 <form method="POST" action="/store">
 	Search: <input type="text" name="query"><br>
 	<input type="submit" value="Submit">

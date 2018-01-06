@@ -86,8 +86,8 @@ def play():
 	else:
 		return redirect( url_for('login') )
 
-@app.route('/logout')
-def logout():
+#@app.route('/logout')
+#def logout():
 
 
 if __name__ == '__main__':

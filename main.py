@@ -73,7 +73,7 @@ def store():
 def profile():
 	if in_session():
 		# INFO to be passed: items already bought by user and whether or not
-		# user has chosen to use it in gameplay
+		# user has chosen to use it in gameplay (0 means not chosen, 1 means chosen)
 		return render_template("profile.html", cash = 1000000, items = {'apple': 0, 'banana': 1, 'cherry':1})
 	else:
 		return redirect( url_for('login') )

@@ -49,6 +49,7 @@ xuJ -- 2018-01-02 14:44
 
 xuJ -- 2018-01-03 22:19:25
 	started formatting welcome.html, only problem is the inner div is not resizing properly
+
 chenK -- 2018-01-03 22:58:14
 	working on pause btn
 
@@ -61,3 +62,6 @@ wongE -- 2018-01-04 22:20:15
 WongE -- 2018-01-05 14:50:34
 	bugfix
 
+xuJ -- 2018-01-06 10:20:12
+	added displays for the db data
+	formatted more forms and added css for the forms

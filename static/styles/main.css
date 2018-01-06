@@ -34,3 +34,41 @@
   top: 40%;
   right: 25%;
 }
+
+.left-up-half {
+  position: absolute;
+  width: 15%;
+  height: 30%;
+  top: 20%;
+  left: 25%;
+}
+
+.left-down-half {
+  position: absolute;
+  width: 15%;
+  height: 30%;
+  top: 80%;
+  left: 25%;
+}
+
+.middle {
+  position: absolute;
+  width: 15%;
+  height: 30%;
+  top: 50%;
+  right: 50%;
+}
+
+.bar-left {
+  position: absolute;
+  font-size: 100%;
+  top: 5%;
+  left: 5%;
+}
+
+.bar-right {
+  position: absolute;
+  font-size: 100%;
+  top: 5%;
+  right: 5%;
+}

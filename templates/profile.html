@@ -1,5 +1,28 @@
 {% extends "base.html" %}
 
 {% block body %}
-
+<form action="/logout" method="POST">
+  <div class="bar-left">
+    $$: {{cash}}
+  </div>
+  <div class="bar-right">
+    <input type="submit" name="logout" value="Logout">
+  </div>
+</form>
+<form method="POST" action="/store">
+  <table>
+	{% for each in items %}
+    <tr>
+      <td>{{each}}</td>
+      <td>
+        {% if items[each] == 0 %}
+          <input type="submit" src="../static/images/off.png" name="equip">
+        {% else %}
+          <input type="submit" src="../static/images/on.png" name="unequip">
+        {% endif %}
+      </td>
+    </li>
+  {% endfor %}
+  </ul>
+</form>
 {% endblock %}

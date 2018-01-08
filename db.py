@@ -6,13 +6,13 @@ from flask import session
 f = "app.db"
 db = sqlite3.connect(f)
 c = db.cursor()
-#if a item has 0 the user is not using the item. If it is 1 they user is using 
-c.execute('CREATE TABLE IF NOT EXISTS items(user TEXT, item TEXT, playing INTEGER);')
+#if a item has 0 the user is not using the item. If it is 1 they user is using
+c.execute('CREATE TABLE IF NOT EXISTS items (user TEXT, item TEXT, playing INTEGER);')
 c.execute('CREATE TABLE IF NOT EXISTS users (username TEXT, password TEXT, cash INTEGER);')
 c.execute('CREATE TABLE IF NOT EXISTS highscore (username TEXT, score INTEGER);')
 db.close()
 
-#changes cash amount 
+#changes cash amount
 def changevalue(change,user):
     if canpurchase(change,user):
         f = "app.db"
@@ -31,8 +31,8 @@ def canpurchase(change,value):
     results = c.fetchall()
     db.close()
     return results[0][0] + change  >= 0
-        
-    
+
+
 #add item to list
 def additem(user,item):
     if isunique(user,item) == False:
@@ -52,7 +52,7 @@ def itemlist(user):
     results = c.fetchall()
     d.close()
     return results
-        
+
 #returns a list of items the user is using
 def itemusinglist(user):
     f = "app.db"
@@ -105,8 +105,8 @@ def addscore(user,score):
     c.execute('INSERT INTO highscore VALUES("%s", "%d");' %(user, score))
     db.commt()
     db.close()
-    
-#get 5 highest scores from all users 
+
+#get 5 highest scores from all users
 def gethighscore():
     f = "app.db"
     db = sqlite3.connect()
@@ -125,7 +125,7 @@ def gethighscore(user):
     results = c.fetchall()
     db.close
     return results
-    
+
 #add the user to the databaseh
 def adduser(user,password):
 	f = "app.db"
@@ -140,7 +140,7 @@ def adduser(user,password):
 	db.close()
 	return False
 
-#returns the password of the user    
+#returns the password of the user
 def get_pass(user):
     f = "app.db"
     db = sqlite3.connect(f)
@@ -187,7 +187,3 @@ def logout():
 		session.pop('username')
 	if('password' in session):
 		session.pop('password')
-
-
-        
-

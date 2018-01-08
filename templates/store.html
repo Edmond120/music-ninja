@@ -1,15 +1,23 @@
 {% extends "base.html" %}
 
 {% block body %}
-$$: {{cash}}
-<p>There is only apple, banana, and cherry in the store</p>
-<ul>
-{% for item in items}
-<li>item</li>
-<% endfor %}
- </ul>
+<form action="/logout" method="POST">
+  <div class="bar-left">
+    $$: {{cash}}
+  </div>
+  <div class="bar-right">
+    <input type="submit" name="logout" value="Logout">
+  </div>
+</form>
 <form method="POST" action="/store">
+	<input type="submit" name="back" value="Back">
+</form>
+<form method="GET" action="/store">
 	Search: <input type="text" name="query"><br>
-	<input type="submit" value="Submit">
+	<input type="submit" name="submit" value="Submit">
+</form>
+<form method="POST" action="/store">
+	{{item[0]}}: ${{item[1]}}
+	<input type="submit" name="buy" value="Buy">
 </form>
 {% endblock %}

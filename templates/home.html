@@ -1,11 +1,34 @@
 {% extends "base.html" %}
 
 {% block body %}
-<form action="/home" method="POST">
-  <input type="submit" name="logout" value="Logout">
-  <input type="submit" name="store" value="Store">
-  <input type="submit" name="profile" value="Profile">
-  <input type="submit" name="play" value="Play">
+<form action="/logout" method="POST">
+  <div class="bar-left">
+    $$: {{cash}}
+  </div>
+  <div class="bar-right">
+    <input type="submit" name="logout" value="Logout">
+  </div>
 </form>
-
+<form action="/home" method="POST">
+  <div class="left-up-half">
+    <input type="image" src="../static/images/kiwi.png" name="store">
+    <div class="frext">STORE</div>
+  </div>
+  <div class="left-down-half">
+    <input type="image" src="../static/images/grapple.png" name="profile">
+    <div class="frext">PROFILE</div>
+  </div>
+  <div class="middle">
+    <input type="image" src="../static/images/grapple.png" name="play">
+    <div class="frext">PLAY</div>
+  </div>
+</form>
+<table>
+  {% for each in scores %}
+    <tr>
+      <td>each[0]</td>
+      <td>each[1]</td>
+    </tr>
+  {% endfor %}
+</table>
 {% endblock %}

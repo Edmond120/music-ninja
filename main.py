@@ -35,8 +35,8 @@ def auth():
                 cfm = request.form['cfm']
                 if pwd == cfm:
                         adduser(usr,pwd)
-                        login(usr,pwd)
-                        return redirect( url_for('home') )
+                        login_db(usr,pwd)
+                        return redirect( url_for('login') )
                 else:
                         flash("Sorry, the password is not the same")
                         return render_template("register.html")

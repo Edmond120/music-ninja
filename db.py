@@ -163,7 +163,7 @@ def match(username,password):
 		return (p == hashlib.sha224(password).hexdigest())
 
 #checks if the password is correct, then creates a cookie
-def login(username,password):
+def login_db(username,password):
 	if(match(username,password)):
 		session['username'] = username
 		session['password'] = hashlib.sha224(password).hexdigest()

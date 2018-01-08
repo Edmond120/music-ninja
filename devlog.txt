@@ -68,3 +68,6 @@ xuJ -- 2018-01-06 10:20:12
 
 xuJ -- 2018-01-07 00:54:39
 	fixed css a little bit
+
+xuJ -- 2018-01-07 14:32:34
+	worked on css more, pages should be okay for now

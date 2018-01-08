@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 
 {% block body %}
-<form action="/auth" method="POST">
-  <div class="register">
+<div class="middle">
+  <form action="/auth" method="POST">
     <label>USERNAME:
       <input name="usr" type="text">
     </label>
@@ -15,6 +15,6 @@
       <input name="cfm" type="password">
     </label> <br>
     <input type="submit" name="register" value="Register">
-  </div>
-</form>
+  </form>
+</div>
 {% endblock %}

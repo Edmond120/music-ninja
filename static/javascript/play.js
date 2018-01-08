@@ -8,7 +8,7 @@ var itemMove = function(e) {
     var dy = boxHeight;
     var vx = boxWidth * Math.random() / 100;
     var vy; //some range of numbers
-    
+
     //every millisecond display new dx dy
-    
+
 }

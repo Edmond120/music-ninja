@@ -58,10 +58,23 @@ class linkedList{
 	}
 }
 
-class entitiy{
+class entity{
 	constructor(){}
 	update(){}
 	display(){}
+}
+
+class item extends entity{
+    var gravity = -2;
+    var xcord = 0;
+    var ycord = 0;
+    var velx = 0;
+    var vely
+    
+    var changevel = function(x,y){
+	velx = x;
+	vely = 
+    }
 }
 
 /*

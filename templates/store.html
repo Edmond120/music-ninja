@@ -1,23 +1,29 @@
 {% extends "base.html" %}
 
 {% block body %}
-<form action="/logout" method="POST">
+<form method="POST" action="/home">
   <div class="bar-left">
     $$: {{cash}}
   </div>
   <div class="bar-right">
-    <input type="submit" name="logout" value="Logout">
+    <input type="submit" name="back" value="Back">
   </div>
 </form>
-<form method="POST" action="/store">
-	<input type="submit" name="back" value="Back">
-</form>
-<form method="GET" action="/store">
-	Search: <input type="text" name="query"><br>
-	<input type="submit" name="submit" value="Submit">
-</form>
-<form method="POST" action="/store">
-	{{item[0]}}: ${{item[1]}}
-	<input type="submit" name="buy" value="Buy">
-</form>
+<div class="store">
+  <form method="GET" action="/store">
+	   Search: <input type="text" name="query">
+	    <input type="submit" name="submit" value="Submit">
+    </form>
+    <br><br>
+    <form method="POST" action="/store">
+	     <table>
+         {% for each in items %}
+         <tr>
+           <td>{{each}}: ${{items[each]}} </td>
+           <td><input type="submit" name="{{each}}" value="Buy"></td>
+         </tr>
+         {% endfor %}
+       </table>
+     </form>
+</div>
 {% endblock %}

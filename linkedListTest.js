@@ -17,7 +17,7 @@ class linkedList{
         var i;
         var node = this.start;
         for(i = -1; i < index; i++){
-            this.node = this.node.next;
+            node = node.next;
         }
 		return node.data;
     }
@@ -40,7 +40,8 @@ class linkedList{
         return this.current.data;
     }
     remove(){//removes current
-        this.currentBack = this.current.next;
+        this.currentBack.next = this.current.next;
+		this.current = this.currentBack;
         this.length--;
     }
 	toString(){//DO NOT USE THIS WHEN USING THE ITERATOR, IT WILL MESS IT UP
@@ -61,4 +62,9 @@ test = function(){
 	console.log("adding 2");
 	list.add("2");
 	console.log("list: " + list.toString());
+	console.log("adding 3");
+	list.add("3");
+	console.log("list: " + list.toString());
+	console.log("get(0),get(1),get(3)");
+	console.log(list.get(0) + "," + list.get(1) + "," + list.get(2));
 }

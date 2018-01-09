@@ -3,6 +3,9 @@
 {% block body %}
 <div class="middle">
   <form class="register" action="/login" method="POST">
+    {% if condition == 1 %}
+    <p> Sorry, incorrect password </p>
+    {% endif %}
     <label>USERNAME:
       <input name="usr" type="text">
     </label>

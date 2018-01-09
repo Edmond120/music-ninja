@@ -21,15 +21,25 @@ def home():
 		return redirect( url_for('root'))
 
 
-@app.route('/login')
+@app.route('/login', methods=['GET','POST'])
 def login():
 	if in_session():
 		return redirect( url_for('home') )
 	else:
 		return render_template("login.html")
 
-@app.route('/auth', methods=["POST"])
-def auth():
+@app.route('/login_auth', methods=['POST'])
+def login_auth():
+    usr = request.form['usr']
+    pwd = request.form['pwd']
+    if get_pass(usr) == pwd:
+        login_db(usr,pwd)
+        return redirect( url_for('login') )
+    else:
+        return render_template('login.html', condition='1')
+    
+@app.route('/register_auth', methods=["POST"])
+def register_auth():
         usr = request.form['usr']
         pwd = request.form['pwd']
         if get_pass(usr) is None:
@@ -39,16 +49,11 @@ def auth():
                         login_db(usr,pwd)
                         return redirect( url_for('login') )
                 else:
-                        flash("Sorry, the password is not the same")
-                        return render_template("register.html")
+                        print "pwd != cfm"
+                        return render_template("register.html", condition='1')
 
         else:
-                flash("Sorry, the username already exist")
-                return render_template("register.html")
-
-
-
-
+                return render_template("register.html", condition='2')
 
 @app.route('/register')
 def register():

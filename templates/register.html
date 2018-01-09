@@ -2,7 +2,12 @@
 
 {% block body %}
 <div class="middle">
-  <form action="/auth" method="POST">
+  <form action=" {{ url_for('register_auth') }}" method="POST">
+    {% if condition == '1' %}
+    <p> Sorry, the password is not the same </p>
+    {% elif condition == '2' %}
+    <p> Sorry, the username already exist </p>
+    {% endif %}
     <label>USERNAME:
       <input name="usr" type="text">
     </label>

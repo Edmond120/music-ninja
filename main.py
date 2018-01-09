@@ -11,14 +11,14 @@ def root():
 		return render_template("welcome.html")
 
 
-@app.route('/home') #goes to home.html
+@app.route('/home')
 def home():
 	if in_session():
 		# INFO to be passed: list of top 10 highcores
-		return render_template("home.html")
+		return render_template("home.html", cash = 1000000, scores = [['apple', 1003], ['banana', 1002], ['cherry', 1000]] )
 	else:
 		# make sure scores are in order from highest to lowest in the list
-		return redirect( url_for('root'), cash = 1000000, scores = {['apple', 1003], ['banana', 1002], ['cherry', 1000]} )
+		return redirect( url_for('root'))
 
 
 @app.route('/login')
@@ -60,13 +60,13 @@ def register():
 
 @app.route('/store')
 def store():
-	if in_session():
-		# INFO to be passed: search result from the query (should only be one)
+	#if in_session():
+		# INFO to be passed: search result from the query
 		# method=POST: if item purchased then subtract price of item from the amount of money the user has and refresh?
 		# method=GET: search query? you can rearrange if you want
-		return render_template("store.html", cash = 1000000, item = ['apple', 2.50])
-	else:
-		return redirect( url_for('login') )
+		return render_template("store.html", cash = 1000000, items = {'apple': 2.50, 'banana': 3.50})
+	#else:
+		#return redirect( url_for('login') )
 
 
 @app.route('/profile')

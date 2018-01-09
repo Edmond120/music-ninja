@@ -9,26 +9,33 @@
     <input type="submit" name="logout" value="Logout">
   </div>
 </form>
-<form action="/home" method="POST">
-  <div class="left-up-half">
-    <input type="image" src="../static/images/kiwi.png" name="store">
+<div class="left-up-half">
+  <form action="/store" method="POST">
+    <input type="image" src="../static/images/kiwi.png" name="store" class="img">
     <div class="frext">STORE</div>
-  </div>
-  <div class="left-down-half">
-    <input type="image" src="../static/images/grapple.png" name="profile">
+  </form>
+</div>
+<div class="left-down-half">
+  <form action="/profile" method="POST">
+    <input type="image" src="../static/images/grapple.png" name="profile" class="img">
     <div class="frext">PROFILE</div>
-  </div>
-  <div class="middle">
-    <input type="image" src="../static/images/grapple.png" name="play">
+  </form>
+</div>
+<div class="middle">
+  <form action="/play" method="POST">
+    <input type="image" src="../static/images/mango.png" name="play" class="img">
     <div class="frext">PLAY</div>
-  </div>
-</form>
-<table>
-  {% for each in scores %}
-    <tr>
-      <td>each[0]</td>
-      <td>each[1]</td>
-    </tr>
-  {% endfor %}
-</table>
+  </form>
+</div>
+<div class="highscore">
+  <p>HIGH SCORES</p>
+  <table class="table">
+    {% for each in scores %}
+      <tr>
+        <td>{{each[0]}}</td>
+        <td>{{each[1]}}</td>
+      </tr>
+      {% endfor %}
+    </table>
+</div>
 {% endblock %}

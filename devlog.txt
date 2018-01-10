@@ -44,14 +44,23 @@ chenK -- 2018-01-01 19:07:55
 chenK -- 2018-01-02 14:38:33
 	more functions in db
 
+wuY -- 2018-01-04 14:50:17
+        created basic stuffs for js.js (play section)
+
 xuJ -- 2018-01-02 14:44
 	filled out most of the templates except the stuff that displays data
+
+wuY -- 2018-01-04 14:50:46
+        working on js.js
 
 xuJ -- 2018-01-03 22:19:25
 	started formatting welcome.html, only problem is the inner div is not resizing properly
 
 chenK -- 2018-01-03 22:58:14
 	working on pause btn
+
+wuY -- 2018-01-04 14:50:17
+        working on register
 
 wongE -- 2018-01-04 21:31:50
 	added the class "entity"
@@ -72,5 +81,14 @@ xuJ -- 2018-01-07 00:54:39
 xuJ -- 2018-01-08 14:32:34
 	worked on css more, pages should be okay for now
 
+wuY -- 2018-01-08 14:50:52
+        worked on register
+
 xuJ -- 2018-01-09 14:52:32
 	worked on css for home.html and store.html tables
+
+wuY -- 2018-01-09 14:50:21
+        fixed register
+	
+wuY -- 2018-01-10 14:33:40
+        fixed login

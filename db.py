@@ -22,6 +22,17 @@ def changevalue(change,user):
         db.commit()
         db.close()
 
+#get the amount of cash player has
+def getcash(user):
+    f = "app.db"
+    db = sqlite3.connect(f)
+    c = db.cursor()
+    c.execute("SELECT cash FROM users WHERE username = '%s';" %(user) )
+    results = c.fetchall()[0]
+    db.commit()
+    db.close()
+    return  results
+
 #checks if program can purchase
 def canpurchase(change,value):
     f = "app.db"

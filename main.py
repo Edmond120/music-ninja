@@ -32,12 +32,14 @@ def login():
 def login_auth():
     usr = request.form['usr']
     pwd = request.form['pwd']
-    if get_pass(usr) == pwd:
+    hash_pwd = hashlib.sha224(pwd).hexdigest()
+    if get_pass(usr) == hash_pwd:
+        print "You have successfully login!"
         login_db(usr,pwd)
         return redirect( url_for('login') )
     else:
         return render_template('login.html', condition='1')
-    
+
 @app.route('/register_auth', methods=["POST"])
 def register_auth():
         usr = request.form['usr']
@@ -49,7 +51,6 @@ def register_auth():
                         login_db(usr,pwd)
                         return redirect( url_for('login') )
                 else:
-                        print "pwd != cfm"
                         return render_template("register.html", condition='1')
 
         else:
@@ -63,25 +64,25 @@ def register():
 		return render_template("register.html")
 
 
-@app.route('/store')
+@app.route('/store', methods=['POST','GET'])
 def store():
-	#if in_session():
+	if in_session():
 		# INFO to be passed: search result from the query
 		# method=POST: if item purchased then subtract price of item from the amount of money the user has and refresh?
 		# method=GET: search query? you can rearrange if you want
-		return render_template("store.html", cash = 1000000, items = {'apple': 2.50, 'banana': 3.50})
-	#else:
-		#return redirect( url_for('login') )
+		return render_template("store.html", cash = 100, items = {'apple': 2.50, 'banana': 3.50})
+	else:
+		return redirect( url_for('root') )
 
 
 @app.route('/profile')
 def profile():
-	if in_session():
+	#if in_session():
 		# INFO to be passed: items already bought by user and whether or not
 		# user has chosen to use it in gameplay (0 means not chosen, 1 means chosen)
 		return render_template("profile.html", cash = 1000000, items = {'apple': 0, 'banana': 1, 'cherry':1})
-	else:
-		return redirect( url_for('login') )
+	#else:
+		#return redirect( url_for('root') )
 
 
 @app.route('/play')
@@ -89,7 +90,7 @@ def play():
 	if in_session():
 		return render_template("play.html")
 	else:
-		return redirect( url_for('login') )
+		return redirect( url_for('root') )
 
 #@app.route('/logout')
 #def logout():

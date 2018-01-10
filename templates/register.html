@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block body %}
-<div class="middle">
+<div class="login">
   <form action=" {{ url_for('register_auth') }}" method="POST">
     {% if condition == '1' %}
     <p> Sorry, the passwords do not match. </p>
@@ -11,14 +11,14 @@
     <label>USERNAME:
       <input name="usr" type="text">
     </label>
-    <br>
+    <br><br>
     <label>PASSWORD:
       <input name="pwd" type="password">
     </label>
-    <br>
+    <br><br>
     <label>CONFIRM PASSWORD:
       <input name="cfm" type="password">
-    </label> <br>
+    </label> <br><br>
     <input type="submit" name="register" value="Register">
   </form>
 </div>

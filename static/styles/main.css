@@ -2,6 +2,15 @@ body {
   font-size: 200%;
 }
 
+.login {
+  position: absolute;
+  width: 17%;
+  height: 30%;
+  top: 30%;
+  right: 42.5%;
+  font-size: 50%;
+}
+
 .container {
     position: relative;
     text-align: center;
@@ -73,10 +82,12 @@ body {
 }
 
 .highscore {
+  border: 1px solid white;
   position: absolute;
-  width: 17%;
-  top: 17%;
-  right: 10%;
+  width: 30%;
+  height: 80%;
+  top: 12%;
+  right: 5%;
 }
 
 .img {
@@ -85,14 +96,23 @@ body {
 }
 
 .store {
+  border: 1px solid white;
   position: absolute;
   font-size: 100%;
-  top: 15%;
+  top: 20%;
   left: 5%;
+  width: 90%;
+  height: 70%;
+}
+
+.header {
+  position: absolute;
+  top: 12%;
+  left: 45%;
 }
 
 .table {
-  width: 100%
+  width: 100%;
 }
 
 .onoff {

@@ -9,21 +9,22 @@
     <input type="submit" name="back" value="Back">
   </div>
 </form>
+<div class="header">BUY ITEMS</div>
 <div class="store">
   <form method="GET" action="/store">
-	   BUY AN ITEM: <input type="text" name="query">
-	    <input type="submit" name="submit" value="Submit">
-    </form>
-    <br><br>
-    <form method="POST" action="/store">
-	     <table>
-         {% for each in items %}
-         <tr>
-           <td>{{each}}: ${{items[each]}} </td>
-           <td><input type="submit" name="{{each}}" value="Buy"></td>
-         </tr>
-         {% endfor %}
-       </table>
-     </form>
+	  <input type="text" name="query">
+	  <input type="submit" name="submit" value="Submit">
+  </form>
+  <br><br>
+  <form method="POST" action="/store">
+	  <table>
+      {% for each in items %}
+        <tr>
+          <td>{{each}}: ${{items[each]}} </td>
+          <td><input type="submit" name="{{each}}" value="Buy"></td>
+        </tr>
+      {% endfor %}
+    </table>
+  </form>
 </div>
 {% endblock %}

@@ -9,6 +9,7 @@
     <input type="submit" name="logout" value="Logout">
   </div>
 </form>
+<div class="store">
 <form method="POST" action="/store">
   <table>
 	{% for each in items %}
@@ -16,13 +17,14 @@
       <td>{{each}}</td>
       <td>
         {% if items[each] == 0 %}
-          <input type="submit" src="../static/images/off.png" name="equip">
+          <input type="image" class="onoff" src="../static/images/off.png" name="equip">
         {% else %}
-          <input type="submit" src="../static/images/on.png" name="unequip">
+          <input type="image" class="onoff" src="../static/images/on.png" name="unequip">
         {% endif %}
       </td>
     </li>
   {% endfor %}
   </ul>
 </form>
+</div>
 {% endblock %}

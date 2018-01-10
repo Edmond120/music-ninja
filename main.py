@@ -64,13 +64,13 @@ def register():
 		return render_template("register.html")
 
 
-@app.route('/store')
+@app.route('/store', methods=['POST','GET'])
 def store():
 	if in_session():
 		# INFO to be passed: search result from the query
 		# method=POST: if item purchased then subtract price of item from the amount of money the user has and refresh?
 		# method=GET: search query? you can rearrange if you want
-		return render_template("store.html", cash = 1000000, items = {'apple': 2.50, 'banana': 3.50})
+		return render_template("store.html", cash = 100, items = {'apple': 2.50, 'banana': 3.50})
 	else:
 		return redirect( url_for('root') )
 

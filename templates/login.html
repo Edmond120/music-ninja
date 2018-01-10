@@ -2,9 +2,9 @@
 
 {% block body %}
 <div class="middle">
-  <form class="register" action="/login" method="POST">
-    {% if condition == 1 %}
-    <p> Sorry, incorrect password </p>
+  <form class="register" action="{{ url_for('login_auth') }}" method="POST">
+    {% if condition == '1' %}
+    <p> Sorry, incorrect username/password </p>
     {% endif %}
     <label>USERNAME:
       <input name="usr" type="text">

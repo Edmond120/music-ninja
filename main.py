@@ -32,7 +32,9 @@ def login():
 def login_auth():
     usr = request.form['usr']
     pwd = request.form['pwd']
-    if get_pass(usr) == pwd:
+    hash_pwd = hashlib.sha224(pwd).hexdigest()
+    if get_pass(usr) == hash_pwd:
+        print "You have successfully login!"
         login_db(usr,pwd)
         return redirect( url_for('login') )
     else:
@@ -49,7 +51,6 @@ def register_auth():
                         login_db(usr,pwd)
                         return redirect( url_for('login') )
                 else:
-                        print "pwd != cfm"
                         return render_template("register.html", condition='1')
 
         else:

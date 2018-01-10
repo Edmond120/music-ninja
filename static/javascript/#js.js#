@@ -151,6 +151,5 @@ screen.addEventListener("onmousedown", cut)
  
     
    var test = function(){
-
-
-}; 
+       
+   }; 

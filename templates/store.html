@@ -6,7 +6,7 @@
     $$: {{cash}}
   </div>
   <div class="bar-right">
-    <input type="submit" name="back" value="Back">
+    <input type="submit" class="back" name="back" value="Back">
   </div>
 </form>
 <div class="header">BUY ITEMS</div>
@@ -15,13 +15,13 @@
 	  <input type="text" name="query">
 	  <input type="submit" name="submit" value="Submit">
   </form>
-  <br><br>
+  <br>
   <form method="POST" action="/store">
 	  <table>
       {% for each in items %}
         <tr>
-          <td>{{each}}: ${{items[each]}} </td>
-          <td><input type="submit" name="{{each}}" value="Buy"></td>
+          <td class="table-left">{{each}}: ${{items[each]}} </td>
+          <td class="table-right"><input type="image" class="buy" src="../static/images/buy.png" name="buy"></td>
         </tr>
       {% endfor %}
     </table>

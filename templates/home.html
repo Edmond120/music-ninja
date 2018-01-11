@@ -29,11 +29,11 @@
 </div>
 <div class="highscore">
   <p><u>HIGH SCORES</u></p>
-  <table class="table">
+  <table>
     {% for each in scores %}
       <tr>
-        <td>{{each[0]}}</td>
-        <td>{{each[1]}}</td>
+        <td class="table-left">{{each[0]}}</td>
+        <td class="table-right">{{each[1]}}</td>
       </tr>
       {% endfor %}
     </table>

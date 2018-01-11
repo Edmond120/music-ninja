@@ -6,7 +6,7 @@
     $$: {{cash}}
   </div>
   <div class="bar-right">
-    <input type="submit" name="logout" value="Logout">
+    <input type="submit" class="back" name="back" value="Back">
   </div>
 </form>
 <div class="header">SELECT ITEMS</div>
@@ -15,8 +15,8 @@
   <table>
 	{% for each in items %}
     <tr>
-      <td>{{each}}</td>
-      <td>
+      <td class="table-left">{{each}}</td>
+      <td class="table-right">
         {% if items[each] == 0 %}
           <input type="image" class="onoff" src="../static/images/off.png" name="equip">
         {% else %}

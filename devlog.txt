@@ -98,3 +98,6 @@ wuY -- 2018-01-10 22:39:48
         fixed back on profile
 	worked on store's buy function
 	worked on profile display
+WongE -- 2018-01-11 14:18:30
+	edited entityManager.js
+

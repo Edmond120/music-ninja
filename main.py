@@ -15,10 +15,11 @@ def root():
 def home():
 	if in_session():
 		# INFO to be passed: list of top 10 highcores
+                print 'Your are in session!'
 		return render_template("home.html", cash = 1000000, scores = [['apple', 1003], ['banana', 1002], ['cherry', 1000]] )
 	else:
 		# make sure scores are in order from highest to lowest in the list
-		return redirect( url_for('root'))
+		return render_template('welcome.html')
 
 
 @app.route('/login', methods=['GET','POST'])
@@ -32,9 +33,7 @@ def login():
 def login_auth():
     usr = request.form['usr']
     pwd = request.form['pwd']
-    hash_pwd = hashlib.sha224(pwd).hexdigest()
-    if get_pass(usr) == hash_pwd:
-        print "You have successfully login!"
+    if match(usr,pwd):
         login_db(usr,pwd)
         return redirect( url_for('login') )
     else:
@@ -75,14 +74,19 @@ def store():
 		return redirect( url_for('root') )
 
 
-@app.route('/profile')
+@app.route('/profile', methods=['GET','POST'])
 def profile():
-	#if in_session():
+	if in_session():
 		# INFO to be passed: items already bought by user and whether or not
 		# user has chosen to use it in gameplay (0 means not chosen, 1 means chosen)
-		return render_template("profile.html", cash = 1000000, items = {'apple': 0, 'banana': 1, 'cherry':1})
+                return render_template("profile.html", cash = 1000000, items = {'apple': 0, 'banana': 1, 'cherry':1})
 	#else:
 		#return redirect( url_for('root') )
+
+@app.route('/logout')
+def logout():
+        logout_db()
+        return render_template("welcome.html")
 
 
 @app.route('/play')

@@ -1,12 +1,16 @@
 {% extends "base.html" %}
 
 {% block body %}
-<form action="/logout" method="POST">
+<form method="GET" action="{{url_for('home')}}">
   <div class="bar-left">
     $$: {{cash}}
   </div>
   <div class="bar-right">
+<<<<<<< HEAD
     <input type="submit" class="back" name="back" value="Back">
+=======
+    <input type="submit" name="back" value="Back">
+>>>>>>> 2d981b032e44a99c5bc7190085836a3e771d225c
   </div>
 </form>
 <div class="header">SELECT ITEMS</div>

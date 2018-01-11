@@ -13,11 +13,12 @@ class entityManager{
 		this.interval = 16.7; //about 60 fps
 		this.running = false;
 		this.div = div
+		this.entities.startIterator();
 	}
 	setDiv(d){
 		this.div = d;
 	}
-	resume(){
+	start(){
 		this.running = true;
 		var id  = setInterval(frame,interval);
 		function frame(){
@@ -35,10 +36,6 @@ class entityManager{
 				clearInterval(id);
 			}
 		}
-	}
-	start(){
-		this.entities.startIterator();
-		this.resume();
 	}
 	stop(){
 		this.running = false;

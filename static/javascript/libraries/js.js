@@ -13,59 +13,48 @@ var targetX = screenHeight / 2;
 var targetY = screenHeight / 2;
 
 class linkedListNode{
-    constructor(data){
-        this.data = data;
-        this.next = null;
-    }
+	constructor(data){
+		this.data = data;
+		this.next = null;
+	}
 }
 
 class linkedList{
-    constructor(){
-        this.start = new linkedListNode(null);
-        this.end = this.start;
-        this.length = 0;
-        this.current = this.start;
-        this.currentBack = null;
-    }
-    get(index){//this function is not really needed but is included just in case
-        var i;
-        var node = this.start;
-        for(i = -1; i < index; i++){
-            node = node.next;
-        }
-		return node.data;
-    }
-    add(data){
-        this.end.next = new linkedListNode(data);
-        this.end = this.end.next;
-        this.length++;
-    }
-    //built in iterator
-    startIterator(){//sets current to start, used at the beginning of every frame
-        this.current = this.start;
-        this.currentBack = null;
-    }
-    hasNext(){
-        return !(this.current.next == null);
-    }
-    next(){
-        this.currentBack = this.current;
-        this.current = this.current.next;
-        return this.current.data;
-    }
-    remove(){//removes current
-        this.currentBack.next = this.current.next;
-		this.current = this.currentBack;
-        this.length--;
-    }
-	toString(){//DO NOT USE THIS WHEN USING THE ITERATOR, IT WILL MESS IT UP
-		var str = "";
-		this.startIterator();
-		while(this.hasNext()){
-			str += this.next() + " ";
+	constructor(){
+		this.start = new linkedListNode(null);
+		this.end = this.start;
+		this.length = 0;
+		this.current = this.start;
+		this.currentBack = null;
+	}
+	get(index){//this function is not really needed but is included just in case
+		var i;
+		var node = this.start;
+		for(i = -1; i < index; i++){
+			this.node = this.node.next;
 		}
-		this.startIterator();
-		return str;
+	}
+	add(data){
+		this.end.next = new linkedListNode(data);
+		this.end = this.end.next;
+		this.length++;
+	}
+	//built in iterator
+	startIterator(){//sets current to start, used at the beginning of every frame
+		this.current = this.start;
+		this.currentBack = null;
+	}
+	hasNext(){
+		return !(this.current.next == null);
+	}
+	next(){
+		this.currentBack = this.current;
+		this.current = this.current.next;
+		return this.current;
+	}
+	remove(){//removes current
+		this.currentBack = this.current.next;
+		this.length--;
 	}
 }
 
@@ -76,35 +65,38 @@ class entity{
 }
 
 class item extends entity{
-    var gravity = -2;
-    var xcord = 0;
-    var ycord = 0;
-    var velx = 0;
-    var vely
+  var grav = 4;
+  var xcord = Math.floor(Math.random() * (boxWidth-100))+50;
+  var ycord = boxHeight;
+  var velx = Math.floor(Math.random() * 5);
+  var vely = -40;
 
-    var split = function(image) {
-	var width = image.width;
-	var height = image.height;
-	var canvas = document.createElement('canvas'),
-            ctx = canvas.getContext('2d');
-	
-	canvas.width = width;
-	canvas.height = height;
-	
-	ctx.drawImage(image, 0, 0, width, height,  0, 0, width, height);
-	var canvas2 = document.createElement('canvas2'),
+	var changecoor = function(x,y){//x, y is the pixel location
+		x = velx * time;
+		y = vely*time + 0.5*grav*time*time;
+	}
+
+  /**var split = function(image) {
+		var width = image.width;
+		var height = image.height;
+		var canvas = document.createElement('canvas'),
+					ctx = canvas.getContext('2d');
+
+		canvas.width = width;
+		canvas.height = height;
+
+		ctx.drawImage(image, 0, 0, width, height,  0, 0, width, height);
+		var canvas2 = document.createElement('canvas2'),
             ctx2 = canvas2.getContext('2d');
-	
-	canvas2.width = width;
-	canvas2.height = height;
-	
-	ctx2.drawImage(image, width/2 + 1, 0, width, height,  0, 0, width, height);
-	
-	return [canvas,canvas2];
-    var changevel = function(x,y){
-	velx = x;
-	vely = 
-    }
+
+		canvas2.width = width;
+		canvas2.height = height;
+
+		ctx2.drawImage(image, width/2 + 1, 0, width, height,  0, 0, width, height);
+
+		return [canvas,canvas2];
+	}**/
+
 }
 
 /*
@@ -121,7 +113,7 @@ var addTemp = function (){
 
 
 var throwTemp = function(object){
-    
+
 };
 
 var action = function(time){
@@ -135,8 +127,7 @@ var distance = function(x0, y0, x1, y1) {
 };
 
 var cut = function(e){
-    "still need to make sure this function will call
-click every single time"
+    "still need to make sure this function will call click every single time"
     while (e.onmousedown = true){
 	click(e);
     };
@@ -158,10 +149,10 @@ var click = function(e){
     lefthalf = pic[0];
     righthalf = pic[1];
 screen.addEventListener("onmousedown", cut)
-    
- 
-    
+
+
+
    var test = function(){
 
 
-}; 
+};

@@ -193,7 +193,7 @@ def in_session():
 		return (p == session.get('password'))
 
 #removes the login session
-def logout():
+def logout_db():
 	if('username' in session):
 		session.pop('username')
 	if('password' in session):

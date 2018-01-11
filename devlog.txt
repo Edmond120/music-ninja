@@ -101,3 +101,6 @@ wuY -- 2018-01-10 22:39:48
 WongE -- 2018-01-11 14:18:30
 	edited entityManager.js
 
+WongE -- 2018-01-11 17:54:27
+	finished entityManager, testing animations now
+

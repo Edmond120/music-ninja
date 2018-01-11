@@ -1,10 +1,22 @@
 class entity{
 	constructor(){
 		this.owner = null;
+		this.elements = []; //an array of html elements to be added to the DOM
 	}
 	update(){} //returns true if dead, false otherwise
 	display(){}
-	addToDOM(){} //adds the html elements to the DOM
+	addToDOM(){
+		var i;
+		for(i = 0; i < this.elements.length; i++){
+			this.owner.addElement(this.elements[i]);
+		}
+	} //adds the html elements to the DOM
+	removeFromDOM(){
+		var i;
+		for(i = 0; i < this.elements.length; i++){
+			this.owner.removeElement(this.elements[i]);
+		}
+	}
 };
 
 class entityManager{
@@ -26,9 +38,12 @@ class entityManager{
 				while(this.entities.hasNext()){
 					var x = this.entities.next();
 					if(x.update()){
+						x.removeFromDOM();
 						x.remove();
 					}
-					x.display();
+					else{
+						x.display();
+					}
 				}
 				x.startIterator();
 			}
@@ -46,6 +61,9 @@ class entityManager{
 		this.entity.add(x);
 	}
 	addElement(x){ //requires an html element
-		//do this later
+		this.div.appendChild(x);
+	}
+	removeElements(x){
+		this.div.removeChild(x);
 	}
 };

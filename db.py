@@ -50,7 +50,7 @@ def additem(user,item):
         f = "app.db"
         db = sqlite3.connect(f)
         c = db.cursor()
-        c.execute('INSERT INTO items VALUES("%s%", "%s%, 0");' %(user,item) )
+        c.execute('INSERT INTO items VALUES("%s%", "%s%, 1");' %(user,item) )
         db.commit()
         db.close()
 
@@ -59,9 +59,9 @@ def itemlist(user):
     f = "app.db"
     db = sqlite3.connect(f)
     c = db.cursor()
-    c.execute('SELECT * FROM items WHERE username = "%s";' %(user) )
+    c.execute('SELECT * FROM items WHERE user = "%s";' %(user) )
     results = c.fetchall()
-    d.close()
+    db.close()
     return results
 
 #returns a list of items the user is using
@@ -79,15 +79,14 @@ def isnotmax(list):
     return list.len() != 8
 
 #checks if the item being added is a duplicate
-def isunique(user,item):
+def itemusinglist(user):
     f = "app.db"
     db = sqlite3.connect(f)
     c = db.cursor()
-    c.execute('SELECT * FROM  items WHERE username = "%s" AND ITEM = "%s";' %(user,item) )
+    c.execute('SELECT * FROM items WHERE user = "%s" AND playing = 1 LIMIT 8;' %(user) )
     results = c.fetchall()
-    if results == []:
-        return False
-    return True
+    db.close()
+    return results
 
 #allows player to use item
 def use(user,item):

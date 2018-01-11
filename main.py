@@ -73,13 +73,28 @@ def store():
 	else:
 		return redirect( url_for('root') )
 
+@app.route('/buy', methods=['POST','GET'])
+def buy():
+        item = request.form('buy')
+        usr = session['username']
+        additem(usr,item)
+        return render_template("store.html", cash = 100, items = {'apple': 2.50, 'banana': 3.50})
+
 
 @app.route('/profile', methods=['GET','POST'])
 def profile():
 	if in_session():
 		# INFO to be passed: items already bought by user and whether or not
 		# user has chosen to use it in gameplay (0 means not chosen, 1 means chosen)
-                return render_template("profile.html", cash = 1000000, items = {'apple': 0, 'banana': 1, 'cherry':1})
+                items = {}
+                usr = session['username']
+                useitem = itemusinglist(session['username'])
+                for item in itemlist(usr):
+                        if item in useitem:
+                                items[item] = 1
+                        else:
+                                items[item] = 0
+                return render_template("profile.html", cash = 1000000, items = {'apple': 1, 'banana': 0})
 	#else:
 		#return redirect( url_for('root') )
 

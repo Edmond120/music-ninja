@@ -13,11 +13,11 @@
 <div class="store">
 <form method="POST" action="/store">
   <table>
-	{% for each in items %}
+	{% for item in items %}
     <tr>
-      <td class="table-left">{{each}}</td>
+      <td class="table-left">{{item}}</td>
       <td class="table-right">
-        {% if items[each] == 0 %}
+        {% if items[item] == 0 %}
           <input type="image" class="onoff" src="../static/images/off.png" name="equip">
         {% else %}
           <input type="image" class="onoff" src="../static/images/on.png" name="unequip">

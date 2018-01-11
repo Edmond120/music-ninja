@@ -1,4 +1,7 @@
 .PHONY: game.js
 
-game.js: libraries/js.js libraries/play.js 
-	cat libraries/play.js libraries/js.js > game.js
+core.js: libraries/linkedList.js libraries/entityManager.js
+	cat libraries/linkedList.js libraries/entityManager.js > core.js
+
+
+

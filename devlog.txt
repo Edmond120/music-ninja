@@ -77,3 +77,6 @@ xuJ -- 2018-01-09 14:52:32
 
 xuJ -- 2018-01-10 14:52:39
 	fixed tables in store.html and profile.html
+
+xuJ -- 2018-01-10 21:11:29
+	formatted table left and table right

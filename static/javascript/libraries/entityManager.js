@@ -45,4 +45,7 @@ class entityManager{
 		x.addToDOM();
 		this.entity.add(x);
 	}
+	addElement(x){ //requires an html element
+		//do this later
+	}
 };

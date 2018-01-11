@@ -90,5 +90,6 @@ xuJ -- 2018-01-10 14:52:39
 WongE -- 2018-01-10 20:26:06
 	linked list bugfix, organized files
 
-xuJ -- 2018-01-10 21:11:29
+xuJ -- 2018-01-10 21:47:29
 	formatted table left and table right
+	added the physics for image displacement

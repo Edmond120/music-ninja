@@ -47,7 +47,7 @@ body {
   position: absolute;
   width: 17%;
   height: 30%;
-  top: 13%;
+  top: 15%;
   left: 10%;
 }
 
@@ -55,7 +55,7 @@ body {
   position: absolute;
   width: 17%;
   height: 30%;
-  top: 55%;
+  top: 58%;
   left: 10%;
 }
 
@@ -85,7 +85,7 @@ body {
   border: 1px solid white;
   position: absolute;
   width: 30%;
-  height: 80%;
+  height: 75%;
   top: 15%;
   right: 5%;
 }

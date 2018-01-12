@@ -1,3 +1,5 @@
+//requires entityManager.js
+
 class item extends entity{
     var gravity = -2;
     var xcord = 0;

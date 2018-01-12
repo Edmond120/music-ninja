@@ -1,3 +1,5 @@
+//requires linkedList.js
+
 class entity{
 	constructor(){
 		this.owner = null;
@@ -22,7 +24,6 @@ class entity{
 class entityManager{
 	constructor(div){
 		this.entities = new linkedList();
-		this.interval = 16.7; //about 60 fps
 		this.running = false;
 		this.div = div
 		this.entities.startIterator();
@@ -32,24 +33,25 @@ class entityManager{
 	}
 	start(){
 		this.running = true;
-		var id  = setInterval(frame,interval);
-		function frame(){
-			if(this.running){
-				while(this.entities.hasNext()){
-					var x = this.entities.next();
-					if(x.update()){
-						x.removeFromDOM();
-						x.remove();
-					}
-					else{
-						x.display();
-					}
+		this.interval  = setInterval(this.frame.bind(this),16);
+		
+	}
+	frame(){
+		if(this.running){
+			while(this.entities.hasNext()){
+				var x = this.entities.next();
+				if(x.update()){
+					x.removeFromDOM();
+					x.remove();
 				}
-				x.startIterator();
+				else{
+					x.display();
+				}
 			}
-			else{
-				clearInterval(id);
-			}
+			this.entities.startIterator();
+		}
+		else{
+			clearInterval(this.interval);
 		}
 	}
 	stop(){
@@ -58,12 +60,12 @@ class entityManager{
 	spawn(x){ //requires an entity
 		x.owner = this;
 		x.addToDOM();
-		this.entity.add(x);
+		this.entities.add(x);
 	}
 	addElement(x){ //requires an html element
 		this.div.appendChild(x);
 	}
-	removeElements(x){
+	removeElement(x){
 		this.div.removeChild(x);
 	}
 };

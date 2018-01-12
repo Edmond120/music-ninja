@@ -104,3 +104,6 @@ WongE -- 2018-01-11 14:18:30
 WongE -- 2018-01-11 17:54:27
 	finished entityManager, testing animations now
 
+WongE -- 2018-01-11 22:24:32
+	bugfixes and got animation to work
+

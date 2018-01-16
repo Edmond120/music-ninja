@@ -69,14 +69,12 @@ body {
 
 .bar-left {
   position: absolute;
-  font-size: 100%;
   top: 5%;
   left: 5%;
 }
 
 .bar-right {
   position: absolute;
-  font-size: 100%;
   top: 5%;
   right: 5%;
 }

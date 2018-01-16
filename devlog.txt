@@ -107,3 +107,6 @@ WongE -- 2018-01-11 17:54:27
 
 WongE -- 2018-01-11 22:24:32
 	bugfixes and got animation to work
+
+xuJ -- 2018-01-16 14:40:29
+	added foundation but everything looks weird

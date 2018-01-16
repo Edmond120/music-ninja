@@ -5,8 +5,11 @@ class rect extends entity{
 		super();
 		this.elements.push(document.createElement('div'));
 		var e = this.elements[0];
-		this.xcor = xcor;
-		this.ycor = ycor;
+		var grav = 4;
+		this.xcor = Math.floor(Math.random() * (boxWidth-100))+50;
+		this.ycor = boxHeight;
+		this.xvel = Math.floor(Math.random() * 5);
+		this.yvel = -40;
 		e.style.left = xcor + 'px';
 		e.style.top = ycor + 'px';
 		e.style.height = height + 'px';
@@ -16,8 +19,8 @@ class rect extends entity{
 		this.lifespan = 600;
 	}
 	update(){
-		this.xcor++;
-		this.ycor++;
+		x = velx * time;
+		y = vely*time + 0.5*grav*time*time;
 		return this.lifespan-- <= 0;
 	}
 	display(){
@@ -27,10 +30,9 @@ class rect extends entity{
 }
 
 var container = document.createElement('div');
-container.style.position = "static";
-container.style.height = "1000px";
-container.style.width = "1000px";
-container.style.background = "black";
+container.style.position = "relative";
+container.style.width = "100%";
+container.style.backgroundimage = "../images/background.jpg";
 document.body.appendChild(container);
 
 var em = new entityManager(container);

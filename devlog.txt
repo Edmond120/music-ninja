@@ -95,9 +95,10 @@ xuJ -- 2018-01-10 21:47:29
 	added the physics for image displacement
 
 wuY -- 2018-01-10 22:39:48
-        fixed back on profile
+  fixed back on profile
 	worked on store's buy function
 	worked on profile display
+
 WongE -- 2018-01-11 14:18:30
 	edited entityManager.js
 
@@ -106,4 +107,3 @@ WongE -- 2018-01-11 17:54:27
 
 WongE -- 2018-01-11 22:24:32
 	bugfixes and got animation to work
-

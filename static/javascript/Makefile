@@ -1,4 +1,7 @@
-.PHONY: core.js clean basicAnimationTest.html
+.PHONY: core.js clean basicAnimationTest.html play.js
+
+play.js: core.js entities.js libraries/game.js 
+	cat core.js libraries/entities.js libraries/game.js > play.js
 
 core.js: libraries/linkedList.js libraries/entityManager.js
 	cat libraries/linkedList.js libraries/entityManager.js > core.js

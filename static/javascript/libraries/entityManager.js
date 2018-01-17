@@ -42,7 +42,7 @@ class entityManager{
 				var x = this.entities.next();
 				if(x.update()){
 					x.removeFromDOM();
-					x.remove();
+					this.entities.remove();
 				}
 				else{
 					x.display();

@@ -1,6 +1,6 @@
 //requires entityManager.js
 
-class item extends entity{
+/*class item extends entity{
     var gravity = -2;
     var xcord = 0;
     var ycord = 0;
@@ -30,4 +30,19 @@ class item extends entity{
 	velx = x;
 	vely = 
     }
+}
+*/
+class itemWithPhysics extends entity{
+  constructor(boxWidth,boxHeight){
+  		this.grav = 4;
+  		this.xcor = Math.floor(Math.random() * (boxWidth-100))+50;
+  		this.ycor = boxHeight;
+  		this.velx = Math.floor(Math.random() * 5);
+  		this.vely = -40;
+		this.time = 0;
+  }
+  update(){//x, y is the pixel location
+        this.xcor = this.velx * this.time;
+        this.ycor = this.vely * this.time + 0.5 * this. grav * this.time * this.time;
+  }
 }

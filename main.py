@@ -33,9 +33,11 @@ def login():
 def login_auth():
     usr = request.form['usr']
     pwd = request.form['pwd']
-    if match(usr,pwd):
-        login_db(usr,pwd)
-        return redirect( url_for('login') )
+    if usr != '':
+        if match(usr,pwd):
+            login_db(usr,pwd)
+            return redirect( url_for('login') )
+        return render_template('login.html', condition='1')
     else:
         return render_template('login.html', condition='1')
 

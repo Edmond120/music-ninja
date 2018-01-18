@@ -1,14 +1,12 @@
 {% extends "base.html" %}
 
 {% block body %}
-<form action="{{url_for('logout')}}" method="GET">
   <div class="bar-left">
     $$: {{cash}}
   </div>
   <div class="bar-right">
-    <input type="submit" name="logout" value="Logout">
+    <a class="button hollow success" href="{{ url_for('logout') }}">Logout</a>
   </div>
-</form>
 <div class="left-up-half">
   <form action="/store" method="POST">
     <input type="image" src="../static/images/kiwi.png" name="store" class="img">

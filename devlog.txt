@@ -110,3 +110,6 @@ WongE -- 2018-01-11 22:24:32
 
 xuJ -- 2018-01-16 14:40:29
 	added foundation but everything looks weird
+
+xuJ -- 2018-01-19 14:50:51
+	still fixing parts of foundation

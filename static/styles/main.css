@@ -2,6 +2,18 @@ body {
   font-size: 200%;
 }
 
+table {
+  padding-top: 2%;
+  padding-left: 5%;
+  width: 95%;
+  color: #767676;
+}
+
+.button {
+  background-color: transparent;
+  color: #ffffff;
+}
+
 .login {
   position: absolute;
   width: 17%;
@@ -107,12 +119,6 @@ body {
   position: absolute;
   top: 12%;
   left: 45%;
-}
-
-table {
-  padding-top: 2%;
-  padding-left: 5%;
-  width: 95%;
 }
 
 .table-left {

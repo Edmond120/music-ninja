@@ -8,18 +8,14 @@
     {% elif condition == '2' %}
     <p> Sorry, the username already exists. </p>
     {% endif %}
-    <label>USERNAME:
+    <p>USERNAME:</p>
       <input name="usr" type="text">
-    </label>
-    <br><br>
-    <label>PASSWORD:
+    <p>PASSWORD:</p>
       <input name="pwd" type="password">
-    </label>
-    <br><br>
-    <label>CONFIRM PASSWORD:
+    <p>CONFIRM PASSWORD:</p>
       <input name="cfm" type="password">
-    </label> <br><br>
-    <input type="submit" name="register" value="Register">
+    <br>
+    <input type="submit" class="button expanded success" name="register" value="Register">
   </form>
 </div>
 {% endblock %}

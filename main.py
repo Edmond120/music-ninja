@@ -72,6 +72,13 @@ def store():
 		return render_template("store.html", cash = 100, items = {'apple': 2.50, 'banana': 3.50})
 	else:
 		return redirect( url_for('root') )
+    
+@app.route('/search')
+def search():
+    search = request.form['search']
+    ret = []
+    ret = ebay.search(search)
+    return redirect( url_for(results), result = ret)
 
 @app.route('/buy', methods=['POST','GET'])
 def buy():

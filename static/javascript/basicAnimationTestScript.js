@@ -8,7 +8,6 @@ class linkedListNode{
 class linkedList{
     constructor(){
         this.start = new linkedListNode(null);
-        this.end = this.start;
         this.length = 0;
 		this.current = this.start;
 		this.currentBack = null;
@@ -22,8 +21,9 @@ class linkedList{
 		return node.data;
     }
     add(data){
-        this.end.next = new linkedListNode(data);
-        this.end = this.end.next;
+	var n = this.start.next;
+        this.start.next = new linkedListNode(data);
+        this.start.next.next = n;
         this.length++;
     }
 	//built in iterator
@@ -77,6 +77,12 @@ class entity{
 	}
 };
 
+class placeHolder extends entity{
+	update(){
+		return false;
+	}
+}
+
 class entityManager{
 	constructor(div){
 		this.entities = new linkedList();
@@ -98,7 +104,7 @@ class entityManager{
 				var x = this.entities.next();
 				if(x.update()){
 					x.removeFromDOM();
-					x.remove();
+					this.entities.remove();
 				}
 				else{
 					x.display();
@@ -126,7 +132,7 @@ class entityManager{
 	}
 };
 //requires core.js
-
+var a = true;
 class rect extends entity{
 	constructor(xcor,ycor,height,width,color){
 		super();
@@ -140,11 +146,19 @@ class rect extends entity{
 		e.style.width = width + 'px';
 		e.style.background = color;
 		e.style.position = 'absolute';
-		this.lifespan = 600;
+		if(a){
+			this.lifespan = 60000;
+			a = false;
+		}
+		else{
+			this.lifespan = 600;
+		}
 	}
 	update(){
 		this.xcor++;
 		this.ycor++;
+		console.log(this.xcor);
+		console.log(this.ycor);
 		return this.lifespan-- <= 0;
 	}
 	display(){
@@ -161,5 +175,6 @@ container.style.background = "black";
 document.body.appendChild(container);
 
 var em = new entityManager(container);
+em.spawn(new placeHolder());
 em.spawn(new rect(0,0,100,100,'red'));
 em.start();

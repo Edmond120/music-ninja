@@ -10,7 +10,7 @@ def search(search):
         if type == 'Ebay':
             use_key = key        
     api_url = "http://svcs.ebay.com/services/search/FindingService/v1?"
-    payload = { 'OPERATION-NAME' : findItemsByKeywords,
+    payload = { 'OPERATION-NAME' : 'findItemsByKeywords',
                 'SERVICE-VERSION' : '1.0.0',
                 'SECURITY-APPNAME' : use_key,
                 'keywords' : search}

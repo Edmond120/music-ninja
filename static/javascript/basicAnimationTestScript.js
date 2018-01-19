@@ -141,7 +141,7 @@ class pic extends entity{
 		canvas.height = 768;
 		this.elements.push(canvas);
 		var ctx = canvas.getContext("2d");
-		ctx.drawimage("../images/" + image,0,0,50,50);
+		ctx.drawImage("../images/" + image,0,0,50,50);
 		var e = this.elements[0];
 		this.xcor = xcor;
 		this.ycor = ycor;

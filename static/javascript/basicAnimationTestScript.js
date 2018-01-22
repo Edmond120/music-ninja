@@ -137,12 +137,15 @@ class pic extends entity{
 	constructor(image,xcor,ycor,height,width){
 		super();
 		var canvas = document.createElement('canvas');
-		canvas.width = 1224;
-		canvas.height = 768;
+		canvas.width = 100;
+	    canvas.height = 100;
+	    canvas.style.border   = "1px solid";
 		this.elements.push(canvas);
 		var ctx = canvas.getContext("2d");
-		ctx.drawImage("../images/" + image,0,0,50,50);
-		var e = this.elements[0];
+	    var e = this.elements[0];
+	    var img = new Image();
+	    img.src = '../images/' + image;
+	    ctx.drawImage(img,0,0,100,100);
 		this.xcor = xcor;
 		this.ycor = ycor;
 		e.style.left = xcor + 'px';
@@ -172,13 +175,9 @@ class pic extends entity{
 }
 
 var container = document.createElement('div');
-container.style.position = "static";
-container.style.height = "1000px";
-container.style.width = "1000px";
-container.style.background = "black";
 document.body.appendChild(container);
-
 var em = new entityManager(container);
 em.spawn(new placeHolder());
 em.spawn(new pic("kiwi.png",0,0,100,100));
 em.start();
+

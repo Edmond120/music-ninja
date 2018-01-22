@@ -16,7 +16,7 @@ def home():
 	if in_session():
 		# INFO to be passed: list of top 10 highcores
                 print 'Your are in session!'
-		return render_template("home.html", cash = 1000000, scores = [['apple', 1003], ['banana', 1002], ['cherry', 1000], ['dude', 1000], ['crazy', 1000], ['why', 1000], ['idk', 1000], ['wow', 1000]] )
+		return render_template("home.html", cash = 1000000, scores = [['apple', 1003], ['banana', 1002], ['cherry', 1000], ['dude', 1000], ['crazy', 1000], ['why', 1000], ['idk', 1000], ['wow', 1000], ['no', 999]] )
 	else:
 		# make sure scores are in order from highest to lowest in the list
 		return render_template('welcome.html')
@@ -74,7 +74,7 @@ def store():
 		return render_template("store.html", cash = 100, items = {'apple': 2.50, 'banana': 3.50, 'cherry': 1.00, 'dragonfruit': 1.00, 'elephant': 1.00, 'chair': 1.00, 'toy': 1.00, 'machine': 1.00, 'dream': 1.00})
 	else:
 		return redirect( url_for('root') )
-    
+
 @app.route('/search')
 def search():
     search = request.form['search']

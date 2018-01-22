@@ -104,8 +104,8 @@ def profile():
                         else:
                                 items[item] = 0
                 return render_template("profile.html", cash = 1000000, items = {'apple': 1, 'banana': 0})
-	#else:
-		#return redirect( url_for('root') )
+	else:
+		return redirect( url_for('root') )
 
 @app.route('/logout')
 def logout():

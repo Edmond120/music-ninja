@@ -1,26 +1,69 @@
 body {
   font-size: 200%;
+  min-width: 750px;
+}
+
+.login {
+  position: absolute;
+  width: 30%;
+  top: 25%;
+  left: 35%;
+  font-size: 1.5vw;
+}
+
+.register {
+  position: absolute;
+  width: 30%;
+  top: 15%;
+  left: 35%;
+  font-size: 1.5vw;
 }
 
 table {
-  padding-top: 2%;
-  padding-left: 5%;
-  width: 95%;
+  font-size: 2vw;
+  width: 100%;
   color: #767676;
+}
+
+.scrollarea {
+  width: 100%;
+  height: 87%;
+  overflow: scroll;
+}
+
+.table-left {
+  text-align: left;
+  width: 80%;
+}
+
+.table-right {
+  text-align: right;
+}
+
+.highscore {
+  font-size: 3vw;
+  border: 1px solid white;
+  position: absolute;
+  width: 30%;
+  bottom: 8%;
+  top: 15%;
+  right: 5%;
+}
+
+.store {
+  font-size: 3vw;
+  border: 1px solid white;
+  position: absolute;
+  font-size: 100%;
+  top: 20%;
+  left: 5%;
+  width: 90%;
+  height: 70%;
 }
 
 .button {
   background-color: transparent;
   color: #ffffff;
-}
-
-.login {
-  position: absolute;
-  width: 17%;
-  height: 30%;
-  top: 30%;
-  right: 42.5%;
-  font-size: 50%;
 }
 
 .container {
@@ -30,7 +73,7 @@ table {
 }
 
 .frext {
-  font-size: 150%;
+  font-size: 3vw;
   width: 100%;
   height: 100%;
   position: absolute;
@@ -43,7 +86,7 @@ table {
   position: absolute;
   width: 17%;
   height: 30%;
-  top: 40%;
+  top: 35%;
   left: 25%;
 }
 
@@ -51,7 +94,7 @@ table {
   position: absolute;
   width: 17%;
   height: 30%;
-  top: 40%;
+  top: 35%;
   right: 25%;
 }
 
@@ -59,7 +102,7 @@ table {
   position: absolute;
   width: 17%;
   height: 30%;
-  top: 15%;
+  top: 20%;
   left: 10%;
 }
 
@@ -75,7 +118,7 @@ table {
   position: absolute;
   width: 17%;
   height: 30%;
-  top: 30%;
+  top: 40%;
   right: 42.5%;
 }
 
@@ -83,6 +126,7 @@ table {
   position: absolute;
   top: 5%;
   left: 5%;
+  font-size: 3vw;
 }
 
 .bar-right {
@@ -91,54 +135,24 @@ table {
   right: 5%;
 }
 
-.highscore {
-  border: 1px solid white;
-  position: absolute;
-  width: 30%;
-  height: 75%;
-  top: 15%;
-  right: 5%;
-}
-
 .img {
   width: 100%;
   height: 100%;
 }
 
-.store {
-  border: 1px solid white;
-  position: absolute;
-  font-size: 100%;
-  top: 20%;
-  left: 5%;
-  width: 90%;
-  height: 70%;
-}
-
 .header {
   position: absolute;
   top: 12%;
-  left: 45%;
-}
-
-.table-left {
-  text-align: left;
-}
-
-.table-right {
-  text-align: right;
+  left: 42%;
+  font-size: 3vw;
 }
 
 .onoff {
-  height: 8%;
-  width: 8%;
+  height: 10%;
+  width: 60px;
 }
 
 .buy {
   height: 20%;
-  width: 20%;
-}
-
-.back {
-  font-size: 200%;
+  width: 120px;
 }

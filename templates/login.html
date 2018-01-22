@@ -2,7 +2,7 @@
 
 {% block body %}
 <div class="login">
-  <form class="register" action="{{ url_for('login_auth') }}" method="POST">
+  <form action="{{ url_for('login_auth') }}" method="POST">
     {% if condition == '1' %}
     <p> Sorry, incorrect username/password </p>
     {% endif %}

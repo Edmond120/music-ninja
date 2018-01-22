@@ -1,31 +1,31 @@
 {% extends "base.html" %}
 
 {% block body %}
-<form method="GET" action="{{url_for('home')}}">
   <div class="bar-left">
     $$: {{cash}}
   </div>
   <div class="bar-right">
-    <input type="submit" class="back" name="back" value="Back">
+    <a class="button hollow success" href="{{ url_for('home') }}">Back</a>
   </div>
-</form>
 <div class="header">SELECT ITEMS</div>
 <div class="store">
-<form method="POST" action="/store">
-  <table>
-	{% for item in items %}
-    <tr>
-      <td class="table-left">{{item}}</td>
-      <td class="table-right">
-        {% if items[item] == 0 %}
-          <input type="image" class="onoff" src="../static/images/off.png" name="equip">
-        {% else %}
-          <input type="image" class="onoff" src="../static/images/on.png" name="unequip">
-        {% endif %}
-      </td>
-    </li>
-  {% endfor %}
-  </ul>
-</form>
+<div class="scrollarea">
+  <form method="POST" action="/store">
+    <table>
+	     {% for item in items %}
+        <tr>
+          <td class="table-left">{{item}}</td>
+          <td class="table-right">
+            {% if items[item] == 0 %}
+              <input type="image" class="onoff" src="../static/images/off.png" name="equip">
+            {% else %}
+              <input type="image" class="onoff" src="../static/images/on.png" name="unequip">
+            {% endif %}
+          </td>
+        </tr>
+      {% endfor %}
+    </table>
+  </form>
+</div>
 </div>
 {% endblock %}

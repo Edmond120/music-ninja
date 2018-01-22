@@ -26,14 +26,17 @@
   </form>
 </div>
 <div class="highscore">
-  <p><u>HIGH SCORES</u></p>
-  <table>
-    {% for each in scores %}
-      <tr>
-        <td class="table-left">{{each[0]}}</td>
-        <td class="table-right">{{each[1]}}</td>
-      </tr>
+  <u>HIGH SCORES</u>
+  <br>
+  <div class="scrollarea">
+    <table>
+      {% for each in scores %}
+        <tr>
+          <td class="table-left">{{each[0]}}</td>
+          <td class="table-right">{{each[1]}}</td>
+        </tr>
       {% endfor %}
     </table>
+  </div>
 </div>
 {% endblock %}

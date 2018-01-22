@@ -1,16 +1,16 @@
 {% extends "base.html" %}
 
 {% block body %}
-<form action="/login">
-  <div class="left-half">
-    <input type="image" src="../static/images/watermelon.png" name="login">
+<div class="left-half">
+  <form action="/login">
+    <input type="image" src="../static/images/watermelon.png" name="login" class="img">
     <div class="frext">LOGIN</div>
-  </div>
-</form>
-<form action="/register">
-  <div class="right-half">
-    <input type="image" src="../static/images/dragonfruit.png" name="register">
+  </form>
+</div>
+<div class="right-half">
+  <form action="/register">
+    <input type="image" src="../static/images/dragonfruit.png" name="register" class="img">
     <div class="frext">REGISTER</div>
-  </div>
-</form>
+  </form>
+</div>
 {% endblock %}

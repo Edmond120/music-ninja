@@ -8,7 +8,6 @@ class linkedListNode{
 class linkedList{
     constructor(){
         this.start = new linkedListNode(null);
-        this.end = this.start;
         this.length = 0;
 		this.current = this.start;
 		this.currentBack = null;
@@ -22,8 +21,9 @@ class linkedList{
 		return node.data;
     }
     add(data){
-        this.end.next = new linkedListNode(data);
-        this.end = this.end.next;
+        var n = this.start.next;
+        this.start.next = new linkedListNode(data);
+        this.start.next.next = n;
         this.length++;
     }
 	//built in iterator
@@ -77,12 +77,21 @@ class entity{
 	}
 };
 
+class placeHolder extends entity{
+	update(){
+		return false;
+	}
+};
+
 class entityManager{
 	constructor(div){
 		this.entities = new linkedList();
 		this.running = false;
 		this.div = div
-		this.entities.startIterator();
+	        this.entities.startIterator();
+	    var p = new placeHolder();
+	    p.owner = this;
+	    this.entities.add(p);
 	}
 	setDiv(d){
 		this.div = d;

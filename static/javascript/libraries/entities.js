@@ -44,5 +44,33 @@ class itemWithPhysics extends entity{
   update(){//x, y is the pixel location
         this.xcor = this.velx * this.time;
         this.ycor = this.vely * this.time + 0.5 * this. grav * this.time * this.time;
+		return false;
   }
+}
+
+class fruit extends itemWithPhysics{
+	constructor(image,width,height,boxWidth,boxHeight){
+		super();
+		var canvas = document.createElement('canvas');
+		//what is this used for?
+		canvas.width = 1224;
+		canvas.height = 768;
+		//
+		this.elements.push(canvas);
+		canvas.getContext("2d").drawImage("../images/" + image, 0,0,50,50);
+		var e = this.elements[0];
+		e.style.left = xcor + 'px';
+		e.style.top = ycor + 'px';
+		e.style.height = height + 'px';
+		e.style.width = width + 'px';
+		e.style.position = 'absolute';
+	}
+	update(){
+		super();
+	}
+	display(){
+		super();
+		this.elements[0].style.left = this.xcor + 'px';
+		this.elements[0].style.top = this.ycor + 'px';
+	}
 }

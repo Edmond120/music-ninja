@@ -33,9 +33,11 @@ def login():
 def login_auth():
     usr = request.form['usr']
     pwd = request.form['pwd']
-    if match(usr,pwd):
-        login_db(usr,pwd)
-        return redirect( url_for('login') )
+    if usr != '':
+        if match(usr,pwd):
+            login_db(usr,pwd)
+            return redirect( url_for('login') )
+        return render_template('login.html', condition='1')
     else:
         return render_template('login.html', condition='1')
 
@@ -72,6 +74,13 @@ def store():
 		return render_template("store.html", cash = 100, items = {'apple': 2.50, 'banana': 3.50, 'cherry': 1.00, 'dragonfruit': 1.00, 'elephant': 1.00, 'chair': 1.00, 'toy': 1.00, 'machine': 1.00, 'dream': 1.00})
 	else:
 		return redirect( url_for('root') )
+    
+@app.route('/search')
+def search():
+    search = request.form['search']
+    ret = []
+    ret = ebay.search(search)
+    return redirect( url_for(results), result = ret)
 
 @app.route('/buy', methods=['POST','GET'])
 def buy():

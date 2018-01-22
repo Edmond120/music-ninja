@@ -1,49 +1,49 @@
 class linkedListNode{
-    constructor(data){
-        this.data = data;
-        this.next = null;
-    }
+	constructor(data){
+		this.data = data;
+		this.next = null;
+	}
 };
 
 class linkedList{
-    constructor(){
-        this.start = new linkedListNode(null);
-        this.end = this.start;
-        this.length = 0;
+	constructor(){
+		this.start = new linkedListNode(null);
+		this.length = 0;
 		this.current = this.start;
 		this.currentBack = null;
-    }
-    get(index){//this function is not really needed but is included just in case
-        var i;
-        var node = this.start;
-        for(i = -1; i < index; i++){
-            node = node.next;
-        }
+	}
+	get(index){//this function is not really needed but is included just in case
+		var i;
+		var node = this.start;
+		for(i = -1; i < index; i++){
+			node = node.next;
+		}
 		return node.data;
-    }
-    add(data){
-        this.end.next = new linkedListNode(data);
-        this.end = this.end.next;
-        this.length++;
-    }
+	}
+	add(data){
+		var n = this.start.next;
+		this.start.next = new linkedListNode(data);
+		this.start.next.next = n;
+		this.length++;
+	}
 	//built in iterator
-    startIterator(){//sets current to start, used at the beginning of every frame
-        this.current = this.start;
-        this.currentBack = null;
-    }
-    hasNext(){
-        return !(this.current.next == null);
-    }
-    next(){
-        this.currentBack = this.current;
-        this.current = this.current.next;
-        return this.current.data;
-    }
-    remove(){//removes current
-        this.currentBack.next = this.current.next;
+	startIterator(){//sets current to start, used at the beginning of every frame
+		this.current = this.start;
+		this.currentBack = null;
+	}
+	hasNext(){
+		return !(this.current.next == null);
+	}
+	next(){
+		this.currentBack = this.current;
+		this.current = this.current.next;
+		return this.current.data;
+	}
+	remove(){//removes current
+		this.currentBack.next = this.current.next;
 		this.current = this.currentBack;
-        this.length--;
-    }
+		this.length--;
+	}
 	toString(){//DO NOT USE THIS WHEN USING THE ITERATOR, IT WILL MESS IT UP
 		var str = "";
 		this.startIterator();
@@ -77,12 +77,18 @@ class entity{
 	}
 };
 
+class placeHolder extends entity{
+	update(){
+		return false;
+	}
+}
+
 class entityManager{
 	constructor(div){
 		this.entities = new linkedList();
 		this.running = false;
 		this.div = div
-		this.entities.startIterator();
+			this.entities.startIterator();
 	}
 	setDiv(d){
 		this.div = d;
@@ -90,7 +96,7 @@ class entityManager{
 	start(){
 		this.running = true;
 		this.interval  = setInterval(this.frame.bind(this),16);
-		
+
 	}
 	frame(){
 		if(this.running){
@@ -98,7 +104,7 @@ class entityManager{
 				var x = this.entities.next();
 				if(x.update()){
 					x.removeFromDOM();
-					x.remove();
+					this.entities.remove();
 				}
 				else{
 					x.display();
@@ -126,11 +132,16 @@ class entityManager{
 	}
 };
 //requires core.js
-
-class rect extends entity{
-	constructor(xcor,ycor,height,width,color){
+var a = true;
+class pic extends entity{
+	constructor(image,xcor,ycor,height,width){
 		super();
-		this.elements.push(document.createElement('div'));
+		var canvas = document.createElement('canvas');
+		canvas.width = 1224;
+		canvas.height = 768;
+		this.elements.push(canvas);
+		var ctx = canvas.getContext("2d");
+		ctx.drawImage("../images/" + image,0,0,50,50);
 		var e = this.elements[0];
 		this.xcor = xcor;
 		this.ycor = ycor;
@@ -138,13 +149,20 @@ class rect extends entity{
 		e.style.top = ycor + 'px';
 		e.style.height = height + 'px';
 		e.style.width = width + 'px';
-		e.style.background = color;
 		e.style.position = 'absolute';
-		this.lifespan = 600;
+		if(a){
+			this.lifespan = 60000;
+			a = false;
+		}
+		else{
+			this.lifespan = 600;
+		}
 	}
 	update(){
 		this.xcor++;
 		this.ycor++;
+		console.log(this.xcor);
+		console.log(this.ycor);
 		return this.lifespan-- <= 0;
 	}
 	display(){
@@ -161,5 +179,6 @@ container.style.background = "black";
 document.body.appendChild(container);
 
 var em = new entityManager(container);
-em.spawn(new rect(0,0,100,100,'red'));
+em.spawn(new placeHolder());
+em.spawn(new pic("kiwi.png",0,0,100,100));
 em.start();

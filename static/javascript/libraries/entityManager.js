@@ -21,12 +21,21 @@ class entity{
 	}
 };
 
+class placeHolder extends entity{
+	update(){
+		return false;
+	}
+};
+
 class entityManager{
 	constructor(div){
 		this.entities = new linkedList();
 		this.running = false;
 		this.div = div
-		this.entities.startIterator();
+	        this.entities.startIterator();
+	    var p = new placeHolder();
+	    p.owner = this;
+	    this.entities.add(p);
 	}
 	setDiv(d){
 		this.div = d;

@@ -34,25 +34,28 @@ def getcash(user):
     return  results
 
 #checks if program can purchase
-def canpurchase(change,value):
+def canpurchase(user,value):
     f = "app.db"
     db = sqlite3.connect(f)
     c = db.cursor()
     c.execute('SELECT cash FROM users WHERE username = "%s";' %(user) )
     results = c.fetchall()
     db.close()
-    return results[0][0] + change  >= 0
+    return results[0][0] - value  >= 0
 
 
 #add item to list
 def additem(user,item):
-    if isunique(user,item) == False:
+    if isunique(user,item):
         f = "app.db"
         db = sqlite3.connect(f)
         c = db.cursor()
-        c.execute('INSERT INTO items VALUES("%s%", "%s%, 1");' %(user,item) )
+        c.execute('INSERT INTO items VALUES("%s", "%s", 0);' %(user,item) )
         db.commit()
         db.close()
+        return True
+    else:
+        return False
 
 #returns a list of items the user is using
 def itemlist(user):
@@ -69,9 +72,9 @@ def itemusinglist(user):
     f = "app.db"
     db = sqlite3.connect(f)
     c = db.cursor()
-    c.execute('SELECT * FROM items WHERE username = "%s" AND playing = 1 LIMIT 8;' %(user) )
+    c.execute('SELECT * FROM items WHERE user = "%s" AND playing = 1 LIMIT 8;' %(user) )
     results = c.fetchall()
-    d.close()
+    db.close()
     return results
 
 #helper function for adding that prevents adding if there is 8 items selected
@@ -79,14 +82,14 @@ def isnotmax(list):
     return list.len() != 8
 
 #checks if the item being added is a duplicate
-def itemusinglist(user):
+def isunique(user,item):
     f = "app.db"
     db = sqlite3.connect(f)
     c = db.cursor()
-    c.execute('SELECT * FROM items WHERE user = "%s" AND playing = 1 LIMIT 8;' %(user) )
+    c.execute('SELECT item FROM items WHERE user = "%s";'  %(user) )
     results = c.fetchall()
     db.close()
-    return results
+    return results == [] 
 
 #allows player to use item
 def use(user,item):
@@ -143,10 +146,17 @@ def adduser(user,password):
 	c = db.cursor()
 	if get_pass(user) is None:
 		password = hashlib.sha224(password).hexdigest()
-		c.execute('INSERT INTO users VALUES("%s", "%s", 10000);' %(user, password))
-		db.commit()
-		db.close()
-		return True
+		c.execute('INSERT INTO users VALUES("%s", "%s", 100);' %(user, password))
+        c.execute('INSERT INTO items VALUES("%s", "kiwi.png", 0);' %(user) )
+        c.execute('INSERT INTO items VALUES("%s", "grapple.png", 0);' %(user) )
+        c.execute('INSERT INTO items VALUES("%s", "dragonfruit.png", 0);' %(user) )
+        c.execute('INSERT INTO items VALUES("%s", "mango.png", 0);' %(user) )
+        c.execute('INSERT INTO items VALUES("%s", "pineapple.png", 0);' %(user) )
+        c.execute('INSERT INTO items VALUES("%s", "pomegranate.png", 0);' %(user) )
+        c.execute('INSERT INTO items VALUES("%s", "watermelon.png", 0);' %(user) )
+        db.commit()
+        db.close()
+        return True
 	db.close()
 	return False
 

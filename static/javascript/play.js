@@ -189,7 +189,7 @@ class itemWithPhysics extends entity{
 		super();
   		this.grav = 4;
   		this.xcor = Math.floor(Math.random() * (boxWidth-100))+50;
-  		this.ycor = boxHeight;
+  		this.ycor = boxHeight + 50;
   		this.velx = Math.floor(Math.random() * 5);
   		this.vely = -40;
 		this.time = 0;
@@ -219,12 +219,13 @@ class fruit extends itemWithPhysics{
 		super();
 		var canvas = document.createElement('canvas');
 		canvas.width = resolutionX;
-		canvas.height = resolutionY;
-		this.elements.push(canvas);
+	    canvas.height = resolutionY;
+	    this.elements.push(canvas);
 	    var ctx = canvas.getContext("2d")
-	    ctx.drawImage(image, 0,0,resolutionX, resolutionY);
+	    var img = new Image();
+	    img.src = '../images/' + image;
+	    ctx.drawImage(img, 0,0,resolutionX, resolutionY);
 		var e = this.elements[0];
-
 		//debug
 		canvas.style.border = "1px solid";
 		//debug		

@@ -9,14 +9,14 @@
 </div>
 <div class="header">BUY ITEMS</div>
 <div class="store">
-  <div class="input-group">
-    <form action=" {{ url_for('search') }}" method="POST">
+  <form action=" {{ url_for('search') }}" method="POST">
+    <div class="input-group">
       <input name="keyword" class="input-group-field" type="text">
       <div class="input-group-button">
-	<input type="submit" class="button" value="Search">
-      </form>
+	       <input type="submit" class="button" value="Search">
+      </div>
     </div>
-  </div>
+  </form>
   <div class="scrollarea">
     <form method="POST" action="/store">
       <table>

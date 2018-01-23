@@ -121,5 +121,9 @@ wuY -- 2018-01-22 21:54:09
 	finished with search method
 
 wuY -- 2018-01-22 22:57:28
-        fixed cash value on the page
+  fixed cash value on the page
 	working on displaying the search result using the api
+
+xuJ -- 2018-01-23 17:44:18
+	tweaked the properties of the item class so that they will move properly
+	also scaled it so it would work even after window size change

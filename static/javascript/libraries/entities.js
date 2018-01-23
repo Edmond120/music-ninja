@@ -69,18 +69,12 @@ class itemWithPhysics extends entity{
   }
 }
 
-var getImage = function(imageName){
-	var image = new Image();
-	image.src = '../images/' + image; //correct image path
-	return image;
-}
 
 var resolutionX = 100;
 var resolutionY = 100;
 
 var lives = 3;
 var score = 0;
-
 class fruit extends itemWithPhysics{
 	constructor(image,width,height){
 		super();
@@ -94,8 +88,12 @@ class fruit extends itemWithPhysics{
 	  ctx.drawImage(img, 0,0,resolutionX, resolutionY);
 		var e = this.elements[0];
 		//debug
+<<<<<<< HEAD
 		canvas.style.border = "1px solid";
 		//debug
+=======
+		//debug
+>>>>>>> 73012e683568ff4890cdb6d3574a40dc3b2b2fa3
 
 		e.style.left = this.xcor + 'px';
 		e.style.top = this.ycor + 'px';
@@ -120,4 +118,24 @@ class fruit extends itemWithPhysics{
 		this.elements[0].style.left = (this.xcor) + 'px';
 		this.elements[0].style.top = (this.ycor) + 'px';
 	}
+}
+var f = 0;
+var stuff = ["kiwi.png","dragonfruit.png","grapple.png","pineapple.png","mango.png","pomegrante.png","watermelon.png"]
+class fruitSpawner extends entity {
+    constructor(arrayOfFruitNames){
+	super();
+	this.stuff = arrayOfFruitNames;
+    }
+    update(){
+	console.log(f++);
+	if (Math.floor(Math.random() * 1001 > 995)){
+	    var counter = Math.floor(Math.random() * 6);
+	    var thing = this.stuff[Math.floor(Math.random() * stuff.length)];
+	    while(counter > 0){
+		this.owner.spawn(new fruit(thing,100,100));
+		counter--;
+	    }
+	}
+    }
+
 }

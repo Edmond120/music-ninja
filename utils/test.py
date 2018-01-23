@@ -1,3 +1,7 @@
 import ebay
 
-print ebay.search('harry potter phoenix')[0]
+test = ebay.search('harry potter phoenix')
+print test
+print test['title']
+print test['image']
+print test['price']

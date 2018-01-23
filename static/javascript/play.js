@@ -84,6 +84,12 @@ var rescaleMultiplier = function(){
 }
 var rMultiplier = rescaleMultiplier();
 
+var mouseX = 0;
+var mouseY = 0;
+var pMouseX = 0;
+var pMouseY = 0;
+var velocity = 0;
+
 class placeHolder extends entity{
 	update(){
 		rMultiplier = rescaleMultiplier();
@@ -99,6 +105,7 @@ class entityManager{
 	    var p = new placeHolder();
 	    p.owner = this;
 	    this.entities.add(p);
+		this.endingFunction = function(){};
 	}
 	setDiv(d){
 		this.div = d;
@@ -120,6 +127,7 @@ class entityManager{
 					x.display();
 				}
 			}
+			this.endingFunction();
 			this.entities.startIterator();
 		}
 		else{
@@ -194,11 +202,6 @@ class itemWithPhysics extends entity{
   }
 }
 
-var getImage = function(imageName){
-	var image = new Image();
-	image.src = '../images/' + image; //correct image path
-	return image;
-}
 
 var resolutionX = 100;
 var resolutionY = 100;
@@ -211,14 +214,14 @@ class fruit extends itemWithPhysics{
 		super();
 		var canvas = document.createElement('canvas');
 		canvas.width = resolutionX;
-		canvas.height = resolutionY;
-		this.elements.push(canvas);
+	    canvas.height = resolutionY;
+	    this.elements.push(canvas);
 	    var ctx = canvas.getContext("2d")
-	    ctx.drawImage(image, 0,0,resolutionX, resolutionY);
+	    var img = new Image();
+	    img.src = '../images/' + image;
+	    ctx.drawImage(img, 0,0,resolutionX, resolutionY);
 		var e = this.elements[0];
-
 		//debug
-		canvas.style.border = "1px solid";
 		//debug		
 
 		e.style.left = this.xcor + 'px';
@@ -245,7 +248,15 @@ class fruit extends itemWithPhysics{
 		this.elements[0].style.top = (rMultiplier * this.ycor) + 'px';
 	}
 }
+var updateMouse = function(event){
+	mouseX = event.clientX;
+	mouseY = event.clientY;
+	console.log(event.clientX);
+	console.log(event.clientY);
+}
+
+document.addEventListener("mousemove", updateMouse);
 var container = document.createElement('div');
 document.body.appendChild(container);
 var fruits = new entityManager(container);
-fruits.spawn(new fruit(getImage("kiwi.png"),100,100));
+fruits.spawn(new fruit("kiwi.png",100,100));

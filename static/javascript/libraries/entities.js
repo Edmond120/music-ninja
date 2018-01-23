@@ -51,11 +51,6 @@ class itemWithPhysics extends entity{
   }
 }
 
-var getImage = function(imageName){
-	var image = new Image();
-	image.src = '../images/' + image; //correct image path
-	return image;
-}
 
 var resolutionX = 100;
 var resolutionY = 100;
@@ -68,14 +63,14 @@ class fruit extends itemWithPhysics{
 		super();
 		var canvas = document.createElement('canvas');
 		canvas.width = resolutionX;
-		canvas.height = resolutionY;
-		this.elements.push(canvas);
+	    canvas.height = resolutionY;
+	    this.elements.push(canvas);
 	    var ctx = canvas.getContext("2d")
-	    ctx.drawImage(image, 0,0,resolutionX, resolutionY);
+	    var img = new Image();
+	    img.src = '../images/' + image;
+	    ctx.drawImage(img, 0,0,resolutionX, resolutionY);
 		var e = this.elements[0];
-
 		//debug
-		canvas.style.border = "1px solid";
 		//debug		
 
 		e.style.left = this.xcor + 'px';

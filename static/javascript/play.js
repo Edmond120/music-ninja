@@ -181,7 +181,7 @@ class itemWithPhysics extends entity{
 		super();
   		this.grav = 4;
   		this.xcor = Math.floor(Math.random() * (boxWidth-100))+50;
-  		this.ycor = boxHeight + 50;
+  		this.ycor = boxHeight;
   		this.velx = Math.floor(Math.random() * 5);
   		this.vely = -40;
 		this.time = 0;
@@ -194,11 +194,6 @@ class itemWithPhysics extends entity{
   }
 }
 
-var getImage = function(imageName){
-	var image = new Image();
-	image.src = '../images/' + image; //correct image path
-	return image;
-}
 
 var resolutionX = 100;
 var resolutionY = 100;

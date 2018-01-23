@@ -1,6 +1,6 @@
 import ebay
 
-test = ebay.search('harry potter phoenix')
+test = ebay.search('kiwi fruit')
 print test
 print test['title']
 print test['image']

@@ -28,7 +28,7 @@ def getcash(user):
     db = sqlite3.connect(f)
     c = db.cursor()
     c.execute("SELECT cash FROM users WHERE username = '%s';" %(user) )
-    results = c.fetchall()[0]
+    results = c.fetchall()[0][0]
     db.commit()
     db.close()
     return  results

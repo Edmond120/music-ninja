@@ -10,20 +10,21 @@
 <div class="header">BUY ITEMS</div>
 <div class="store">
   <div class="input-group">
-    <input class="input-group-field" type="text">
-    <div class="input-group-button">
-      <input type="submit" class="button" value="Submit">
+    <form action=" {{ url_for('search') }}" method="POST">
+      <input class="input-group-field" type="text">
+      <div class="input-group-button">
+	<input type="submit" class="button" name="search" value="Search">
+      </form>
     </div>
   </div>
   <div class="scrollarea">
     <form method="POST" action="/store">
       <table>
-        {% for each in items %}
-          <tr>
-            <td class="table-left">{{each}}: ${{items[each]}} </td>
-            <td class="table-right"><input type="image" class="buy" src="../static/images/buy.png" name="buy"></td>
-          </tr>
-        {% endfor %}
+	{% if condition == '1' %}
+        <td class="table-left">{{ret['title']}}: ${{ret['price']}}</td>
+	<img src:{{ret['image']}}>
+        <td class="table-right"><input type="image" class="buy" src="../static/images/buy.png" name="buy"></td>
+	{% endif %}
       </table>
     </form>
   </div>

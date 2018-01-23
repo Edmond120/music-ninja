@@ -119,3 +119,7 @@ xuJ -- 2018-01-22 15:38:28
 
 wuY -- 2018-01-22 21:54:09
 	finished with search method
+
+wuY -- 2018-01-22 22:57:28
+        fixed cash value on the page
+	working on displaying the search result using the api

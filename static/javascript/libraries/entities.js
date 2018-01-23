@@ -32,8 +32,10 @@
     }
 }
 */
+
 class itemWithPhysics extends entity{
-  constructor(boxWidth,boxHeight){
+  constructor(){
+		super();
   		this.grav = 4;
   		this.xcor = Math.floor(Math.random() * (boxWidth-100))+50;
   		this.ycor = boxHeight;
@@ -42,35 +44,60 @@ class itemWithPhysics extends entity{
 		this.time = 0;
   }
   update(){//x, y is the pixel location
-        this.xcor = this.velx * this.time;
-        this.ycor = this.vely * this.time + 0.5 * this. grav * this.time * this.time;
+        this.xcor += this.velx * this.time;
+        this.ycor += this.vely * this.time + 0.5 * this. grav * this.time * this.time;
+		this.time += 0.01
 		return false;
   }
 }
 
+var getImage = function(imageName){
+	var image = new Image();
+	image.src = '../images/' + image; //correct image path
+	return image;
+}
+
+var resolutionX = 100;
+var resolutionY = 100;
+
+var lives = 3;
+var score = 0;
+
 class fruit extends itemWithPhysics{
-	constructor(image,width,height,boxWidth,boxHeight){
+	constructor(image,width,height){
 		super();
 		var canvas = document.createElement('canvas');
-		//what is this used for?
-		canvas.width = 1224;
-		canvas.height = 768;
-		//
+		canvas.width = resolutionX;
+		canvas.height = resolutionY;
 		this.elements.push(canvas);
-		canvas.getContext("2d").drawImage("../images/" + image, 0,0,50,50);
+		canvas.getContext("2d").drawImage(image, 0,0,resolutionX, resolutionY);
 		var e = this.elements[0];
-		e.style.left = xcor + 'px';
-		e.style.top = ycor + 'px';
+
+		//debug
+		canvas.style.border = "1px solid";
+		//debug		
+
+		e.style.left = this.xcor + 'px';
+		e.style.top = this.ycor + 'px';
+		this.height = height;
+		this.width = width;
 		e.style.height = height + 'px';
 		e.style.width = width + 'px';
 		e.style.position = 'absolute';
 	}
 	update(){
-		super();
+		var dead = super.update();
+		if(dead){
+			//spawn particle effects here
+			
+			//
+		}
+		return dead;
 	}
 	display(){
-		super();
-		this.elements[0].style.left = this.xcor + 'px';
-		this.elements[0].style.top = this.ycor + 'px';
+		super.display();
+		//multiply by rMultiplier scales to screen size
+		this.elements[0].style.left = (rMultiplier * this.xcor) + 'px';
+		this.elements[0].style.top = (rMultiplier * this.ycor) + 'px';
 	}
 }

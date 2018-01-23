@@ -20,19 +20,26 @@ class entity{
 		}
 	}
 };
+var boxHeight = 1200;
+var boxWidth = 1920;
+var rescaleMultiplier = function(){
+	var width = document.body.clientWidth || window.innerWidth || window.innerWidth; 
+	return document.body.clientWidth / boxWidth;
+}
+var rMultiplier = rescaleMultiplier();
 
 class placeHolder extends entity{
 	update(){
+		rMultiplier = rescaleMultiplier();
 		return false;
 	}
 };
-
 class entityManager{
 	constructor(div){
 		this.entities = new linkedList();
 		this.running = false;
-		this.div = div
-	        this.entities.startIterator();
+		this.div = div;
+	    this.entities.startIterator();
 	    var p = new placeHolder();
 	    p.owner = this;
 	    this.entities.add(p);

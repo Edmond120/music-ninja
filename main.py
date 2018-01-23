@@ -17,6 +17,7 @@ def home():
 	if in_session():
 		# INFO to be passed: list of top 10 highcores
                 print 'Your are in session!'
+                print getcash(session['username'])
 		return render_template("home.html", cash = getcash(session['username']), scores = [['apple', 1003], ['banana', 1002], ['cherry', 1000], ['dude', 1000], ['crazy', 1000], ['why', 1000], ['idk', 1000], ['wow', 1000], ['no', 999]] )
 	else:
 		# make sure scores are in order from highest to lowest in the list
@@ -78,7 +79,7 @@ def store():
 
 @app.route('/search', methods=['POST', 'GET'])
 def search():
-    search = request.form['search']
+    search = request.form['keyword']
     print "this is search keyword"
     print search
     ret = ebay.search(search)

@@ -11,9 +11,9 @@
 <div class="store">
   <div class="input-group">
     <form action=" {{ url_for('search') }}" method="POST">
-      <input class="input-group-field" type="text">
+      <input name="keyword" class="input-group-field" type="text">
       <div class="input-group-button">
-	<input type="submit" class="button" name="search" value="Search">
+	<input type="submit" class="button" value="Search">
       </form>
     </div>
   </div>

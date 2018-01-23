@@ -284,7 +284,7 @@ class fruitSpawner extends entity {
 	    var counter = Math.floor(Math.random() * 6);
 	    var thing = this.stuff[Math.floor(Math.random() * stuff.length)];
 	    while(counter > 0){
-		this.owner.spawn(new fruit(thing,100,100));
+		this.owner.spawn(new fruit(thing,100*boxWidth/1075,100*boxWidth/1075));
 		counter--;
 	    }
 	}
@@ -304,4 +304,4 @@ var updateMouse = function(event){
 }
 
 document.addEventListener("mousemove", updateMouse);
-fruits.spawn(new fruit("kiwi.png",100,100));
+fruits.spawn(new fruit("kiwi.png",100*boxWidth/1075,100*boxWidth/1075));

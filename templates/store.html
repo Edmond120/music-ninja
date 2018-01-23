@@ -18,12 +18,17 @@
     </div>
   </div>
   <div class="scrollarea">
-    <form method="POST" action="/store">
+    <form method="POST" action="/buy">
       <table>
 	{% if condition == '1' %}
         <td class="table-left">{{ret['title']}}: ${{ret['price']}}</td>
-	<img src:{{ret['image']}}>
-        <td class="table-right"><input type="image" class="buy" src="../static/images/buy.png" name="buy"></td>
+	<img height ="100" width = "100" src={{ret['image']}}>
+        <td class="table-right">
+	  <input type="image" value={{ret['image']}} class="buy" src="../static/images/buy.png" name="buy"></td>
+	{% elif condition == '2' %}
+	<p> Sorry, you don't have enough cash</p>
+	{% elif condition == '3' %}
+	<p> Sorry, you already bought this item before</p>
 	{% endif %}
       </table>
     </form>

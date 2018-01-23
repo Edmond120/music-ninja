@@ -139,7 +139,7 @@ class pic extends entity{
 		var canvas = document.createElement('canvas');
 		canvas.width = 100;
 	    canvas.height = 100;
-	    canvas.style.border   = "1px solid";
+	    //canvas.style.border   = "1px solid";
 		this.elements.push(canvas);
 		var ctx = canvas.getContext("2d");
 	    var e = this.elements[0];

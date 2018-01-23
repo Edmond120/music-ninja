@@ -1,3 +1,4 @@
-var backgroundImage = document.getElementsByTagName("img")[0];
-var objects = new entityManager(backgroundImage);
-
+var container = document.createElement('div');
+document.body.appendChild(container);
+var fruits = new entityManager(container);
+fruits.spawn(new fruit(getImage("kiwi.png"),100,100));

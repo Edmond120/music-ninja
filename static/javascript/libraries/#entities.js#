@@ -71,8 +71,8 @@ class fruit extends itemWithPhysics{
 	    canvas.height = resolutionY;
 	    this.elements.push(canvas);
 	    var ctx = canvas.getContext("2d")
-	    var img = new Image();
-	    img.src = '../images/' + image;
+	    var image = new Image();
+	    imga.src = '../images/' + image;
 	    ctx.drawImage(img, 0,0,resolutionX, resolutionY);
 		var e = this.elements[0];
 		//debug

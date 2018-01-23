@@ -116,3 +116,6 @@ xuJ -- 2018-01-19 14:50:51
 
 xuJ -- 2018-01-22 15:38:28
 	added in foundation and resizing of text and scrolling for the tables
+
+wuY -- 2018-01-22 21:54:09
+	finished with search method

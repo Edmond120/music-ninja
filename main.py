@@ -122,7 +122,14 @@ def profile():
 
 @app.route('/equip', methods=['POST', 'GET'])
 def equip():
-    
+    name = session['username']
+    item = request.form['item']
+    print item
+    if item in itemusinglist(name):
+        notuse(name,item)
+    else:
+        use(name,item)
+    return render_template( url_for('profile') )
 
 @app.route('/logout')
 def logout():
@@ -137,10 +144,7 @@ def play():
 	else:
 		return redirect( url_for('root') )
 
-#@app.route('/logout')
-#def logout():
-
 
 if __name__ == '__main__':
-	app.debug = True
-	app.run()
+    app.debug = True
+    app.run()

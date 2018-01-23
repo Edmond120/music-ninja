@@ -88,12 +88,6 @@ class fruit extends itemWithPhysics{
 	  ctx.drawImage(img, 0,0,resolutionX, resolutionY);
 		var e = this.elements[0];
 		//debug
-<<<<<<< HEAD
-		canvas.style.border = "1px solid";
-		//debug
-=======
-		//debug
->>>>>>> 73012e683568ff4890cdb6d3574a40dc3b2b2fa3
 
 		e.style.left = this.xcor + 'px';
 		e.style.top = this.ycor + 'px';

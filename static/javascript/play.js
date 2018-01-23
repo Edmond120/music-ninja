@@ -79,11 +79,11 @@ class entity{
 var boxHeight = 1200;
 var boxWidth = 1920;
 var rescaleMultiplier = function(){
-	var width = document.body.clientWidth || window.innerWidth || window.innerWidth;
+	var width = document.body.clientWidth || window.innerWidth || window.innerWidth; 
 	return document.body.clientWidth / boxWidth;
 }
 var rMultiplier = rescaleMultiplier();
-
+var mappedFrame = 0;
 var mouseX = 0;
 var mouseY = 0;
 var pMouseX = 0;
@@ -93,10 +93,17 @@ var velocity = 0;
 class placeHolder extends entity{
 	update(){
 		rMultiplier = rescaleMultiplier();
+		if(this.owner.frameNumber - mappedFrame >= 30){
+			velocity = 0;
+		}
+		else{
+			velocity = Math.sqrt(Math.pow(mouseX - pMouseX,2) + Math.pow(mouseY - pMouseY,2));
+			console.log(velocity);
+		}
 		return false;
 	}
 };
-class entityManager{
+class entityManager{//only one entityManager is supported with mouse
 	constructor(div){
 		this.entities = new linkedList();
 		this.running = false;
@@ -105,7 +112,7 @@ class entityManager{
 	    var p = new placeHolder();
 	    p.owner = this;
 	    this.entities.add(p);
-		this.endingFunction = function(){};
+		this.frameNumber = 0;
 	}
 	setDiv(d){
 		this.div = d;
@@ -113,7 +120,7 @@ class entityManager{
 	start(){
 		this.running = true;
 		this.interval  = setInterval(this.frame.bind(this),16);
-
+		
 	}
 	frame(){
 		if(this.running){
@@ -127,8 +134,8 @@ class entityManager{
 					x.display();
 				}
 			}
-			this.endingFunction();
 			this.entities.startIterator();
+			this.frameNumber++;
 		}
 		else{
 			clearInterval(this.interval);
@@ -239,12 +246,6 @@ class fruit extends itemWithPhysics{
 	  ctx.drawImage(img, 0,0,resolutionX, resolutionY);
 		var e = this.elements[0];
 		//debug
-<<<<<<< HEAD
-		canvas.style.border = "1px solid";
-		//debug
-=======
-		//debug
->>>>>>> 73012e683568ff4890cdb6d3574a40dc3b2b2fa3
 
 		e.style.left = this.xcor + 'px';
 		e.style.top = this.ycor + 'px';
@@ -290,19 +291,17 @@ class fruitSpawner extends entity {
     }
 
 }
-var updateMouse = function(event){
-	mouseX = event.clientX;
-	mouseY = event.clientY;
-<<<<<<< HEAD
-	console.log("mouse ("+event.clientX+", "+event.clientY+")");
-=======
-	//console.log(event.clientX);
-	//console.log(event.clientY);
->>>>>>> 73012e683568ff4890cdb6d3574a40dc3b2b2fa3
-}
-
-document.addEventListener("mousemove", updateMouse);
 var container = document.createElement('div');
 document.body.appendChild(container);
 var fruits = new entityManager(container);
-fruits.spawn(new fruitSpawner(stuff))
+
+var updateMouse = function(event){
+	pMouseX = mouseX;
+	pMouseY = mouseY;
+	mouseX = event.clientX / rMultiplier;
+	mouseY = event.clientY / rMultiplier;
+	mappedFrame = fruits.frameNumber;
+}
+
+document.addEventListener("mousemove", updateMouse);
+fruits.spawn(new fruit("kiwi.png",100,100));

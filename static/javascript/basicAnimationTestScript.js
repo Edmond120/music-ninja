@@ -83,7 +83,7 @@ var rescaleMultiplier = function(){
 	return document.body.clientWidth / boxWidth;
 }
 var rMultiplier = rescaleMultiplier();
-
+var mappedFrame = 0;
 var mouseX = 0;
 var mouseY = 0;
 var pMouseX = 0;
@@ -93,10 +93,17 @@ var velocity = 0;
 class placeHolder extends entity{
 	update(){
 		rMultiplier = rescaleMultiplier();
+		if(this.owner.frameNumber - mappedFrame >= 30){
+			velocity = 0;
+		}
+		else{
+			velocity = Math.sqrt(Math.pow(mouseX - pMouseX,2) + Math.pow(mouseY - pMouseY,2));
+			console.log(velocity);
+		}
 		return false;
 	}
 };
-class entityManager{
+class entityManager{//only one entityManager is supported with mouse
 	constructor(div){
 		this.entities = new linkedList();
 		this.running = false;
@@ -105,7 +112,7 @@ class entityManager{
 	    var p = new placeHolder();
 	    p.owner = this;
 	    this.entities.add(p);
-		this.endingFunction = function(){};
+		this.frameNumber = 0;
 	}
 	setDiv(d){
 		this.div = d;
@@ -127,8 +134,8 @@ class entityManager{
 					x.display();
 				}
 			}
-			this.endingFunction();
 			this.entities.startIterator();
+			this.frameNumber++;
 		}
 		else{
 			clearInterval(this.interval);

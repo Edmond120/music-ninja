@@ -1,8 +1,11 @@
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 from db import *
 from utils import ebay
+import urllib
 app = Flask(__name__)
 app.secret_key = os.urandom(32)
+
+ret = []
 
 @app.route('/')
 def root():
@@ -80,18 +83,24 @@ def store():
 @app.route('/search', methods=['POST', 'GET'])
 def search():
     search = request.form['keyword']
-    print "this is search keyword"
-    print search
     ret = ebay.search(search)
-    print "this is search result"
     return render_template('store.html', condition='1', ret=ret)
 
 @app.route('/buy', methods=['POST','GET'])
 def buy():
-        item = request.form('buy')
-        usr = session['username']
-        additem(usr,item)
-        return render_template("store.html", cash = 100, items = {'apple': 2.50, 'banana': 3.50, 'cherry': 1.00, 'dragonfruit': 1.00, 'elephant': 1.00, 'chair': 1.00, 'toy': 1.00, 'machine': 1.00, 'dream': 1.00})
+        name = session['username']
+        money = getcash(name)
+        if canpurchase(name, ret['price']):
+                item = [ret['title'], ret['image']]
+                urllib.urlretrieve(ret['image'], ret['title'] + ".pgn")
+                if additem:
+                        money = money - ret['price']
+                        changevalue(money, name)
+                        return render_template("store.html", cash=money, condition='0')
+                else:
+                        return render_template("store.html", cash=money, condition='3')
+        else:
+            return render_template("store.html", cash=money, condition='2')
 
 
 @app.route('/profile', methods=['GET','POST'])
@@ -107,9 +116,13 @@ def profile():
                                 items[item] = 1
                         else:
                                 items[item] = 0
-                return render_template("profile.html", cash = getcash(session['username']), items = {'apple': 1, 'banana': 0})
+                return render_template("profile.html", cash=getcash(session['username']), items = items)
 	else:
 		return redirect( url_for('root') )
+
+@app.route('/equip', methods=['POST', 'GET'])
+def equip():
+    
 
 @app.route('/logout')
 def logout():

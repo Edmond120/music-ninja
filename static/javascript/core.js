@@ -84,6 +84,12 @@ var rescaleMultiplier = function(){
 }
 var rMultiplier = rescaleMultiplier();
 
+var mouseX = 0;
+var mouseY = 0;
+var pMouseX = 0;
+var pMouseY = 0;
+var velocity = 0;
+
 class placeHolder extends entity{
 	update(){
 		rMultiplier = rescaleMultiplier();
@@ -99,6 +105,7 @@ class entityManager{
 	    var p = new placeHolder();
 	    p.owner = this;
 	    this.entities.add(p);
+		this.endingFunction = function(){};
 	}
 	setDiv(d){
 		this.div = d;
@@ -120,6 +127,7 @@ class entityManager{
 					x.display();
 				}
 			}
+			this.endingFunction();
 			this.entities.startIterator();
 		}
 		else{

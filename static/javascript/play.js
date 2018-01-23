@@ -208,7 +208,6 @@ var resolutionY = 100;
 
 var lives = 3;
 var score = 0;
-
 class fruit extends itemWithPhysics{
 	constructor(image,width,height){
 		super();
@@ -248,15 +247,35 @@ class fruit extends itemWithPhysics{
 		this.elements[0].style.top = (rMultiplier * this.ycor) + 'px';
 	}
 }
+var f = 0;
+var stuff = ["kiwi.png","dragonfruit.png","grapple.png","pineapple.png","mango.png","pomegrante.png","watermelon.png"]
+class fruitSpawner extends entity {
+    constructor(arrayOfFruitNames){
+	super();
+	this.stuff = arrayOfFruitNames;
+    }
+    update(){
+	console.log(f++);
+	if (Math.floor(Math.random() * 1001 > 995)){
+	    var counter = Math.floor(Math.random() * 6);
+	    var thing = this.stuff[Math.floor(Math.random() * stuff.length)];
+	    while(counter > 0){
+		this.owner.spawn(new fruit(thing,100,100));
+		counter--;
+	    }
+	}
+    }
+    
+}
 var updateMouse = function(event){
 	mouseX = event.clientX;
 	mouseY = event.clientY;
-	console.log(event.clientX);
-	console.log(event.clientY);
+	//console.log(event.clientX);
+	//console.log(event.clientY);
 }
 
 document.addEventListener("mousemove", updateMouse);
 var container = document.createElement('div');
 document.body.appendChild(container);
 var fruits = new entityManager(container);
-fruits.spawn(new fruit("kiwi.png",100,100));
+fruits.spawn(new fruitSpawner(stuff))

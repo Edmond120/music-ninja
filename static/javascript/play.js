@@ -213,7 +213,8 @@ class fruit extends itemWithPhysics{
 		canvas.width = resolutionX;
 		canvas.height = resolutionY;
 		this.elements.push(canvas);
-		canvas.getContext("2d").drawImage(image, 0,0,resolutionX, resolutionY);
+	    var ctx = canvas.getContext("2d")
+	    ctx.drawImage(image, 0,0,resolutionX, resolutionY);
 		var e = this.elements[0];
 
 		//debug

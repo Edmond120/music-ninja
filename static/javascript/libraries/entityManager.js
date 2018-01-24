@@ -23,7 +23,7 @@ class entity{
 var boxHeight = 1200;
 var boxWidth = 1920;
 var rescaleMultiplier = function(){
-	var width = document.body.clientWidth || window.innerWidth || window.innerWidth; 
+	var width = document.body.clientWidth || window.innerWidth || window.innerWidth;
 	return document.body.clientWidth / boxWidth;
 }
 var rMultiplier = rescaleMultiplier();
@@ -72,7 +72,7 @@ class entityManager{//only one entityManager is supported with mouse
 	start(){
 		this.running = true;
 		this.interval  = setInterval(this.frame.bind(this),16);
-		
+
 	}
 	frame(){
 		if(this.running){
@@ -87,6 +87,7 @@ class entityManager{//only one entityManager is supported with mouse
 				}
 			}
 			this.entities.startIterator();
+			document.getElementById("lives").innerHTML = 'Lives: '+lives;
 			this.frameNumber++;
 		}
 		else{

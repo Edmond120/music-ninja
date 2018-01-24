@@ -41,7 +41,7 @@ class itemWithPhysics extends entity{
   constructor(){
 		super();
   	this.grav = (boxHeight/675) * 80;
-  	this.xcor = (boxWidth/1075) * (Math.random()*(boxWidth*2/3) + 1/3*boxWidth);
+  	this.xcor = (boxWidth/1075) * (Math.random()*(boxWidth*1/3) + 1/6*boxWidth);
 		this.ycor = boxHeight*1375/675;
   	if ((boxWidth-this.xcor) < (boxWidth*.20)) {
       this.velx = (boxWidth/1075) * (Math.random()*-1.5);
@@ -63,7 +63,7 @@ class itemWithPhysics extends entity{
   }
   update(){//x, y is the pixel location
     this.xcor += this.velx * this.time;
-    this.ycor += this.vely * this.time + 0.5 * this. grav * this.time * this.time;
+    this.ycor += this.vely * this.time + 0.5 * this.grav * this.time * this.time;
 		this.time += 0.01;
    // console.log("fruit ("+this.xcor+", "+this.ycor+")");
 		return false;
@@ -83,7 +83,8 @@ class fruit extends itemWithPhysics{
 	  this.elements.push(canvas);
 	  var ctx = canvas.getContext("2d")
 	  var img = new Image();
-	  img.src = '../images/' + image;
+	  img.src = '../../../static/images/' + image;
+		//img.src = '../images/' + image;
 	  ctx.drawImage(img, 0,0,resolutionX, resolutionY);
 		var e = this.elements[0];
 		//debug
@@ -126,7 +127,7 @@ class fruit extends itemWithPhysics{
 		this.elements[0].style.top = (this.ycor * rMultiplier) + 'px';
 	}
 }
-var stuff = ["kiwi.png","dragonfruit.png","grapple.png","pineapple.png","mango.png","pomegrante.png","watermelon.png"]
+var stuff = ["kiwi.png","dragonfruit.png","grapple.png","pineapple.png","mango.png","pomegranate.png","watermelon.png"]
 class fruitSpawner extends entity {
     constructor(arrayOfFruitNames){
 	super();
@@ -142,5 +143,56 @@ class fruitSpawner extends entity {
 	    }
 	}
     }
+}
+var mainEventManager = null;
+class buttons extends entity{
+  constructor(){
+	super();
+	var img = document.createElement('img');
+  //img.src = '../../../static/images/background.jpg';
+	img.src = '../../../static/images/btnpause.png';
+	this.elements.push(img);
+	img.style.left = (70 * rMultiplier) + 'px';
+	img.style.top = (970 * rMultiplier) + 'px';
+	img.style.height = (200* rMultiplier) + 'px';
+	img.style.width = (200 * rMultiplier) + 'px';
+	img.style.position = 'absolute';
+  this.displayPause = function(event){
+	if(mainEventManager.running){
+    	mainEventManager.stop();
+      img.src = '../../../static/images/btnplay.png';
+      var exit = document.createElement('img');
+      exit.setAttribute("id","temp");
+      exit.src = '../../../static/images/btnexit.png';
+    	this.elements.push(exit);
+    	exit.style.left = (70 * rMultiplier) + 'px';
+    	exit.style.top = (820 * rMultiplier) + 'px';
+    	exit.style.height = (200 * rMultiplier) + 'px';
+    	exit.style.width = (200 * rMultiplier) + 'px';
+    	exit.style.position = 'absolute';
+      exit.onclick = function() {
+        var input = document.createElement("input");
+        input.setAttribute("type", "hidden");
+        input.setAttribute("name", "score");
+        input.setAttribute("value", score.toString());
+        document.getElementById("theform").appendChild(input);
+      };
+		}
+		else{
+		  mainEventManager.start();
+      this.elements.removeChild(exit);
+      img.src = '../../../static/images/btnpause.png';
+		}
+  	  }
+    }
+	update(){
+		return false;
+	}
+	display(){
+		this.elements[0].style.top = (100 * rMultiplier) + 'px';
+		this.elements[0].style.top = (1000 * rMultiplier) + 'px';
+		this.elements[0].style.height = (100 * rMultiplier) + 'px';
+		this.elements[0].style.width = (100 * rMultiplier) + 'px';
+	}
 
 }

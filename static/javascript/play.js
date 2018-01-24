@@ -79,7 +79,7 @@ class entity{
 var boxHeight = 1200;
 var boxWidth = 1920;
 var rescaleMultiplier = function(){
-	var width = document.body.clientWidth || window.innerWidth || window.innerWidth; 
+	var width = document.body.clientWidth || window.innerWidth || window.innerWidth;
 	return document.body.clientWidth / boxWidth;
 }
 var rMultiplier = rescaleMultiplier();
@@ -90,8 +90,17 @@ var pMouseX = 0;
 var pMouseY = 0;
 var velocity = 0;
 
+var lives = 3;
+var score = 0;
+var comboMeter = 0;
+var firstComboFrame = 0;
+
 class placeHolder extends entity{
 	update(){
+		if(firstComboFrame-- <= 0){
+			comboMeter = 0;
+			firstComboFrame = 60 * 3;
+		}
 		rMultiplier = rescaleMultiplier();
 		if(this.owner.frameNumber - mappedFrame >= 30){
 			velocity = 0;
@@ -119,7 +128,7 @@ class entityManager{//only one entityManager is supported with mouse
 	start(){
 		this.running = true;
 		this.interval  = setInterval(this.frame.bind(this),16);
-		
+
 	}
 	frame(){
 		if(this.running){
@@ -134,6 +143,7 @@ class entityManager{//only one entityManager is supported with mouse
 				}
 			}
 			this.entities.startIterator();
+			document.getElementById("lives").innerHTML = 'Lives: '+lives;
 			this.frameNumber++;
 		}
 		else{
@@ -198,7 +208,7 @@ class itemWithPhysics extends entity{
   constructor(){
 		super();
   	this.grav = (boxHeight/675) * 80;
-  	this.xcor = (boxWidth/1075) * (Math.random()*(boxWidth*2/3) + 1/3*boxWidth);
+  	this.xcor = (boxWidth/1075) * (Math.random()*(boxWidth*1/3) + 1/6*boxWidth);
 		this.ycor = boxHeight*1375/675;
   	if ((boxWidth-this.xcor) < (boxWidth*.20)) {
       this.velx = (boxWidth/1075) * (Math.random()*-1.5);
@@ -220,7 +230,7 @@ class itemWithPhysics extends entity{
   }
   update(){//x, y is the pixel location
     this.xcor += this.velx * this.time;
-    this.ycor += this.vely * this.time + 0.5 * this. grav * this.time * this.time;
+    this.ycor += this.vely * this.time + 0.5 * this.grav * this.time * this.time;
 		this.time += 0.01;
    // console.log("fruit ("+this.xcor+", "+this.ycor+")");
 		return false;
@@ -231,8 +241,6 @@ class itemWithPhysics extends entity{
 var resolutionX = 100;
 var resolutionY = 100;
 
-var lives = 3;
-var score = 0;
 class fruit extends itemWithPhysics{
 	constructor(image,width,height){
 		super();
@@ -242,7 +250,8 @@ class fruit extends itemWithPhysics{
 	  this.elements.push(canvas);
 	  var ctx = canvas.getContext("2d")
 	  var img = new Image();
-	  img.src = '../images/' + image;
+	  img.src = '../../../static/images/' + image;
+		//img.src = '../images/' + image;
 	  ctx.drawImage(img, 0,0,resolutionX, resolutionY);
 		var e = this.elements[0];
 		//debug
@@ -258,11 +267,14 @@ class fruit extends itemWithPhysics{
 	update(){
 		var dead = super.update();
 		if(this.vely + this.grav * this.time * this.time >= 0 && this.ycor > boxHeight){
-			console.log("dead");
+			lives--;
+			comboMeter = 0;
 			return true;
 		}
 		if(mouseX > this.xcor && mouseX < this.xcor + this.width && mouseY > this.ycor && mouseY < this.ycor + this.height){//checks if mouse is over it
 			if(velocity >= 4){ //mouse must be a certain speed
+				comboMeter++;
+				score = score + comboMeter
 				dead = true;
 			}
 		}
@@ -282,7 +294,7 @@ class fruit extends itemWithPhysics{
 		this.elements[0].style.top = (this.ycor * rMultiplier) + 'px';
 	}
 }
-var stuff = ["kiwi.png","dragonfruit.png","grapple.png","pineapple.png","mango.png","pomegrante.png","watermelon.png"]
+var stuff = ["kiwi.png","dragonfruit.png","grapple.png","pineapple.png","mango.png","pomegranate.png","watermelon.png"]
 class fruitSpawner extends entity {
     constructor(arrayOfFruitNames){
 	super();
@@ -298,6 +310,57 @@ class fruitSpawner extends entity {
 	    }
 	}
     }
+}
+var mainEventManager = null;
+class buttons extends entity{
+  constructor(){
+	super();
+	var img = document.createElement('img');
+  //img.src = '../../../static/images/background.jpg';
+	img.src = '../../../static/images/btnpause.png';
+	this.elements.push(img);
+	img.style.left = (70 * rMultiplier) + 'px';
+	img.style.top = (970 * rMultiplier) + 'px';
+	img.style.height = (200* rMultiplier) + 'px';
+	img.style.width = (200 * rMultiplier) + 'px';
+	img.style.position = 'absolute';
+  this.displayPause = function(event){
+	if(mainEventManager.running){
+    	mainEventManager.stop();
+      img.src = '../../../static/images/btnplay.png';
+      var exit = document.createElement('img');
+      exit.setAttribute("id","temp");
+      exit.src = '../../../static/images/btnexit.png';
+    	this.elements.push(exit);
+    	exit.style.left = (70 * rMultiplier) + 'px';
+    	exit.style.top = (820 * rMultiplier) + 'px';
+    	exit.style.height = (200 * rMultiplier) + 'px';
+    	exit.style.width = (200 * rMultiplier) + 'px';
+    	exit.style.position = 'absolute';
+      exit.onclick = function() {
+        var input = document.createElement("input");
+        input.setAttribute("type", "hidden");
+        input.setAttribute("name", "score");
+        input.setAttribute("value", score.toString());
+        document.getElementById("theform").appendChild(input);
+      };
+		}
+		else{
+		  mainEventManager.start();
+      this.elements.removeChild(exit);
+      img.src = '../../../static/images/btnpause.png';
+		}
+  	  }
+    }
+	update(){
+		return false;
+	}
+	display(){
+		this.elements[0].style.top = (100 * rMultiplier) + 'px';
+		this.elements[0].style.top = (1000 * rMultiplier) + 'px';
+		this.elements[0].style.height = (100 * rMultiplier) + 'px';
+		this.elements[0].style.width = (100 * rMultiplier) + 'px';
+	}
 
 }
 var container = document.createElement('div');
@@ -311,7 +374,10 @@ var updateMouse = function(event){
 	mouseY = event.clientY / rMultiplier;
 	mappedFrame = fruits.frameNumber;
 }
-
+mainEventManager = fruits;
 document.addEventListener("mousemove", updateMouse);
+var pauseButton = new buttons();
+pauseButton.elements[0].addEventListener("click", pauseButton.displayPause);
+fruits.spawn(pauseButton);
 fruits.spawn(new fruitSpawner(stuff));
 fruits.start();

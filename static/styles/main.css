@@ -130,9 +130,23 @@ table {
 }
 
 .bar-right {
+  font-size: 1vw;
   position: absolute;
   top: 5%;
   right: 5%;
+}
+
+.bottom-left {
+  position: absolute;
+  bottom: 5%;
+  left: -5%;
+}
+
+.new-score {
+  position: absolute;
+  top: 15%;
+  left: 32%;
+  font-size: 1vw;
 }
 
 .img {

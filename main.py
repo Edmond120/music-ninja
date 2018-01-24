@@ -21,11 +21,10 @@ def root():
 
 @app.route('/home')
 def home():
-	if in_session():
-		# INFO to be passed: list of top 10 highcores
-        global money
-        money = getcash(session['username'])
-		score = -1
+	if in_session(): # INFO to be passed: list of top 10 highcores
+        	score = -1
+		global money
+		money = getcash(session['username'])
 		if ('score' in request.form):
 			score = request.form['score']
 			addscore(session['username'], score)

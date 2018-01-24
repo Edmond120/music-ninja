@@ -10,7 +10,10 @@
 <div class="header">SELECT ITEMS</div>
 <div class="store">
   <div class="scrollarea">
-    <form action="/equip" methods={"POST","GET"]>
+    {% if condition == '1' %}
+    <p> Sorry, you can only use at most 8 items in one game</p>
+    {% endif %}
+    <form action="{{ url_for('equip') }}" method="POST"]>
       <input type="text" name="item">
       <input type="submit" name="submit">
     </form>

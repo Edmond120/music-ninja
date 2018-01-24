@@ -2,6 +2,14 @@ import csv
 import requests
 import codecs
 
+def changeName(name):
+    s = " !@#$%^&*()_+-=[]{};:,./<>?`~'"
+    ctr = 0
+    while ( ctr < len(s) ):
+        name = name.replace(s[ctr], "_")
+        ctr = ctr + 1
+    return name
+
 def search(search):
     with open('api_keys.csv') as csvfile:
         reader = csv.DictReader(csvfile)
@@ -18,7 +26,7 @@ def search(search):
     r = r.json()
     r = r['findItemsByKeywordsResponse'][0]['searchResult'][0]['item'][0]
     ret = {}
-    ret['title'] = r['title'][0]
+    ret['title'] = changeName(r['title'][0])
     ret['image'] = r['galleryURL'][0]
     ret['price'] = float(r['sellingStatus'][0]['currentPrice'][0]['__value__'])
     return ret

@@ -39,3 +39,5 @@ Play
 
 1. in profile.html, you might need to refresh a couple of times in order to see the proper icon (green/red) for every single item
 2. in play.html, you might sometimes have to wait pretty long before items surface
+3. as for equiping items, there is a bad request error when clicking the the buttons, \(you will have to scroll right in profile\), however this bad request error does not happen for some people
+4. if you don't get the bad request error, there might be some display issues \(invisiable fruits\) in play

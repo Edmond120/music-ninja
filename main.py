@@ -117,7 +117,6 @@ def buy():
                         additem(name,ret['title'] + ".png")
                         money = money - ret['price']
                         changevalue(money, name)
-                        print itemlist(name)
                         return render_template("store.html", cash=money, condition='0')
                 else:
                         return render_template("store.html", cash=money, condition='3')
@@ -132,9 +131,7 @@ def profile():
 		# user has chosen to use it in gameplay (0 means not chosen, 1 means chosen)
                 items = {}
                 usr = session['username']
-                useitem = itemusinglist(session['username'])
-                print "this is item list"
-                print itemlist(usr)
+                useitem = itemusinglist(usr)
                 for item in itemlist(usr):
                         if item in useitem:
                                 items[item] = 1
@@ -147,26 +144,28 @@ def profile():
 @app.route('/equip', methods=['POST', 'GET'])
 def equip():
         name = session['username']
-        item = request.form['item']
         items = {}
         useitem = itemusinglist(name)
-        for thing in useitem:
-                if item in thing:
-                        notuse(name,item)
-                        return redirect( url_for('profile') )
         for thing in itemlist(name):
                 if thing in useitem:
                         items[thing] = 1
                 else:
                         items[thing] = 0
-        if (item in itemlist(name) ) == False:
-                return render_template("profile.html", cash=getcash(session['username']), items=items, condition='2')
-        elif isnotmax(items):
-                use(name,item)
-                return redirect( url_for('profile') )
+        if 'unequip' in request.form:
+                item = request.form['unequip']
+                if isnotmax(useitem):
+                        use(name,item)
+                else:
+                        return render_template("profile.html", cash=getcash(session['username']), items=items, condition='1')
         else:
-                return render_template("profile.html", cash=getcash(session['username']), items=items, condition='1')
-        
+                item = request.form['equip']
+                if len(useitem) > 1:
+                        notuse(name,item)
+                else:
+                        return render_template("profile.html", cash=getcash(session['username']), items=items, condition='2')
+        return redirect( url_for('profile') )
+
+                        
 @app.route('/logout')
 def logout():
         logout_db()

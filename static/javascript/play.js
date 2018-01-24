@@ -203,6 +203,47 @@ class entityManager{//only one entityManager is supported with mouse
 //with dynamic rescaling, redefining boxWidth and boxHeight isn't needed
 //boxWidth=window.innerWidth;
 //boxHeight=boxWidth*.625;
+/*
+class risingSquare extends entity{
+	constructor(xcor,ycor){
+		super();
+		var c = document.createElement("box");
+		c.style.height = (15 * rMultiplier) + 'px';
+		c.style.width = c.style.height;
+		c.style.position = 'absolute';
+		c.style.left = (xcor * rMultiplier) + 'px';
+		c.style.top = (ycor * rMultiplier) + 'px';
+		c.background = '#42e5f4';
+		this.elements.push(c);
+		this.xcor = xcor;
+		this.ycor = ycor;
+		this.lifespan = 300;
+	}
+	update(){
+		if(this.lifespan % 15){
+			this.ycor--;
+		}
+		return this.lifespan-- <= 0;
+	}
+	display(){
+		this.elements[0].style.top = (this.ycor * rMultiplier) + 'px';
+		this.elements[0].style.height = (this.height * rMultiplier) + 'px';
+		this.elements[0].style.width = (this.width * rMultiplier) + 'px';
+	}
+}
+class mouseEffect extends entity{
+	constructor(){
+		super();
+		this.tick = 0;
+	}
+	update(){
+		if(this.tick++ % 10 && velocity >= 5){
+			this.owner.spawn(new risingSquare(mouseX,mouseY));
+		}
+		return false;
+	}
+	display(){}
+}
 
 class itemWithPhysics extends entity{
   constructor(){
@@ -236,7 +277,7 @@ class itemWithPhysics extends entity{
 		return false;
   }
 }
-
+*/
 
 var resolutionX = 100;
 var resolutionY = 100;
@@ -311,6 +352,7 @@ class fruitSpawner extends entity {
 	}
     }
 }
+var pauseButtonElement = null;
 var mainEventManager = null;
 class buttons extends entity{
   constructor(){
@@ -324,10 +366,17 @@ class buttons extends entity{
 	img.style.height = (200* rMultiplier) + 'px';
 	img.style.width = (200 * rMultiplier) + 'px';
 	img.style.position = 'absolute';
-  this.displayPause = function(event){
-	if(mainEventManager.running){
-    	mainEventManager.stop();
-      img.src = '../../../static/images/btnplay.png';
+	pauseButtonElement = img;
+  	this.displayPause = function(event){
+		if(mainEventManager.running){
+    		mainEventManager.stop();
+      		img.src = '../../../static/images/btnplay.png';
+		}
+		else{
+			mainEventManager.start();
+      		img.src = '../../../static/images/btnpause.png';
+		}
+	 }
       var exit = document.createElement('img');
       exit.setAttribute("id","temp");
       exit.src = '../../../static/images/btnexit.png';
@@ -337,31 +386,27 @@ class buttons extends entity{
     	exit.style.height = (200 * rMultiplier) + 'px';
     	exit.style.width = (200 * rMultiplier) + 'px';
     	exit.style.position = 'absolute';
-      exit.onclick = function() {
+      this.exitFunction = function() {
         var input = document.createElement("input");
         input.setAttribute("type", "hidden");
         input.setAttribute("name", "score");
         input.setAttribute("value", score.toString());
         document.getElementById("theform").appendChild(input);
       };
-		}
-		else{
-		  mainEventManager.start();
-      this.elements.removeChild(exit);
-      img.src = '../../../static/images/btnpause.png';
-		}
-  	  }
-    }
+	}
 	update(){
 		return false;
 	}
 	display(){
-		this.elements[0].style.top = (100 * rMultiplier) + 'px';
-		this.elements[0].style.top = (1000 * rMultiplier) + 'px';
-		this.elements[0].style.height = (100 * rMultiplier) + 'px';
-		this.elements[0].style.width = (100 * rMultiplier) + 'px';
-	}
-
+		this.elements[0].left = (70 * rMultiplier) + 'px';
+		this.elements[0].top = (970 * rMultiplier) + 'px';
+		this.elements[0].height = (200* rMultiplier) + 'px';
+		this.elements[0].width = (200 * rMultiplier) + 'px';
+		this.elements[1].left = (70 * rMultiplier) + 'px';
+	    this.elements[1].top = (820 * rMultiplier) + 'px';
+        this.elements[1].height = (200 * rMultiplier) + 'px';
+        this.elements[1].width = (200 * rMultiplier) + 'px';
+	 }
 }
 var container = document.createElement('div');
 document.body.appendChild(container);
@@ -376,8 +421,9 @@ var updateMouse = function(event){
 }
 mainEventManager = fruits;
 document.addEventListener("mousemove", updateMouse);
-var pauseButton = new buttons();
-pauseButton.elements[0].addEventListener("click", pauseButton.displayPause);
-fruits.spawn(pauseButton);
+var allTheButtons = new buttons();
+allTheButtons.elements[0].addEventListener("click", allTheButtons.displayPause);
+allTheButtons.elements[1].addEventListener("click", allTheButtons.exitFunction);
+fruits.spawn(allTheButtons);
 fruits.spawn(new fruitSpawner(stuff));
 fruits.start();

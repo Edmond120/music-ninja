@@ -11,8 +11,9 @@ var updateMouse = function(event){
 }
 mainEventManager = fruits;
 document.addEventListener("mousemove", updateMouse);
-var pauseButton = new buttons();
-pauseButton.elements[0].addEventListener("click", pauseButton.displayPause);
-fruits.spawn(pauseButton);
+var allTheButtons = new buttons();
+allTheButtons.elements[0].addEventListener("click", allTheButtons.displayPause);
+allTheButtons.elements[1].addEventListener("click", allTheButtons.exitFunction);
+fruits.spawn(allTheButtons);
 fruits.spawn(new fruitSpawner(stuff));
 fruits.start();

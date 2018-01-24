@@ -207,7 +207,7 @@ class itemWithPhysics extends entity{
   constructor(){
 		super();
   	this.grav = (boxHeight/675) * 80;
-  	this.xcor = (boxWidth/1075) * (Math.random()*(boxWidth*2/3) + 1/3*boxWidth);
+  	this.xcor = (boxWidth/1075) * (Math.random()*(boxWidth*1/3) + 1/6*boxWidth);
 		this.ycor = boxHeight*1375/675;
   	if ((boxWidth-this.xcor) < (boxWidth*.20)) {
       this.velx = (boxWidth/1075) * (Math.random()*-1.5);
@@ -229,7 +229,7 @@ class itemWithPhysics extends entity{
   }
   update(){//x, y is the pixel location
     this.xcor += this.velx * this.time;
-    this.ycor += this.vely * this.time + 0.5 * this. grav * this.time * this.time;
+    this.ycor += this.vely * this.time + 0.5 * this.grav * this.time * this.time;
 		this.time += 0.01;
    // console.log("fruit ("+this.xcor+", "+this.ycor+")");
 		return false;
@@ -249,7 +249,8 @@ class fruit extends itemWithPhysics{
 	  this.elements.push(canvas);
 	  var ctx = canvas.getContext("2d")
 	  var img = new Image();
-	  img.src = '../images/' + image;
+	 // img.src = '../../../static/images/' + image;
+		img.src = '../images/' + image;
 	  ctx.drawImage(img, 0,0,resolutionX, resolutionY);
 		var e = this.elements[0];
 		//debug
@@ -292,7 +293,7 @@ class fruit extends itemWithPhysics{
 		this.elements[0].style.top = (this.ycor * rMultiplier) + 'px';
 	}
 }
-var stuff = ["kiwi.png","dragonfruit.png","grapple.png","pineapple.png","mango.png","pomegrante.png","watermelon.png"]
+var stuff = ["kiwi.png","dragonfruit.png","grapple.png","pineapple.png","mango.png","pomegranate.png","watermelon.png"]
 class fruitSpawner extends entity {
     constructor(arrayOfFruitNames){
 	super();
@@ -314,7 +315,8 @@ class buttons extends entity{
   constructor(){ 
 	super();
 	var img = document.createElement('img');
-  	img.src = '../images/background.jpg';
+  	//img.src = '../../../static/images/background.jpg';
+	img.src = '../images/background.jpg';
 	this.elements.push(img);
 	img.style.left = "0px";
 	img.style.top = "0px";

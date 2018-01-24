@@ -8,19 +8,18 @@ db = sqlite3.connect(f)
 c = db.cursor()
 #if a item has 0 the user is not using the item. If it is 1 they user is using
 c.execute('CREATE TABLE IF NOT EXISTS items (user TEXT, item TEXT, playing INTEGER);')
-c.execute('CREATE TABLE IF NOT EXISTS users (username TEXT, password TEXT, cash INTEGER);')
+c.execute('CREATE TABLE IF NOT EXISTS users (username TEXT, password TEXT, cash FLOAT);')
 c.execute('CREATE TABLE IF NOT EXISTS highscore (username TEXT, score INTEGER);')
 db.close()
 
 #changes cash amount
 def changevalue(change,user):
-    if canpurchase(change,user):
-        f = "app.db"
-        db = sqlite3.connect(f)
-        c = db.cursor()
-        c.execute('UPDATE users SET.cash = (SELECT cash FROM users WHERE username = "%s") + "%d" WHERE username = "%s";' %(user,change,user))
-        db.commit()
-        db.close()
+    f = "app.db"
+    db = sqlite3.connect(f)
+    c = db.cursor()
+    c.execute('UPDATE users SET cash = "%d" WHERE username = "%s";' %(change,user))
+    db.commit()
+    db.close()
 
 #get the amount of cash player has
 def getcash(user):
@@ -31,31 +30,22 @@ def getcash(user):
     results = c.fetchall()[0][0]
     db.commit()
     db.close()
-    return  results
+    return float(results)
 
 #checks if program can purchase
 def canpurchase(user,value):
-    f = "app.db"
-    db = sqlite3.connect(f)
-    c = db.cursor()
-    c.execute('SELECT cash FROM users WHERE username = "%s";' %(user) )
-    results = c.fetchall()
-    db.close()
-    return results[0][0] - value  >= 0
+    money = getcash(user)
+    return money > value
 
 
 #add item to list
 def additem(user,item):
-    if isunique(user,item):
-        f = "app.db"
-        db = sqlite3.connect(f)
-        c = db.cursor()
-        c.execute('INSERT INTO items VALUES("%s", "%s", 0);' %(user,item) )
-        db.commit()
-        db.close()
-        return True
-    else:
-        return False
+    f = "app.db"
+    db = sqlite3.connect(f)
+    c = db.cursor()
+    c.execute('INSERT INTO items VALUES("%s", "%s", 0);' %(user,item) )
+    db.commit()
+    db.close()
 
 #returns a list of items the user is using
 def itemlist(user):
@@ -79,7 +69,7 @@ def itemusinglist(user):
 
 #helper function for adding that prevents adding if there is 8 items selected
 def isnotmax(list):
-    return list.len() != 8
+    return len(list) < 8
 
 #checks if the item being added is a duplicate
 def isunique(user,item):
@@ -88,16 +78,26 @@ def isunique(user,item):
     c = db.cursor()
     c.execute('SELECT item FROM items WHERE user = "%s";'  %(user) )
     results = c.fetchall()
+    print results
     db.close()
+<<<<<<< HEAD
+    for result in results:
+        print result[0]
+        if item == result[0]:
+            return True
+    return False
+    
+=======
     return results == []
 
+>>>>>>> 32b0b7bbe80acb9a493d708dbe1a06e40b8e8f81
 #allows player to use item
 def use(user,item):
     if isnotmax(itemusinglist(user)):
         f = "app.db"
         db = sqlite3.connect(f)
         c = db.cursor()
-        c.execute('UPDATE users SET.playing=1 WHERE username = "%s" AND item = "%s";' %(user,item) )
+        c.execute('UPDATE items SET playing = 1 WHERE user = "%s" AND item = "%s";' %(user,item) )
         db.commit()
         db.close()
 
@@ -106,7 +106,7 @@ def notuse(user,item):
     f = "app.db"
     db = sqlite3.connect(f)
     c = db.cursor()
-    c.execute('UPDATE users SET.playing= 0 WHERE username = "%s" AND item = "%s" ;' %(user,item) )
+    c.execute('UPDATE items SET playing = 0 WHERE user = "%s" AND item = "%s" ;' %(user,item) )
     db.commit()
     db.close()
 
@@ -146,7 +146,7 @@ def adduser(user,password):
 	c = db.cursor()
 	if get_pass(user) is None:
 		password = hashlib.sha224(password).hexdigest()
-		c.execute('INSERT INTO users VALUES("%s", "%s", 100);' %(user, password))
+		c.execute('INSERT INTO users VALUES("%s", "%s", 100.0);' %(user, password))
         c.execute('INSERT INTO items VALUES("%s", "kiwi.png", 0);' %(user) )
         c.execute('INSERT INTO items VALUES("%s", "grapple.png", 0);' %(user) )
         c.execute('INSERT INTO items VALUES("%s", "dragonfruit.png", 0);' %(user) )

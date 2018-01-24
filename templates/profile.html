@@ -10,6 +10,14 @@
 <div class="header">SELECT ITEMS</div>
 <div class="store">
   <div class="scrollarea">
+<<<<<<< HEAD
+    {% if condition == '1' %}
+    <p> Sorry, you can only use at most 8 items in one game</p>
+    {% endif %}
+    <form action="{{ url_for('equip') }}" method="POST"]>
+      <input type="text" name="item">
+      <input type="submit" name="submit">
+=======
     <form action="/equip" methods={"POST","GET"]>
       <div class="input-group">
         <input name="item" class="input-group-field" type="text">
@@ -17,6 +25,7 @@
   	       <input type="submit" class="button" name="submit" value="Search">
         </div>
       </div>
+>>>>>>> 32b0b7bbe80acb9a493d708dbe1a06e40b8e8f81
     </form>
     <table>
       {% for item in items %}

@@ -309,15 +309,36 @@ class fruitSpawner extends entity {
 	}
     }
 }
-
-var displayPause = function(event){
+var mainEventManager = null;
+class buttons extends entity{
+  constructor(){ 
+	super();
 	var img = document.createElement('img');
-	img.src = '../../images/background.jpg';
-	document.appendChild(img);
+  	img.src = '../images/background.jpg';
+	this.elements.push(img);
+	img.style.left = "0px";
+	img.style.top = "0px";
+	img.style.height = (100 * rMultiplier) + 'px';
+	img.style.width = (100 * rMultiplier) + 'px';
+	img.style.position = 'absolute';
+  this.displayPause = function(event){
+	if(mainEventManager.running){
+    	mainEventManager.stop();
+		}
+		else{
+		mainEventManager.start();
+		}
+  	  }
+    }
+	update(){
+		return false;
+	}
+	display(){
+		this.elements[0].style.height = (100 * rMultiplier) + 'px';
+		this.elements[0].style.width = (100 * rMultiplier) + 'px';
+	}
+	
 }
-
-var pause = document.getElementById('pause');
-pause.addEventListener('click',displayPause);
 var container = document.createElement('div');
 document.body.appendChild(container);
 var fruits = new entityManager(container);
@@ -329,7 +350,10 @@ var updateMouse = function(event){
 	mouseY = event.clientY / rMultiplier;
 	mappedFrame = fruits.frameNumber;
 }
-
+mainEventManager = fruits;
 document.addEventListener("mousemove", updateMouse);
+var pauseButton = new buttons();
+pauseButton.elements[0].addEventListener("click", pauseButton.displayPause);
+fruits.spawn(pauseButton);
 fruits.spawn(new fruitSpawner(stuff));
 fruits.start();

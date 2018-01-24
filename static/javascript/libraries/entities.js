@@ -143,12 +143,33 @@ class fruitSpawner extends entity {
 	}
     }
 }
-
-class buttons extends entity {
-  var displayPause = function(event){
-    fruits.stop()
-  	var img = document.createElement('img');
-  	img.src = '../../images/background.jpg';
-  	document.appendChild(img);
-  }
+var mainEventManager = null;
+class buttons extends entity{
+  constructor(){ 
+	super();
+	var img = document.createElement('img');
+  	img.src = '../images/background.jpg';
+	this.elements.push(img);
+	img.style.left = "0px";
+	img.style.top = "0px";
+	img.style.height = (100 * rMultiplier) + 'px';
+	img.style.width = (100 * rMultiplier) + 'px';
+	img.style.position = 'absolute';
+  this.displayPause = function(event){
+	if(mainEventManager.running){
+    	mainEventManager.stop();
+		}
+		else{
+		mainEventManager.start();
+		}
+  	  }
+    }
+	update(){
+		return false;
+	}
+	display(){
+		this.elements[0].style.height = (100 * rMultiplier) + 'px';
+		this.elements[0].style.width = (100 * rMultiplier) + 'px';
+	}
+	
 }

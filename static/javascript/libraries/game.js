@@ -9,7 +9,10 @@ var updateMouse = function(event){
 	mouseY = event.clientY / rMultiplier;
 	mappedFrame = fruits.frameNumber;
 }
-
+mainEventManager = fruits;
 document.addEventListener("mousemove", updateMouse);
+var pauseButton = new buttons();
+pauseButton.elements[0].addEventListener("click", pauseButton.displayPause);
+fruits.spawn(pauseButton);
 fruits.spawn(new fruitSpawner(stuff));
 fruits.start();

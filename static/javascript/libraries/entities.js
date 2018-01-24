@@ -77,7 +77,7 @@ class mouseEffect extends entity{
 	}
 	display(){}
 }
-
+*/
 class itemWithPhysics extends entity{
   constructor(){
 		super();
@@ -110,7 +110,7 @@ class itemWithPhysics extends entity{
 		return false;
   }
 }
-*/
+
 
 var resolutionX = 100;
 var resolutionY = 100;
@@ -220,7 +220,7 @@ class buttons extends entity{
     	exit.style.height = (200 * rMultiplier) + 'px';
     	exit.style.width = (200 * rMultiplier) + 'px';
     	exit.style.position = 'absolute';
-      this.exitFunction = function() {
+      this.exitFunction = function(event) {
         var input = document.createElement("input");
         input.setAttribute("type", "hidden");
         input.setAttribute("name", "score");

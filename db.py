@@ -111,13 +111,13 @@ def addscore(user,score):
     db = sqlite3.connect(f)
     c = db.cursor()
     c.execute('INSERT INTO highscore VALUES("%s", %d);' %(user, score))
-    db.commt()
+    db.commit()
     db.close()
 
 #get 10 highest scores from all users
 def gethighscore():
     f = "app.db"
-    db = sqlite3.connect()
+    db = sqlite3.connect(f)
     c = db.cursor()
     c.execute('SELECT * FROM highscore ORDER BY score DESC LIMIT 10;')
     results = c.fetchall()
@@ -125,7 +125,7 @@ def gethighscore():
     return results
 
 #return the 5 highest scores for a user
-def gethighscore(user):
+def gethighscore_user(user):
     f = "app.db"
     db = sqlite3.connect()
     c = db.cursor()

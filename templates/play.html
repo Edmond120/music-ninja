@@ -234,9 +234,9 @@ class fruit extends itemWithPhysics{
 			return true;
 		}
 		if(mouseX > this.xcor && mouseX < this.xcor + this.width && mouseY > this.ycor && mouseY < this.ycor + this.height){//checks if mouse is over it
-			if(velocity >= 4){ //mouse must be a certain speed
+			if(velocity >= 3){ //mouse must be a certain speed
 				comboMeter++;
-				score = score + comboMeter
+				score = score + comboMeter;
 				dead = true;
 			}
 		}
@@ -309,6 +309,7 @@ class buttons extends entity{
         input.setAttribute("name", "score");
         input.setAttribute("value", score.toString());
         document.getElementById("theform").appendChild(input);
+		document.getElementById("theform").submit();
       };
 	}
 	update(){

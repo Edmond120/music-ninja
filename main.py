@@ -19,7 +19,7 @@ def root():
 		return render_template("welcome.html")
 
 
-@app.route('/home')
+@app.route('/home',methods=['GET','POST'])
 def home():
 	if in_session(): # INFO to be passed: list of top 10 highcores
         	score = -1
@@ -27,7 +27,7 @@ def home():
 		money = getcash(session['username'])
 		if ('score' in request.form):
 			score = request.form['score']
-			addscore(session['username'], score)
+			addscore(session['username'], int(score))
 		scorelist = gethighscore()
 		return render_template("home.html", me = score, cash = money, scores = scorelist)
 	else:

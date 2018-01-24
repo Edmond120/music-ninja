@@ -207,7 +207,7 @@ class itemWithPhysics extends entity{
   constructor(){
 		super();
   	this.grav = (boxHeight/675) * 80;
-  	this.xcor = (boxWidth/1075) * (Math.random()*(boxWidth*2/3) + 1/3*boxWidth);
+  	this.xcor = (boxWidth/1075) * (Math.random()*(boxWidth*1/3) + 1/6*boxWidth);
 		this.ycor = boxHeight*1375/675;
   	if ((boxWidth-this.xcor) < (boxWidth*.20)) {
       this.velx = (boxWidth/1075) * (Math.random()*-1.5);
@@ -249,7 +249,7 @@ class fruit extends itemWithPhysics{
 	  this.elements.push(canvas);
 	  var ctx = canvas.getContext("2d")
 	  var img = new Image();
-	  img.src = '../images/' + image;
+	  img.src = '../../../static/images/' + image;
 	  ctx.drawImage(img, 0,0,resolutionX, resolutionY);
 		var e = this.elements[0];
 		//debug
@@ -292,7 +292,7 @@ class fruit extends itemWithPhysics{
 		this.elements[0].style.top = (this.ycor * rMultiplier) + 'px';
 	}
 }
-var stuff = ["kiwi.png","dragonfruit.png","grapple.png","pineapple.png","mango.png","pomegrante.png","watermelon.png"]
+var stuff = ["kiwi.png","dragonfruit.png","grapple.png","pineapple.png","mango.png","pomegranate.png","watermelon.png"]
 class fruitSpawner extends entity {
     constructor(arrayOfFruitNames){
 	super();
@@ -309,15 +309,6 @@ class fruitSpawner extends entity {
 	}
     }
 }
-
-var displayPause = function(event){
-	var img = document.createElement('img');
-	img.src = '../../images/background.jpg';
-	document.appendChild(img);
-}
-
-var pause = document.getElementById('pause');
-pause.addEventListener('click',displayPause);
 var container = document.createElement('div');
 document.body.appendChild(container);
 var fruits = new entityManager(container);

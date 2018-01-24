@@ -9,12 +9,12 @@
 </div>
 <div class="header">SELECT ITEMS</div>
 <div class="store">
-  <div class="scrollarea">
-    {% if condition == '1' %}
+  {% if condition == '1' %}
     <p> Sorry, you can only use at most 8 items in one game</p>
     {% elif condition == '2' %}
     <p> Sorry, you need at least 1 item in one game </p>
     {% endif %}
+  <div class="scrollarea">
     <table>
       {% for item in items %}
       <tr id="thelist">
@@ -24,7 +24,7 @@
 	  <form method="POST" action="{{ url_for('equip') }}">
             <input type="image" class="onoff" src="../static/images/off.png" name="unequip" value={{item[1]}}>
             {% else %}
-            <input type="image" class="onoff" src="../static/images/on.png" name="uequip" value={{item[1]}}>
+            <input type="image" class="onoff" src="../static/images/on.png" name="equip" value={{item[1]}}>
             {% endif %}
 	</td>
       </tr>

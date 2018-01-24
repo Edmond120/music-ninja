@@ -21,15 +21,14 @@ def root():
 
 @app.route('/home')
 def home():
-	if in_session():
-		# INFO to be passed: list of top 10 highcores
-                global money
-                money = getcash(session['username'])
-		score = -1
+	if in_session(): # INFO to be passed: list of top 10 highcores
+        	score = -1
+		global money
+		money = getcash(session['username'])
 		if ('score' in request.form):
 			score = request.form['score']
 			addscore(session['username'], score)
-		return render_template("home.html", me = score, cash = getcash(session['username']), scores = [['apple', 1003], ['banana', 1002], ['cherry', 1000], ['dude', 1000], ['crazy', 1000], ['why', 1000], ['idk', 1000], ['wow', 1000], ['no', 999]] )
+		return render_template("home.html", me = score, cash = money, scores = [['apple', 1003], ['banana', 1002], ['cherry', 1000], ['dude', 1000], ['crazy', 1000], ['why', 1000], ['idk', 1000], ['wow', 1000], ['no', 999]] )
 	else:
 		# make sure scores are in order from highest to lowest in the list
 		return render_template('welcome.html')
@@ -165,7 +164,6 @@ def equip():
                         return render_template("profile.html", cash=getcash(session['username']), items=items, condition='2')
         return redirect( url_for('profile') )
 
-                        
 @app.route('/logout')
 def logout():
         logout_db()

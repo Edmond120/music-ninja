@@ -77,7 +77,7 @@ class mouseEffect extends entity{
 	}
 	display(){}
 }
-
+*/
 class itemWithPhysics extends entity{
   constructor(){
 		super();
@@ -110,7 +110,7 @@ class itemWithPhysics extends entity{
 		return false;
   }
 }
-*/
+
 
 var resolutionX = 100;
 var resolutionY = 100;
@@ -122,8 +122,9 @@ class fruit extends itemWithPhysics{
 		canvas.width = resolutionX;
 	  canvas.height = resolutionY;
 	  this.elements.push(canvas);
-	  var ctx = canvas.getContext("2d")
+	  var ctx = canvas.getContext("2d");
 	  var img = new Image();
+    //img.src="{{ url_for('static', filename='/images/' + "+image+") }}";
 	  img.src = '../../../static/images/' + image;
 		//img.src = '../images/' + image;
 	  ctx.drawImage(img, 0,0,resolutionX, resolutionY);
@@ -209,7 +210,7 @@ class buttons extends entity{
 			mainEventManager.start();
       		img.src = '../../../static/images/btnpause.png';
 		}
-	 }
+	 };
       var exit = document.createElement('img');
       exit.setAttribute("id","temp");
       exit.src = '../../../static/images/btnexit.png';
@@ -219,7 +220,7 @@ class buttons extends entity{
     	exit.style.height = (200 * rMultiplier) + 'px';
     	exit.style.width = (200 * rMultiplier) + 'px';
     	exit.style.position = 'absolute';
-      this.exitFunction = function() {
+      this.exitFunction = function(event) {
         var input = document.createElement("input");
         input.setAttribute("type", "hidden");
         input.setAttribute("name", "score");

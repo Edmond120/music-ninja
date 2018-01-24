@@ -244,7 +244,7 @@ class mouseEffect extends entity{
 	}
 	display(){}
 }
-
+*/
 class itemWithPhysics extends entity{
   constructor(){
 		super();
@@ -277,7 +277,7 @@ class itemWithPhysics extends entity{
 		return false;
   }
 }
-*/
+
 
 var resolutionX = 100;
 var resolutionY = 100;

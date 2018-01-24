@@ -88,6 +88,7 @@ class entityManager{//only one entityManager is supported with mouse
 			}
 			this.entities.startIterator();
 			document.getElementById("lives").innerHTML = 'Lives: '+lives;
+			document.getElementById("score").innerHTML = 'Score: '+score;
 			this.frameNumber++;
 		}
 		else{

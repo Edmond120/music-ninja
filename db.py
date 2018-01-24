@@ -114,7 +114,7 @@ def addscore(user,score):
     db.commt()
     db.close()
 
-#get 5 highest scores from all users
+#get 10 highest scores from all users
 def gethighscore():
     f = "app.db"
     db = sqlite3.connect()

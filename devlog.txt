@@ -127,21 +127,23 @@ wuY -- 2018-01-22 22:57:28
 xuJ -- 2018-01-23 17:44:18
 	tweaked the properties of the item class so that they will move properly
 	also scaled it so it would work even after window size change
-<<<<<<< HEAD
-	
+
 WongE -- 2018-01-23 20:44:44
 	did a lot of stuff, but forgot to write to devlog
 
 wuY -- 2018-01-24 12:42:54
-        fixed profile using and not using items
+  fixed profile using and not using items
 	fixed buying in store
 	fixed some db related methods
 
-=======
-
-WongE -- 2018-01-23 20:44:44
-	did a lot of stuff, but forgot to write to devlog
-
 xuJ -- 2018-01-24 00:12:18
 	added in buttons in play.html and added the form to bring score value into python
->>>>>>> 32b0b7bbe80acb9a493d708dbe1a06e40b8e8f81
+
+wuY -- 2018-01-24 02:57:50
+  make profile(equip) more user friendly
+	fixed merge conflict in profile and equip
+
+xuJ -- 2018-01-24 03:45:23
+	put in actual data for highscore
+	display score in play.html
+	added README.md and DESIGN.pdf

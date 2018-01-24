@@ -7,7 +7,7 @@
   <p id="score">Score: 0</p>
 </div>
 <div class="bar-right">
-  <p id="lives">Lives: 3</p>
+  <p id="lives">Lives: 6</p>
 </div>
 <script>
 class linkedListNode{
@@ -100,11 +100,11 @@ var pMouseX = 0;
 var pMouseY = 0;
 var velocity = 0;
 
-var lives = 3;
+var lives = 6;
 var score = 0;
 var comboMeter = 0;
 var firstComboFrame = 0;
-
+var gameOver = false;
 class placeHolder extends entity{
 	update(){
 		if(firstComboFrame-- <= 0){
@@ -141,6 +141,14 @@ class entityManager{//only one entityManager is supported with mouse
 
 	}
 	frame(){
+		if(lives <= 0){
+			gameOver = true;
+			document.getElementById("lives").innerHTML = 'game over';
+
+		}
+		if(gameOver){
+			return;
+		}
 		if(this.running){
 			while(this.entities.hasNext()){
 				var x = this.entities.next();
@@ -153,7 +161,12 @@ class entityManager{//only one entityManager is supported with mouse
 				}
 			}
 			this.entities.startIterator();
-			document.getElementById("lives").innerHTML = 'Lives: '+lives;
+			if(gameOver){
+				document.getElementById("lives").innerHTML = 'game over';
+			}
+			else{
+				document.getElementById("lives").innerHTML = 'Lives: '+lives;
+			}
 			document.getElementById("score").innerHTML = 'Score: '+score.toString();
 			this.frameNumber++;
 		}

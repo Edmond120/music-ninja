@@ -142,5 +142,13 @@ class fruitSpawner extends entity {
 	    }
 	}
     }
+}
 
+class buttons extends entity {
+  var displayPause = function(event){
+    fruits.stop()
+  	var img = document.createElement('img');
+  	img.src = '../../images/background.jpg';
+  	document.appendChild(img);
+  }
 }

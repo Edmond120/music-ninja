@@ -308,8 +308,16 @@ class fruitSpawner extends entity {
 	    }
 	}
     }
-
 }
+
+var displayPause = function(event){
+	var img = document.createElement('img');
+	img.src = '../../images/background.jpg';
+	document.appendChild(img);
+}
+
+var pause = document.getElementById('pause');
+pause.addEventListener('click',displayPause);
 var container = document.createElement('div');
 document.body.appendChild(container);
 var fruits = new entityManager(container);

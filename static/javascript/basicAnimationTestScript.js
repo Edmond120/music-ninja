@@ -90,15 +90,23 @@ var pMouseX = 0;
 var pMouseY = 0;
 var velocity = 0;
 
+var lives = 3;
+var score = 0;
+var comboMeter = 0;
+var firstComboFrame = 0;
+
 class placeHolder extends entity{
 	update(){
+		if(firstComboFrame-- <= 0){
+			comboMeter = 0;
+			firstComboFrame = 60 * 3;
+		}
 		rMultiplier = rescaleMultiplier();
 		if(this.owner.frameNumber - mappedFrame >= 30){
 			velocity = 0;
 		}
 		else{
 			velocity = Math.sqrt(Math.pow(mouseX - pMouseX,2) + Math.pow(mouseY - pMouseY,2));
-			console.log(velocity);
 		}
 		return false;
 	}

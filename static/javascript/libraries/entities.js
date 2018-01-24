@@ -125,7 +125,7 @@ class fruit extends itemWithPhysics{
 	  var ctx = canvas.getContext("2d");
 	  var img = new Image();
     //img.src="{{ url_for('static', filename='/images/' + "+image+") }}";
-	  img.src = '../../../static/images/' + image;
+	  img.src = '../static/images/' + image;
 		//img.src = '../images/' + image;
 	  ctx.drawImage(img, 0,0,resolutionX, resolutionY);
 		var e = this.elements[0];
@@ -193,7 +193,7 @@ class buttons extends entity{
 	super();
 	var img = document.createElement('img');
   //img.src = '../../../static/images/background.jpg';
-	img.src = '../../../static/images/btnpause.png';
+	img.src = '../static/images/btnpause.png';
 	this.elements.push(img);
 	img.style.left = (70 * rMultiplier) + 'px';
 	img.style.top = (970 * rMultiplier) + 'px';
@@ -204,16 +204,16 @@ class buttons extends entity{
   	this.displayPause = function(event){
 		if(mainEventManager.running){
     		mainEventManager.stop();
-      		img.src = '../../../static/images/btnplay.png';
+      		img.src = '../static/images/btnplay.png';
 		}
 		else{
 			mainEventManager.start();
-      		img.src = '../../../static/images/btnpause.png';
+      		img.src = '../static/images/btnpause.png';
 		}
 	 };
       var exit = document.createElement('img');
       exit.setAttribute("id","temp");
-      exit.src = '../../../static/images/btnexit.png';
+      exit.src = '../static/images/btnexit.png';
     	this.elements.push(exit);
     	exit.style.left = (70 * rMultiplier) + 'px';
     	exit.style.top = (820 * rMultiplier) + 'px';

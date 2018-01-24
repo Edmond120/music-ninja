@@ -83,8 +83,8 @@ class fruit extends itemWithPhysics{
 	  this.elements.push(canvas);
 	  var ctx = canvas.getContext("2d")
 	  var img = new Image();
-	 // img.src = '../../../static/images/' + image;
-		img.src = '../images/' + image;
+	  img.src = '../../../static/images/' + image;
+		//img.src = '../images/' + image;
 	  ctx.drawImage(img, 0,0,resolutionX, resolutionY);
 		var e = this.elements[0];
 		//debug
@@ -146,11 +146,11 @@ class fruitSpawner extends entity {
 }
 var mainEventManager = null;
 class buttons extends entity{
-  constructor(){ 
+  constructor(){
 	super();
 	var img = document.createElement('img');
-  	//img.src = '../../../static/images/background.jpg';
-	img.src = '../images/background.jpg';
+  img.src = '../../../static/images/background.jpg';
+	//img.src = '../images/background.jpg';
 	this.elements.push(img);
 	img.style.left = "0px";
 	img.style.top = "0px";
@@ -173,5 +173,5 @@ class buttons extends entity{
 		this.elements[0].style.height = (100 * rMultiplier) + 'px';
 		this.elements[0].style.width = (100 * rMultiplier) + 'px';
 	}
-	
+
 }

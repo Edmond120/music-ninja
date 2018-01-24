@@ -377,7 +377,7 @@ class buttons extends entity{
 			mainEventManager.start();
       		img.src = '../../../static/images/btnpause.png';
 		}
-	 }
+	 };
       var exit = document.createElement('img');
       exit.setAttribute("id","temp");
       exit.src = '../../../static/images/btnexit.png';

@@ -137,7 +137,7 @@ def logout():
         return render_template("welcome.html")
 
 
-@app.route('/play')
+@app.route('/play',methods=['POST','GET'])
 def play():
 	if in_session():
 		return render_template("play.html")

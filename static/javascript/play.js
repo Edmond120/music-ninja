@@ -79,7 +79,7 @@ class entity{
 var boxHeight = 1200;
 var boxWidth = 1920;
 var rescaleMultiplier = function(){
-	var width = document.body.clientWidth || window.innerWidth || window.innerWidth; 
+	var width = document.body.clientWidth || window.innerWidth || window.innerWidth;
 	return document.body.clientWidth / boxWidth;
 }
 var rMultiplier = rescaleMultiplier();
@@ -128,7 +128,7 @@ class entityManager{//only one entityManager is supported with mouse
 	start(){
 		this.running = true;
 		this.interval  = setInterval(this.frame.bind(this),16);
-		
+
 	}
 	frame(){
 		if(this.running){
@@ -315,11 +315,11 @@ class buttons extends entity{
   constructor(){
 	super();
 	var img = document.createElement('img');
-  img.src = '../../../static/images/background.jpg';
-	//img.src = '../images/background.jpg';
+  //img.src = '../../../static/images/background.jpg';
+	img.src = '../../../static/images/btnpause.png';
 	this.elements.push(img);
-	img.style.left = "0px";
-	img.style.top = "0px";
+	img.style.left = (100 * rMultiplier) + 'px';
+	img.style.top = (1000 * rMultiplier) + 'px';
 	img.style.height = (100 * rMultiplier) + 'px';
 	img.style.width = (100 * rMultiplier) + 'px';
 	img.style.position = 'absolute';
@@ -336,6 +336,8 @@ class buttons extends entity{
 		return false;
 	}
 	display(){
+		this.elements[0].style.top = (100 * rMultiplier) + 'px';
+		this.elements[0].style.top = (1000 * rMultiplier) + 'px';
 		this.elements[0].style.height = (100 * rMultiplier) + 'px';
 		this.elements[0].style.width = (100 * rMultiplier) + 'px';
 	}

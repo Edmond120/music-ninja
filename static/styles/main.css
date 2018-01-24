@@ -130,6 +130,7 @@ table {
 }
 
 .bar-right {
+  font-size: 1vw;
   position: absolute;
   top: 5%;
   right: 5%;

@@ -41,3 +41,16 @@ Play
 2. in play.html, you might sometimes have to wait pretty long before items surface
 3. as for equiping items, there is a bad request error when clicking the the buttons, \(you will have to scroll right in profile\), however this bad request error does not happen for some people
 4. if you don't get the bad request error, there might be some display issues \(invisiable fruits\) in play
+
+video links:
+	part 1 ft. yuqi
+	https://www.youtube.com/watch?v=Ra6xEC4gNXA
+
+	part 2 - my mic was not working, sorry -edmond
+	https://youtu.be/YKb_VcS3IjE
+		or
+	https://www.youtube.com/watch?v=YKb_VcS3IjE
+
+	what are these youtu.be links?
+	
+	the reason its split into two parts is due to bugs #3 and 4, we don't know why it happens

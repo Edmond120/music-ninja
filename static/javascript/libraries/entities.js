@@ -65,7 +65,7 @@ class itemWithPhysics extends entity{
     this.xcor += this.velx * this.time;
     this.ycor += this.vely * this.time + 0.5 * this. grav * this.time * this.time;
 		this.time += 0.01;
-    console.log("fruit ("+this.xcor+", "+this.ycor+")");
+   // console.log("fruit ("+this.xcor+", "+this.ycor+")");
 		return false;
   }
 }
@@ -100,6 +100,15 @@ class fruit extends itemWithPhysics{
 	}
 	update(){
 		var dead = super.update();
+		if(this.vely + this.grav * this.time * this.time >= 0 && this.ycor > boxHeight){
+			console.log("dead");
+			return true;
+		}
+		if(mouseX > this.xcor && mouseX < this.xcor + this.width && mouseY > this.ycor && mouseY < this.ycor + this.height){//checks if mouse is over it
+			if(velocity >= 4){ //mouse must be a certain speed
+				dead = true;
+			}
+		}
 		if(dead){
 			//spawn particle effects here
 
@@ -116,7 +125,6 @@ class fruit extends itemWithPhysics{
 		this.elements[0].style.top = (this.ycor * rMultiplier) + 'px';
 	}
 }
-var f = 0;
 var stuff = ["kiwi.png","dragonfruit.png","grapple.png","pineapple.png","mango.png","pomegrante.png","watermelon.png"]
 class fruitSpawner extends entity {
     constructor(arrayOfFruitNames){
@@ -124,12 +132,11 @@ class fruitSpawner extends entity {
 	this.stuff = arrayOfFruitNames;
     }
     update(){
-	console.log(f++);
 	if (Math.floor(Math.random() * 1001 > 995)){
 	    var counter = Math.floor(Math.random() * 6);
 	    var thing = this.stuff[Math.floor(Math.random() * stuff.length)];
 	    while(counter > 0){
-		this.owner.spawn(new fruit(thing,100,100));
+		this.owner.spawn(new fruit(thing,200,200));
 		counter--;
 	    }
 	}

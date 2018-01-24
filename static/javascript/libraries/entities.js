@@ -74,8 +74,6 @@ class itemWithPhysics extends entity{
 var resolutionX = 100;
 var resolutionY = 100;
 
-var lives = 3;
-var score = 0;
 class fruit extends itemWithPhysics{
 	constructor(image,width,height){
 		super();
@@ -101,11 +99,14 @@ class fruit extends itemWithPhysics{
 	update(){
 		var dead = super.update();
 		if(this.vely + this.grav * this.time * this.time >= 0 && this.ycor > boxHeight){
-			console.log("dead");
+			lives--;
+			comboMeter = 0;
 			return true;
 		}
 		if(mouseX > this.xcor && mouseX < this.xcor + this.width && mouseY > this.ycor && mouseY < this.ycor + this.height){//checks if mouse is over it
 			if(velocity >= 4){ //mouse must be a certain speed
+				comboMeter++;
+				score = score + comboMeter
 				dead = true;
 			}
 		}

@@ -19,6 +19,8 @@
   </form>
   {% if condition == '1' %}
     <p> Sorry, you can only use at most 8 items in one game</p>
+  {% elif condition == '2' %}
+    <p> Sorry, this item is not in your list </p>
   {% endif %}
   <div class="scrollarea">
     <table>

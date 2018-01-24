@@ -21,10 +21,10 @@ def root():
 
 @app.route('/home')
 def home():
-	if in_session():# INFO to be passed: list of top 10 highcores
-		global money
-		print 'You are in session!'
-		print getcash(session['username'])
+	if in_session():
+		# INFO to be passed: list of top 10 highcores
+        global money
+        money = getcash(session['username'])
 		score = -1
 		if ('score' in request.form):
 			score = request.form['score']
@@ -148,17 +148,30 @@ def profile():
 def equip():
         name = session['username']
         item = request.form['item']
-        items = itemusinglist(name)
-        for thing in items:
+        items = {}
+        useitem = itemusinglist(name)
+        for thing in useitem:
                 if item in thing:
                         notuse(name,item)
                         return redirect( url_for('profile') )
-        if isnotmax(items):
+        for thing in itemlist(name):
+                if thing in useitem:
+                        items[thing] = 1
+                else:
+                        items[thing] = 0
+        if (item in itemlist(name) ) == False:
+                return render_template("profile.html", cash=getcash(session['username']), items=items, condition='2')
+        elif isnotmax(items):
                 use(name,item)
                 return redirect( url_for('profile') )
         else:
+<<<<<<< HEAD
                 return render_template("profile.html", cash=getcash(session['username']), items = items, condition='1')
 
+=======
+                return render_template("profile.html", cash=getcash(session['username']), items=items, condition='1')
+
+>>>>>>> a93175f7042c2849f16f5b9b9eb551cee91a23ab
 @app.route('/logout')
 def logout():
         logout_db()

@@ -12,3 +12,4 @@ var updateMouse = function(event){
 
 document.addEventListener("mousemove", updateMouse);
 fruits.spawn(new fruit("kiwi.png",100*boxWidth/1075,100*boxWidth/1075));
+fruits.start();

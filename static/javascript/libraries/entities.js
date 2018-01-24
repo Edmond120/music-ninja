@@ -33,8 +33,9 @@
 }
 */
 
-boxWidth=window.innerWidth;
-boxHeight=boxWidth*.625;
+//with dynamic rescaling, redefining boxWidth and boxHeight isn't needed
+//boxWidth=window.innerWidth;
+//boxHeight=boxWidth*.625;
 
 class itemWithPhysics extends entity{
   constructor(){
@@ -53,12 +54,12 @@ class itemWithPhysics extends entity{
     }
   	this.vely = (boxHeight/675) * -1 * (Math.random()*2.5 + 47.5);
 	  this.time = 0;
-    console.log("boxWidth ("+boxWidth+")");
-    console.log("boxHeight ("+boxHeight+")");
-    console.log("xcor ("+this.xcor+")");
-    console.log("vely ("+this.vely+")");
-    console.log("velx ("+this.velx+")");
-    console.log("xcor ("+this.xcor+")");
+//    console.log("boxWidth ("+boxWidth+")");
+//    console.log("boxHeight ("+boxHeight+")");
+//    console.log("xcor ("+this.xcor+")");
+//    console.log("vely ("+this.vely+")");
+//    console.log("velx ("+this.velx+")");
+//    console.log("xcor ("+this.xcor+")");
   }
   update(){//x, y is the pixel location
     this.xcor += this.velx * this.time;
@@ -93,8 +94,8 @@ class fruit extends itemWithPhysics{
 		e.style.top = this.ycor + 'px';
 		this.height = height;
 		this.width = width;
-		e.style.height = height + 'px';
-		e.style.width = width + 'px';
+		e.style.height = (height * rMultiplier) + 'px';
+		e.style.width = (width * rMultiplier) + 'px';
 		e.style.position = 'absolute';
 	}
 	update(){
@@ -109,8 +110,10 @@ class fruit extends itemWithPhysics{
 	display(){
 		super.display();
 		//multiply by rMultiplier scales to screen size
-		this.elements[0].style.left = (this.xcor) + 'px';
-		this.elements[0].style.top = (this.ycor) + 'px';
+		this.elements[0].style.height = (this.height * rMultiplier) + 'px';
+		this.elements[0].style.width = (this.height * rMultiplier) + 'px';
+		this.elements[0].style.left = (this.xcor * rMultiplier) + 'px';
+		this.elements[0].style.top = (this.ycor * rMultiplier) + 'px';
 	}
 }
 var f = 0;
@@ -126,7 +129,7 @@ class fruitSpawner extends entity {
 	    var counter = Math.floor(Math.random() * 6);
 	    var thing = this.stuff[Math.floor(Math.random() * stuff.length)];
 	    while(counter > 0){
-		this.owner.spawn(new fruit(thing,100*boxWidth/1075,100*boxWidth/1075));
+		this.owner.spawn(new fruit(thing,100,100));
 		counter--;
 	    }
 	}

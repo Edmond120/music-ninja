@@ -42,7 +42,6 @@ class placeHolder extends entity{
 		}
 		else{
 			velocity = Math.sqrt(Math.pow(mouseX - pMouseX,2) + Math.pow(mouseY - pMouseY,2));
-			console.log(velocity);
 		}
 		return false;
 	}

@@ -28,7 +28,8 @@ def home():
 		if ('score' in request.form):
 			score = request.form['score']
 			addscore(session['username'], score)
-		return render_template("home.html", me = score, cash = money, scores = [['apple', 1003], ['banana', 1002], ['cherry', 1000], ['dude', 1000], ['crazy', 1000], ['why', 1000], ['idk', 1000], ['wow', 1000], ['no', 999]] )
+		scorelist = gethighscore()
+		return render_template("home.html", me = score, cash = money, scores = scorelist)
 	else:
 		# make sure scores are in order from highest to lowest in the list
 		return render_template('welcome.html')

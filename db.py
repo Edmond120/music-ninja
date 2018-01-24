@@ -80,17 +80,12 @@ def isunique(user,item):
     results = c.fetchall()
     print results
     db.close()
-<<<<<<< HEAD
     for result in results:
         print result[0]
         if item == result[0]:
             return True
     return False
-    
-=======
-    return results == []
 
->>>>>>> 32b0b7bbe80acb9a493d708dbe1a06e40b8e8f81
 #allows player to use item
 def use(user,item):
     if isnotmax(itemusinglist(user)):

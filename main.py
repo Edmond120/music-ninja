@@ -21,21 +21,15 @@ def root():
 
 @app.route('/home')
 def home():
-	if in_session():
-		# INFO to be passed: list of top 10 highcores
-<<<<<<< HEAD
-                global money
-                money = getcash(session['username'])
-		return render_template("home.html", cash = money, scores = [['apple', 1003], ['banana', 1002], ['cherry', 1000], ['dude', 1000], ['crazy', 1000], ['why', 1000], ['idk', 1000], ['wow', 1000], ['no', 999]] )
-=======
-        	print 'You are in session!'
-        	print getcash(session['username'])
+	if in_session():# INFO to be passed: list of top 10 highcores
+		global money
+		print 'You are in session!'
+		print getcash(session['username'])
 		score = -1
 		if ('score' in request.form):
 			score = request.form['score']
 			addscore(session['username'], score)
-		return render_template("home.html", me = score, cash = getcash(session['username']), scores = [['apple', 1003], ['banana', 1002], ['cherry', 1000], ['dude', 1000], ['crazy', 1000], ['why', 1000], ['idk', 1000], ['wow', 1000], ['no', 999]] )
->>>>>>> 32b0b7bbe80acb9a493d708dbe1a06e40b8e8f81
+		return render_template("home.html", me = score, cash = money, scores = [['apple', 1003], ['banana', 1002], ['cherry', 1000], ['dude', 1000], ['crazy', 1000], ['why', 1000], ['idk', 1000], ['wow', 1000], ['no', 999]] )
 	else:
 		# make sure scores are in order from highest to lowest in the list
 		return render_template('welcome.html')
@@ -164,7 +158,7 @@ def equip():
                 return redirect( url_for('profile') )
         else:
                 return render_template("profile.html", cash=getcash(session['username']), items = items, condition='1')
-        
+
 @app.route('/logout')
 def logout():
         logout_db()

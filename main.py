@@ -165,13 +165,8 @@ def equip():
                 use(name,item)
                 return redirect( url_for('profile') )
         else:
-<<<<<<< HEAD
                 return render_template("profile.html", cash=getcash(session['username']), items = items, condition='1')
 
-=======
-                return render_template("profile.html", cash=getcash(session['username']), items=items, condition='1')
-
->>>>>>> a93175f7042c2849f16f5b9b9eb551cee91a23ab
 @app.route('/logout')
 def logout():
         logout_db()

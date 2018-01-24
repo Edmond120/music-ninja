@@ -30,9 +30,9 @@
 	<td class="table-right">
           {% if items[item] == 0 %}
 	          <form method="POST" action="/profile">
-            <input type="image" class="onoff" src="../static/images/off.png" name="equip">
+            <input type="image" class="onoff" src="../static/images/off.png" value="equip">
           {% else %}
-            <input type="image" class="onoff" src="../static/images/on.png" name="unequip">
+            <input type="image" class="onoff" src="../static/images/on.png" value="unequip">
           {% endif %}
 	</td>
       </tr>

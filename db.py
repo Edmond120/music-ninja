@@ -89,7 +89,7 @@ def isunique(user,item):
     c.execute('SELECT item FROM items WHERE user = "%s";'  %(user) )
     results = c.fetchall()
     db.close()
-    return results == [] 
+    return results == []
 
 #allows player to use item
 def use(user,item):
@@ -115,7 +115,7 @@ def addscore(user,score):
     f = "app.db"
     db = sqlite3.connect(f)
     c = db.cursor()
-    c.execute('INSERT INTO highscore VALUES("%s", "%d");' %(user, score))
+    c.execute('INSERT INTO highscore VALUES("%s", %d);' %(user, score))
     db.commt()
     db.close()
 
@@ -124,7 +124,7 @@ def gethighscore():
     f = "app.db"
     db = sqlite3.connect()
     c = db.cursor()
-    c.execute('SELECT * FROM highscore ORDER BY score DESC LIMIT 5;')
+    c.execute('SELECT * FROM highscore ORDER BY score DESC LIMIT 10;')
     results = c.fetchall()
     db.close
     return results

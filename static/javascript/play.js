@@ -79,7 +79,7 @@ class entity{
 var boxHeight = 1200;
 var boxWidth = 1920;
 var rescaleMultiplier = function(){
-	var width = document.body.clientWidth || window.innerWidth || window.innerWidth;
+	var width = document.body.clientWidth || window.innerWidth || window.innerWidth; 
 	return document.body.clientWidth / boxWidth;
 }
 var rMultiplier = rescaleMultiplier();
@@ -128,7 +128,7 @@ class entityManager{//only one entityManager is supported with mouse
 	start(){
 		this.running = true;
 		this.interval  = setInterval(this.frame.bind(this),16);
-
+		
 	}
 	frame(){
 		if(this.running){
@@ -318,17 +318,36 @@ class buttons extends entity{
   //img.src = '../../../static/images/background.jpg';
 	img.src = '../../../static/images/btnpause.png';
 	this.elements.push(img);
-	img.style.left = (100 * rMultiplier) + 'px';
-	img.style.top = (1000 * rMultiplier) + 'px';
-	img.style.height = (100 * rMultiplier) + 'px';
-	img.style.width = (100 * rMultiplier) + 'px';
+	img.style.left = (70 * rMultiplier) + 'px';
+	img.style.top = (970 * rMultiplier) + 'px';
+	img.style.height = (200* rMultiplier) + 'px';
+	img.style.width = (200 * rMultiplier) + 'px';
 	img.style.position = 'absolute';
   this.displayPause = function(event){
 	if(mainEventManager.running){
     	mainEventManager.stop();
+      img.src = '../../../static/images/btnplay.png';
+      var exit = document.createElement('img');
+      exit.setAttribute("id","temp");
+      exit.src = '../../../static/images/btnexit.png';
+    	this.elements.push(exit);
+    	exit.style.left = (70 * rMultiplier) + 'px';
+    	exit.style.top = (820 * rMultiplier) + 'px';
+    	exit.style.height = (200 * rMultiplier) + 'px';
+    	exit.style.width = (200 * rMultiplier) + 'px';
+    	exit.style.position = 'absolute';
+      exit.onclick = function() {
+        var input = document.createElement("input");
+        input.setAttribute("type", "hidden");
+        input.setAttribute("name", "score");
+        input.setAttribute("value", score.toString());
+        document.getElementById("theform").appendChild(input);
+      };
 		}
 		else{
-		mainEventManager.start();
+		  mainEventManager.start();
+      this.elements.removeChild(exit);
+      img.src = '../../../static/images/btnpause.png';
 		}
   	  }
     }

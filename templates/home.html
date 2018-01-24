@@ -20,6 +20,11 @@
     <div class="frext">PROFILE</div>
   </form>
 </div>
+{% if me > -1 %}
+<div class="new-score">
+  <h2>Your new score is:<br>{{me}}</h2>
+</div>
+{% endif %}
 <div class="middle">
   <form action="/play" method="POST">
     <input type="image" src="../static/images/mango.png" name="play" class="img">

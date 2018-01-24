@@ -141,6 +141,13 @@ table {
   left: -5%;
 }
 
+.new-score {
+  position: absolute;
+  top: 15%;
+  left: 32%;
+  font-size: 1vw;
+}
+
 .img {
   width: 100%;
   height: 100%;

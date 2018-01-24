@@ -127,6 +127,9 @@ wuY -- 2018-01-22 22:57:28
 xuJ -- 2018-01-23 17:44:18
 	tweaked the properties of the item class so that they will move properly
 	also scaled it so it would work even after window size change
+
 WongE -- 2018-01-23 20:44:44
 	did a lot of stuff, but forgot to write to devlog
 
+xuJ -- 2018-01-24 00:12:18
+	added in buttons in play.html and added the form to bring score value into python

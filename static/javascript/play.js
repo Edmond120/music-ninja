@@ -90,8 +90,17 @@ var pMouseX = 0;
 var pMouseY = 0;
 var velocity = 0;
 
+var lives = 3;
+var score = 0;
+var comboMeter = 0;
+var firstComboFrame = 0;
+
 class placeHolder extends entity{
 	update(){
+		if(firstComboFrame-- <= 0){
+			comboMeter = 0;
+			firstComboFrame = 60 * 3;
+		}
 		rMultiplier = rescaleMultiplier();
 		if(this.owner.frameNumber - mappedFrame >= 30){
 			velocity = 0;
@@ -231,8 +240,6 @@ class itemWithPhysics extends entity{
 var resolutionX = 100;
 var resolutionY = 100;
 
-var lives = 3;
-var score = 0;
 class fruit extends itemWithPhysics{
 	constructor(image,width,height){
 		super();
@@ -258,11 +265,14 @@ class fruit extends itemWithPhysics{
 	update(){
 		var dead = super.update();
 		if(this.vely + this.grav * this.time * this.time >= 0 && this.ycor > boxHeight){
-			console.log("dead");
+			lives--;
+			comboMeter = 0;
 			return true;
 		}
 		if(mouseX > this.xcor && mouseX < this.xcor + this.width && mouseY > this.ycor && mouseY < this.ycor + this.height){//checks if mouse is over it
 			if(velocity >= 4){ //mouse must be a certain speed
+				comboMeter++;
+				score = score + comboMeter
 				dead = true;
 			}
 		}
